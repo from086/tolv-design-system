@@ -1,0 +1,22 @@
+{
+  "name": "tolv-design-system",
+  "version": "0.1.0",
+  "description": "tolv Design System — design tokens (and, going forward, components).",
+  "license": "UNLICENSED",
+  "private": false,
+  "files": [
+    "tokens",
+    "components",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/from086/tolv-design-system.git"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "tolv",
+    "css"
+  ]
+}
