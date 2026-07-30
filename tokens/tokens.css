@@ -1,24 +1,20 @@
 /*
- * tolv Design System — Design Tokens
+ * tolv Design System — Design Tokens  (v0.2.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
+ *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
+ *   Layer 2 Semantic  : Global/Brand を参照する実使用トークン
  *
- *   Layer 1 (Primitive):
- *     - Global : Tailwind v4 のデザイントークン（--color-<palette>-<step>, --spacing-*, --radius-*, ...）
- *     - Brand  : ブランド独自パレット（--color-tolv-navy-*）※Globalと並列
- *   Layer 2 (Semantic):
- *     - 実際にUIで使うトークン。Global または Brand のプリミティブを参照する
- *       （--color-fg-*, --color-bg-*, --color-border-*, --radius-card ...）
+ * カラーは Light / Dark の2モード対応：
+ *   :root                                → Light（既定）
+ *   @media (prefers-color-scheme: dark)  → OSの設定に自動追従
+ *   :root[data-theme="dark"] / ["light"] → 明示的に切替（自動より優先）
  *
- * Figma Variables（"⛔️ tailwindcss" コレクション + Brand コレクション）を出典とする。
- * トークンを増やすときは：プリミティブは各Global/Brandセクションへ、
- * 実際に使う値はSemanticセクションへ追加する。
+ * 出典: Figma "tolv-design-system"  ⛔️ Token ページ (node 3619:3009 ほか)
  */
 
 :root {
-  /* =================================================================
-   * Layer 1 · Primitive tokens
-   * ================================================================= */
+  /* ============ Layer 1 · Primitive ============ */
 
   /* ---- Global · Color (Tailwind v4 palettes) ---- */
   --color-slate-50:#f8fafc;--color-slate-100:#f1f5f9;--color-slate-200:#e2e8f0;--color-slate-300:#cad5e2;--color-slate-400:#90a1b9;--color-slate-500:#62748e;--color-slate-600:#45556c;--color-slate-700:#314158;--color-slate-800:#1d293d;--color-slate-900:#0f172b;--color-slate-950:#020618;
@@ -71,48 +67,254 @@
   --font-weight-thin:100;--font-weight-extralight:200;--font-weight-light:300;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-weight-extrabold:800;--font-weight-black:900;
   --font-tracking-normal:0; --font-tracking-wider:0.8em;
 
-  /* ---- Brand · tolv-navy (Global と並列のプリミティブ) ----
-   * 出典: Figma Variables  Brand/color/tolv-navy (node 3619:1491)
-   */
+  /* ---- Brand · tolv-navy (Global と並列のプリミティブ) ---- 出典: Figma Brand/color/tolv-navy (3619:1491) */
   --color-tolv-navy-50:#f8f7f9;--color-tolv-navy-100:#f1f0f2;--color-tolv-navy-200:#e7e5ea;--color-tolv-navy-300:#d0ccd5;--color-tolv-navy-400:#a099ab;--color-tolv-navy-500:#716681;--color-tolv-navy-600:#594d6c;--color-tolv-navy-700:#413357;--color-tolv-navy-800:#2a1a42;--color-tolv-navy-900:#1e0d38;--color-tolv-navy-950:#12002d;
 
-  /* =================================================================
-   * Layer 2 · Semantic tokens
-   * Global(Tailwind) と Brand(tolv-navy) のどちらのプリミティブも参照できる。
-   * 右コメントは解決値（Figma Semantic Variables 由来）。
-   * ================================================================= */
+  /* ============ Layer 2 · Semantic (color = Light) ============ */
+  --color-fg-basic-primary: var(--color-neutral-950);
+  --color-fg-basic-secondary: var(--color-neutral-600);
+  --color-fg-basic-primary-hover: var(--color-neutral-800);
+  --color-fg-basic-primary-disabled: var(--color-neutral-300);
+  --color-fg-basic-secondary-hover: var(--color-neutral-500);
+  --color-fg-basic-secondary-disabled: var(--color-neutral-300);
+  --color-fg-basic-inverse: var(--color-neutral-50);
+  --color-fg-basic-inverse-hover: var(--color-neutral-200);
+  --color-fg-basic-inverse-disabled: var(--color-neutral-300);
+  --color-border-basic-primary: var(--color-slate-300);
+  --color-fg-brand-primary: var(--color-tolv-navy-950);
+  --color-fg-brand-primary-hover: var(--color-tolv-navy-800);
+  --color-fg-brand-primary-disabled: var(--color-neutral-300);
+  --color-fg-brand-inverse: var(--color-tolv-navy-50);
+  --color-fg-brand-inverse-hover: var(--color-tolv-navy-100);
+  --color-fg-brand-inverse-disabled: var(--color-neutral-300);
+  --color-fg-caution-primary: var(--color-red-600);
+  --color-fg-caution-primary-hover: var(--color-red-400);
+  --color-fg-caution-primary-disabled: var(--color-neutral-300);
+  --color-bg-basic-primary: var(--color-white);
+  --color-bg-basic-primary-hover: var(--color-neutral-50);
+  --color-bg-basic-primary-disabled: var(--color-transparent);
+  --color-bg-basic-inverse: var(--color-black);
+  --color-bg-basic-inverse-hover: var(--color-neutral-950);
+  --color-bg-basic-inverse-disabled: var(--color-transparent);
+  --color-bg-brand-primary: var(--color-tolv-navy-950);
+  --color-bg-brand-primary-hover: var(--color-tolv-navy-800);
+  --color-bg-brand-primary-disabled: var(--color-transparent);
+  --color-bg-brand-secondary: var(--color-tolv-navy-200);
+  --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+  --color-bg-brand-secondary-disabled: var(--color-transparent);
+  --color-bg-caution-primary: var(--color-red-600);
+  --color-bg-caution-primary-hover: var(--color-red-400);
+  --color-bg-caution-primary-disabled: var(--color-transparent);
+  --color-bg-caution-secondary: var(--color-red-100);
+  --color-bg-caution-secondary-hover: var(--color-red-50);
+  --color-bg-caution-secondary-disabled: var(--color-transparent);
+  --color-border-basic-primary-hover: var(--color-slate-200);
+  --color-border-basic-primary-disabled: var(--color-transparent);
+  --color-border-basic-secondary: var(--color-slate-600);
+  --color-border-basic-secondary-hover: var(--color-slate-500);
+  --color-border-basic-secondary-disabled: var(--color-transparent);
+  --color-border-brand-primary: var(--color-tolv-navy-300);
+  --color-border-brand-primary-hover: var(--color-tolv-navy-200);
+  --color-border-brand-primary-disabled: var(--color-transparent);
+  --color-border-brand-secondary: var(--color-tolv-navy-600);
+  --color-border-brand-secondary-hover: var(--color-tolv-navy-500);
+  --color-border-brand-secondary-disabled: var(--color-transparent);
+  --color-border-caution-primary: var(--color-red-600);
+  --color-border-caution-primary-hover: var(--color-red-500);
+  --color-border-caution-primary-disabled: var(--color-transparent);
 
-  /* Foreground */
-  --color-fg-basic-primary:            var(--color-neutral-950);   /* #0a0a0a */
-  --color-fg-brand-primary:            var(--color-tolv-navy-950);  /* #12002d */
-  --color-fg-brand-primary-hover:      var(--color-tolv-navy-800);  /* #2a1a42 */
-  --color-fg-brand-primary-disabled:   var(--color-tolv-navy-300);  /* #d0ccd5 */
-  --color-fg-brand-inverse:            var(--color-tolv-navy-50);   /* #f8f7f9 */
-  --color-fg-brand-inverse-hover:      var(--color-tolv-navy-100);  /* #f1f0f2 */
-  --color-fg-brand-inverse-disabled:   var(--color-tolv-navy-300);  /* #d0ccd5 */
-  --color-fg-caution-primary:          var(--color-red-600);        /* #e7000b */
-  --color-fg-caution-primary-hover:    var(--color-red-400);        /* #ff6467 */
-  --color-fg-caution-primary-disabled: var(--color-neutral-400);    /* #a1a1a1 */
+  /* ---- Semantic · Spacing (Min/Small/Medium/Large) ---- */
+  --space-min: var(--spacing-0-5);   /* 2px */
+  --space-small: var(--spacing-1);   /* 4px */
+  --space-medium: var(--spacing-2);  /* 8px */
+  --space-large: var(--spacing-4);   /* 16px */
 
-  /* Background */
-  --color-bg-basic-primary:            var(--color-white);          /* #ffffff */
-  --color-bg-basic-primary-hover:      var(--color-neutral-50);     /* #fafafa */
-  --color-bg-brand-primary:            var(--color-tolv-navy-950);  /* #12002d */
-  --color-bg-brand-primary-hover:      var(--color-tolv-navy-800);  /* #2a1a42 */
-  --color-bg-brand-primary-disabled:   var(--color-tolv-navy-200);  /* #e7e5ea */
-  --color-bg-brand-secondary:          var(--color-tolv-navy-200);  /* #e7e5ea */
-  --color-bg-brand-secondary-hover:    var(--color-tolv-navy-300);  /* #d0ccd5 */
-  --color-bg-brand-secondary-disabled: var(--color-tolv-navy-50);   /* #f8f7f9 */
-  --color-bg-caution-primary-disabled: var(--color-neutral-200);    /* #e5e5e5 */
+  /* ---- Semantic · Radius (Min/Small/Medium/Large) ----
+   * None / Full は Global の --radius-none(0) / --radius-full(9999px) をそのまま使用 */
+  --radius-min: var(--radius-xs);     /* 2px */
+  --radius-small: var(--radius-sm);   /* 4px */
+  --radius-medium: var(--radius-lg);  /* 8px */
+  --radius-large: var(--radius-2xl);  /* 16px */
 
-  /* Border */
-  --color-border-basic-primary:        var(--color-slate-300);      /* #cad5e2 */
-  --color-border-brand-primary:        var(--color-tolv-navy-300);  /* #d0ccd5 */
+  /* ---- Semantic · Border width (Regular/Bold) ---- */
+  --border-regular: var(--border-width-1); /* 1px */
+  --border-bold: 4px;                       /* 4px（Global に直接の primitive なし） */
 
-  /* Radius (semantic) */
-  --radius-card:    var(--radius-3xl);  /* 24px — カード・ドロップエリア */
-  --radius-control: var(--radius-xl);   /* 12px — ボタン等のコントロール */
+  /* ---- Semantic · Opacity ---- */
+  --opacity-weaker: 5%;
+  --opacity-weak: 20%;
+  --opacity-strong: 80%;
+  --opacity-stronger: 95%;
+  --opacity-max: 100%;
 
-  /* Typography (semantic) */
+  /* ---- Semantic · Breakpoint (Small/Medium/Large) ---- */
+  --breakpoint-small: var(--breakpoint-sm);   /* 640px */
+  --breakpoint-medium: var(--breakpoint-md);  /* 768px */
+  --breakpoint-large: var(--breakpoint-lg);   /* 1024px */
+
+  /* ---- Convenience aliases (not from Figma semantic set; kept for continuity) ---- */
+  --radius-card: var(--radius-3xl);    /* 24px */
+  --radius-control: var(--radius-xl);  /* 12px */
   --font-family-base: var(--font-family-sans), -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, sans-serif;
+}
+
+/* ---- Dark mode (auto: OS setting) ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-fg-basic-primary: var(--color-neutral-50);
+    --color-fg-basic-secondary: var(--color-neutral-400);
+    --color-fg-basic-primary-hover: var(--color-neutral-200);
+    --color-fg-basic-primary-disabled: var(--color-neutral-700);
+    --color-fg-basic-secondary-hover: var(--color-neutral-500);
+    --color-fg-basic-secondary-disabled: var(--color-neutral-700);
+    --color-fg-basic-inverse: var(--color-neutral-950);
+    --color-fg-basic-inverse-hover: var(--color-neutral-800);
+    --color-fg-basic-inverse-disabled: var(--color-neutral-700);
+    --color-border-basic-primary: var(--color-slate-700);
+    --color-fg-brand-primary: var(--color-tolv-navy-50);
+    --color-fg-brand-primary-hover: var(--color-tolv-navy-200);
+    --color-fg-brand-primary-disabled: var(--color-neutral-700);
+    --color-fg-brand-inverse: var(--color-tolv-navy-950);
+    --color-fg-brand-inverse-hover: var(--color-tolv-navy-900);
+    --color-fg-brand-inverse-disabled: var(--color-neutral-700);
+    --color-fg-caution-primary: var(--color-red-400);
+    --color-fg-caution-primary-hover: var(--color-red-600);
+    --color-fg-caution-primary-disabled: var(--color-neutral-700);
+    --color-bg-basic-primary: var(--color-black);
+    --color-bg-basic-primary-hover: var(--color-neutral-950);
+    --color-bg-basic-primary-disabled: var(--color-transparent);
+    --color-bg-basic-inverse: var(--color-white);
+    --color-bg-basic-inverse-hover: var(--color-neutral-50);
+    --color-bg-basic-inverse-disabled: var(--color-transparent);
+    --color-bg-brand-primary: var(--color-tolv-navy-50);
+    --color-bg-brand-primary-hover: var(--color-tolv-navy-200);
+    --color-bg-brand-primary-disabled: var(--color-transparent);
+    --color-bg-brand-secondary: var(--color-tolv-navy-800);
+    --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+    --color-bg-brand-secondary-disabled: var(--color-transparent);
+    --color-bg-caution-primary: var(--color-red-400);
+    --color-bg-caution-primary-hover: var(--color-red-600);
+    --color-bg-caution-primary-disabled: var(--color-transparent);
+    --color-bg-caution-secondary: var(--color-red-900);
+    --color-bg-caution-secondary-hover: var(--color-red-950);
+    --color-bg-caution-secondary-disabled: var(--color-transparent);
+    --color-border-basic-primary-hover: var(--color-slate-800);
+    --color-border-basic-primary-disabled: var(--color-transparent);
+    --color-border-basic-secondary: var(--color-slate-400);
+    --color-border-basic-secondary-hover: var(--color-slate-500);
+    --color-border-basic-secondary-disabled: var(--color-transparent);
+    --color-border-brand-primary: var(--color-tolv-navy-700);
+    --color-border-brand-primary-hover: var(--color-tolv-navy-800);
+    --color-border-brand-primary-disabled: var(--color-transparent);
+    --color-border-brand-secondary: var(--color-tolv-navy-400);
+    --color-border-brand-secondary-hover: var(--color-tolv-navy-500);
+    --color-border-brand-secondary-disabled: var(--color-transparent);
+  }
+}
+
+/* ---- Dark mode (manual override) ---- */
+:root[data-theme="dark"] {
+  --color-fg-basic-primary: var(--color-neutral-50);
+  --color-fg-basic-secondary: var(--color-neutral-400);
+  --color-fg-basic-primary-hover: var(--color-neutral-200);
+  --color-fg-basic-primary-disabled: var(--color-neutral-700);
+  --color-fg-basic-secondary-hover: var(--color-neutral-500);
+  --color-fg-basic-secondary-disabled: var(--color-neutral-700);
+  --color-fg-basic-inverse: var(--color-neutral-950);
+  --color-fg-basic-inverse-hover: var(--color-neutral-800);
+  --color-fg-basic-inverse-disabled: var(--color-neutral-700);
+  --color-border-basic-primary: var(--color-slate-700);
+  --color-fg-brand-primary: var(--color-tolv-navy-50);
+  --color-fg-brand-primary-hover: var(--color-tolv-navy-200);
+  --color-fg-brand-primary-disabled: var(--color-neutral-700);
+  --color-fg-brand-inverse: var(--color-tolv-navy-950);
+  --color-fg-brand-inverse-hover: var(--color-tolv-navy-900);
+  --color-fg-brand-inverse-disabled: var(--color-neutral-700);
+  --color-fg-caution-primary: var(--color-red-400);
+  --color-fg-caution-primary-hover: var(--color-red-600);
+  --color-fg-caution-primary-disabled: var(--color-neutral-700);
+  --color-bg-basic-primary: var(--color-black);
+  --color-bg-basic-primary-hover: var(--color-neutral-950);
+  --color-bg-basic-primary-disabled: var(--color-transparent);
+  --color-bg-basic-inverse: var(--color-white);
+  --color-bg-basic-inverse-hover: var(--color-neutral-50);
+  --color-bg-basic-inverse-disabled: var(--color-transparent);
+  --color-bg-brand-primary: var(--color-tolv-navy-50);
+  --color-bg-brand-primary-hover: var(--color-tolv-navy-200);
+  --color-bg-brand-primary-disabled: var(--color-transparent);
+  --color-bg-brand-secondary: var(--color-tolv-navy-800);
+  --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+  --color-bg-brand-secondary-disabled: var(--color-transparent);
+  --color-bg-caution-primary: var(--color-red-400);
+  --color-bg-caution-primary-hover: var(--color-red-600);
+  --color-bg-caution-primary-disabled: var(--color-transparent);
+  --color-bg-caution-secondary: var(--color-red-900);
+  --color-bg-caution-secondary-hover: var(--color-red-950);
+  --color-bg-caution-secondary-disabled: var(--color-transparent);
+  --color-border-basic-primary-hover: var(--color-slate-800);
+  --color-border-basic-primary-disabled: var(--color-transparent);
+  --color-border-basic-secondary: var(--color-slate-400);
+  --color-border-basic-secondary-hover: var(--color-slate-500);
+  --color-border-basic-secondary-disabled: var(--color-transparent);
+  --color-border-brand-primary: var(--color-tolv-navy-700);
+  --color-border-brand-primary-hover: var(--color-tolv-navy-800);
+  --color-border-brand-primary-disabled: var(--color-transparent);
+  --color-border-brand-secondary: var(--color-tolv-navy-400);
+  --color-border-brand-secondary-hover: var(--color-tolv-navy-500);
+  --color-border-brand-secondary-disabled: var(--color-transparent);
+}
+
+/* ---- Light mode (manual override) ---- */
+:root[data-theme="light"] {
+  --color-fg-basic-primary: var(--color-neutral-950);
+  --color-fg-basic-secondary: var(--color-neutral-600);
+  --color-fg-basic-primary-hover: var(--color-neutral-800);
+  --color-fg-basic-primary-disabled: var(--color-neutral-300);
+  --color-fg-basic-secondary-hover: var(--color-neutral-500);
+  --color-fg-basic-secondary-disabled: var(--color-neutral-300);
+  --color-fg-basic-inverse: var(--color-neutral-50);
+  --color-fg-basic-inverse-hover: var(--color-neutral-200);
+  --color-fg-basic-inverse-disabled: var(--color-neutral-300);
+  --color-border-basic-primary: var(--color-slate-300);
+  --color-fg-brand-primary: var(--color-tolv-navy-950);
+  --color-fg-brand-primary-hover: var(--color-tolv-navy-800);
+  --color-fg-brand-primary-disabled: var(--color-neutral-300);
+  --color-fg-brand-inverse: var(--color-tolv-navy-50);
+  --color-fg-brand-inverse-hover: var(--color-tolv-navy-100);
+  --color-fg-brand-inverse-disabled: var(--color-neutral-300);
+  --color-fg-caution-primary: var(--color-red-600);
+  --color-fg-caution-primary-hover: var(--color-red-400);
+  --color-fg-caution-primary-disabled: var(--color-neutral-300);
+  --color-bg-basic-primary: var(--color-white);
+  --color-bg-basic-primary-hover: var(--color-neutral-50);
+  --color-bg-basic-primary-disabled: var(--color-transparent);
+  --color-bg-basic-inverse: var(--color-black);
+  --color-bg-basic-inverse-hover: var(--color-neutral-950);
+  --color-bg-basic-inverse-disabled: var(--color-transparent);
+  --color-bg-brand-primary: var(--color-tolv-navy-950);
+  --color-bg-brand-primary-hover: var(--color-tolv-navy-800);
+  --color-bg-brand-primary-disabled: var(--color-transparent);
+  --color-bg-brand-secondary: var(--color-tolv-navy-200);
+  --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+  --color-bg-brand-secondary-disabled: var(--color-transparent);
+  --color-bg-caution-primary: var(--color-red-600);
+  --color-bg-caution-primary-hover: var(--color-red-400);
+  --color-bg-caution-primary-disabled: var(--color-transparent);
+  --color-bg-caution-secondary: var(--color-red-100);
+  --color-bg-caution-secondary-hover: var(--color-red-50);
+  --color-bg-caution-secondary-disabled: var(--color-transparent);
+  --color-border-basic-primary-hover: var(--color-slate-200);
+  --color-border-basic-primary-disabled: var(--color-transparent);
+  --color-border-basic-secondary: var(--color-slate-600);
+  --color-border-basic-secondary-hover: var(--color-slate-500);
+  --color-border-basic-secondary-disabled: var(--color-transparent);
+  --color-border-brand-primary: var(--color-tolv-navy-300);
+  --color-border-brand-primary-hover: var(--color-tolv-navy-200);
+  --color-border-brand-primary-disabled: var(--color-transparent);
+  --color-border-brand-secondary: var(--color-tolv-navy-600);
+  --color-border-brand-secondary-hover: var(--color-tolv-navy-500);
+  --color-border-brand-secondary-disabled: var(--color-transparent);
+  --color-border-caution-primary: var(--color-red-600);
+  --color-border-caution-primary-hover: var(--color-red-500);
+  --color-border-caution-primary-disabled: var(--color-transparent);
 }
