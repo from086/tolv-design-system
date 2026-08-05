@@ -6,6 +6,11 @@ const config = {
     name: '@storybook/html-vite',
     options: {},
   },
+  // GitHub Pages のサブパス（/tolv-design-system/）配信でアセットが解決するよう相対ベースに
+  viteFinal: async (config) => {
+    config.base = './';
+    return config;
+  },
 };
 
 export default config;
