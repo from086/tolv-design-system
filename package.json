@@ -1,6 +1,6 @@
 {
   "name": "tolv-design-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "tolv Design System — design tokens (and, going forward, components).",
   "license": "UNLICENSED",
   "private": false,

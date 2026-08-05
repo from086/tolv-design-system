@@ -2,6 +2,21 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.3.0] - 2026-08-05
+### Added
+- **Semantic タイポグラフィ**（出典: Figma Font セクション `3624:5754`）
+  - `--font-sans`（Noto Sans JP）/ `--font-mono`（Noto Sans Mono）※Semantic Sans は Global の Inter とは別
+  - `--font-size-min|small|medium|large|xlarge`（12/16/18/20/30px）
+  - `--line-height-min|small|medium|large|xlarge`（18/24/28/32/44px）
+  - `--font-family-base` を Semantic Sans（Noto Sans JP）参照に変更
+- **Opacity 中間値** `--opacity-medium: 50%` を追加（#3）
+
+### Fixed
+- **Border/Caution/Primary の Dark モード値**を追加（Default=red-400 / Hover=red-500 / Disabled=transparent）。Light 継承を解消（#1）
+
+### Closed issues
+- #1 Border/Caution Dark 未定義 / #2 Font Semantic 未取り込み / #3 Opacity 中間値未取得
+
 ## [0.2.0] - 2026-07-29
 ### Added
 - **Semantic カラー層を大幅拡充**（出典: Figma ⛔️ Token ページ `3619:3009`）

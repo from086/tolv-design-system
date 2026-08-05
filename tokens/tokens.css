@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Design Tokens  (v0.2.0)
+ * tolv Design System — Design Tokens  (v0.3.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
  *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
@@ -143,6 +143,7 @@
   /* ---- Semantic · Opacity ---- */
   --opacity-weaker: 5%;
   --opacity-weak: 20%;
+  --opacity-medium: 50%;
   --opacity-strong: 80%;
   --opacity-stronger: 95%;
   --opacity-max: 100%;
@@ -152,10 +153,26 @@
   --breakpoint-medium: var(--breakpoint-md);  /* 768px */
   --breakpoint-large: var(--breakpoint-lg);   /* 1024px */
 
+  /* ---- Semantic · Typography ---- 出典: Figma Font セクション (3624:5754)
+   * 注: Semantic の Sans は Noto Sans JP（Global の Inter とは別）、Mono は Noto Sans Mono */
+  --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, sans-serif;
+  --font-mono: 'Noto Sans Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-size-min: var(--font-size-xs);       /* 12px */
+  --font-size-small: var(--font-size-base);   /* 16px */
+  --font-size-medium: var(--font-size-lg);    /* 18px */
+  --font-size-large: var(--font-size-xl);     /* 20px */
+  --font-size-xlarge: var(--font-size-3xl);   /* 30px */
+  --line-height-min: 18px;                     /* Global に primitive なし */
+  --line-height-small: var(--font-leading-6);  /* 24px */
+  --line-height-medium: var(--font-leading-7); /* 28px */
+  --line-height-large: var(--font-leading-8);  /* 32px */
+  --line-height-xlarge: 44px;                  /* Global に primitive なし */
+  /* weight は Global の --font-weight-light(300)/medium(500)/bold(700) を使用 */
+
   /* ---- Convenience aliases (not from Figma semantic set; kept for continuity) ---- */
   --radius-card: var(--radius-3xl);    /* 24px */
   --radius-control: var(--radius-xl);  /* 12px */
-  --font-family-base: var(--font-family-sans), -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, sans-serif;
+  --font-family-base: var(--font-sans); /* Semantic Sans = Noto Sans JP */
 }
 
 /* ---- Dark mode (auto: OS setting) ---- */
@@ -209,6 +226,9 @@
     --color-border-brand-secondary: var(--color-tolv-navy-400);
     --color-border-brand-secondary-hover: var(--color-tolv-navy-500);
     --color-border-brand-secondary-disabled: var(--color-transparent);
+    --color-border-caution-primary: var(--color-red-400);
+    --color-border-caution-primary-hover: var(--color-red-500);
+    --color-border-caution-primary-disabled: var(--color-transparent);
   }
 }
 
@@ -262,6 +282,9 @@
   --color-border-brand-secondary: var(--color-tolv-navy-400);
   --color-border-brand-secondary-hover: var(--color-tolv-navy-500);
   --color-border-brand-secondary-disabled: var(--color-transparent);
+  --color-border-caution-primary: var(--color-red-400);
+  --color-border-caution-primary-hover: var(--color-red-500);
+  --color-border-caution-primary-disabled: var(--color-transparent);
 }
 
 /* ---- Light mode (manual override) ---- */
