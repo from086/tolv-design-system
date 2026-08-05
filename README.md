@@ -2,6 +2,8 @@
 
 tolv の共有デザインシステム。現在は**デザイントークン**を提供し、今後**コンポーネント**も追加していきます。バージョンは Git タグ（semver）＋ GitHub Release で管理し、[jsDelivr](https://www.jsdelivr.com/) 経由でCDN配信します。
 
+📚 **Storybook（コンポーネントカタログ）: https://from086.github.io/tolv-design-system/** — `main` への push で自動更新
+
 ## 使い方（jsDelivr）
 
 **必ずバージョンを固定**して参照してください（`@latest` やブランチ参照はキャッシュ反映が遅く非推奨）。
@@ -47,6 +49,8 @@ CSS からは Semantic トークンを参照します。
 ## 開発（Storybook）
 
 コンポーネントの確認・カタログ化に **Storybook（`@storybook/html-vite`）** を使います。配信物（`tokens.css` / `components/*.css`）はビルド不要のままで、Storybook は開発時の devDependency のみ（CDN 配信には影響しません）。
+
+公開版: **https://from086.github.io/tolv-design-system/**（`main` push で GitHub Actions が自動デプロイ）。ローカルは以下:
 
 ```bash
 npm install          # 初回のみ
