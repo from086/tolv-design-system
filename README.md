@@ -59,9 +59,13 @@ npm run build-storybook  # 静的ビルド → storybook-static/
 ```
 
 - ストーリーは各コンポーネント隣の `*.stories.js`（例: `components/button.stories.js`）
+- **ストーリー構成の標準は2本**:
+  - **Playground** … `args` + Controls で全組合せを操作（触る用）
+  - **Overview** … 全バリアントを1画面に並べたマトリクス（俯瞰・レビュー・回帰確認用）
+  - 個別の状態ごとのストーリーは原則作らない（Playground で代替でき、Controls の状態は URL 共有も可能）
 - 上部ツールバーの **Theme** で Light / Dark / Auto を切替（`:root[data-theme]` を操作）
 - **Accessibility** タブ（addon-a11y）でコントラスト等を確認可能
-- 新規コンポーネントは `components/<name>.css` ＋ `components/<name>.stories.js` を追加するだけ
+- 新規コンポーネントは `components/<name>.css` ＋ `components/<name>.stories.js`（Playground + Overview）を追加するだけ
 
 ## トークン設計（2層）
 

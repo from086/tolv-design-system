@@ -40,25 +40,11 @@ export default {
   },
 };
 
-// コントロールで自由に試せる基本ストーリー
+// 操作用：Controls であらゆる組合せを試す
 export const Playground = {};
 
-// 種別
-export const Primary = { args: { type: 'Primary' } };
-export const Secondary = { args: { type: 'Secondary' } };
-export const Caution = { args: { type: 'Caution' } };
-
-// サイズ
-export const Small = { args: { size: 'Small' } };
-
-// 状態
-export const Disabled = { args: { disabled: true } };
-
-// テキストのみ（アイコンなし）
-export const LabelOnly = { args: { prefixIcon: false, suffixIcon: false } };
-
-// 全バリアント一覧（Size × Type × State のマトリクス）
-export const AllVariants = {
+// 俯瞰用：全バリアント一覧（Size × Type × State のマトリクス）
+export const Overview = {
   parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => {
     const types = ['Primary', 'Secondary', 'Caution'];
