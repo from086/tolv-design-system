@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Design Tokens  (v0.3.0)
+ * tolv Design System — Design Tokens  (v0.4.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
  *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
@@ -99,15 +99,21 @@
   --color-bg-brand-primary: var(--color-tolv-navy-950);
   --color-bg-brand-primary-hover: var(--color-tolv-navy-800);
   --color-bg-brand-primary-disabled: var(--color-transparent);
-  --color-bg-brand-secondary: var(--color-tolv-navy-200);
-  --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+  --color-bg-brand-secondary: var(--color-tolv-navy-100);
+  --color-bg-brand-secondary-hover: var(--color-tolv-navy-200);
   --color-bg-brand-secondary-disabled: var(--color-transparent);
+  --color-bg-brand-tertiary: var(--color-white);
+  --color-bg-brand-tertiary-hover: var(--color-tolv-navy-50);
+  --color-bg-brand-tertiary-disabled: var(--color-transparent);
   --color-bg-caution-primary: var(--color-red-600);
   --color-bg-caution-primary-hover: var(--color-red-400);
   --color-bg-caution-primary-disabled: var(--color-transparent);
   --color-bg-caution-secondary: var(--color-red-100);
-  --color-bg-caution-secondary-hover: var(--color-red-50);
+  --color-bg-caution-secondary-hover: var(--color-red-200);
   --color-bg-caution-secondary-disabled: var(--color-transparent);
+  --color-bg-caution-tertiary: var(--color-white);
+  --color-bg-caution-tertiary-hover: var(--color-red-50);
+  --color-bg-caution-tertiary-disabled: var(--color-transparent);
   --color-border-basic-primary-hover: var(--color-slate-200);
   --color-border-basic-primary-disabled: var(--color-transparent);
   --color-border-basic-secondary: var(--color-slate-600);
@@ -206,15 +212,21 @@
     --color-bg-brand-primary: var(--color-tolv-navy-50);
     --color-bg-brand-primary-hover: var(--color-tolv-navy-200);
     --color-bg-brand-primary-disabled: var(--color-transparent);
-    --color-bg-brand-secondary: var(--color-tolv-navy-800);
-    --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+    --color-bg-brand-secondary: var(--color-tolv-navy-900);
+    --color-bg-brand-secondary-hover: var(--color-tolv-navy-800);
     --color-bg-brand-secondary-disabled: var(--color-transparent);
+    --color-bg-brand-tertiary: var(--color-black);
+    --color-bg-brand-tertiary-hover: var(--color-tolv-navy-950);
+    --color-bg-brand-tertiary-disabled: var(--color-transparent);
     --color-bg-caution-primary: var(--color-red-400);
     --color-bg-caution-primary-hover: var(--color-red-600);
     --color-bg-caution-primary-disabled: var(--color-transparent);
     --color-bg-caution-secondary: var(--color-red-900);
-    --color-bg-caution-secondary-hover: var(--color-red-950);
+    --color-bg-caution-secondary-hover: var(--color-red-800);
     --color-bg-caution-secondary-disabled: var(--color-transparent);
+    --color-bg-caution-tertiary: var(--color-black);
+    --color-bg-caution-tertiary-hover: var(--color-red-950);
+    --color-bg-caution-tertiary-disabled: var(--color-transparent);
     --color-border-basic-primary-hover: var(--color-slate-800);
     --color-border-basic-primary-disabled: var(--color-transparent);
     --color-border-basic-secondary: var(--color-slate-400);
@@ -262,15 +274,21 @@
   --color-bg-brand-primary: var(--color-tolv-navy-50);
   --color-bg-brand-primary-hover: var(--color-tolv-navy-200);
   --color-bg-brand-primary-disabled: var(--color-transparent);
-  --color-bg-brand-secondary: var(--color-tolv-navy-800);
-  --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+  --color-bg-brand-secondary: var(--color-tolv-navy-900);
+  --color-bg-brand-secondary-hover: var(--color-tolv-navy-800);
   --color-bg-brand-secondary-disabled: var(--color-transparent);
+  --color-bg-brand-tertiary: var(--color-black);
+  --color-bg-brand-tertiary-hover: var(--color-tolv-navy-950);
+  --color-bg-brand-tertiary-disabled: var(--color-transparent);
   --color-bg-caution-primary: var(--color-red-400);
   --color-bg-caution-primary-hover: var(--color-red-600);
   --color-bg-caution-primary-disabled: var(--color-transparent);
   --color-bg-caution-secondary: var(--color-red-900);
-  --color-bg-caution-secondary-hover: var(--color-red-950);
+  --color-bg-caution-secondary-hover: var(--color-red-800);
   --color-bg-caution-secondary-disabled: var(--color-transparent);
+  --color-bg-caution-tertiary: var(--color-black);
+  --color-bg-caution-tertiary-hover: var(--color-red-950);
+  --color-bg-caution-tertiary-disabled: var(--color-transparent);
   --color-border-basic-primary-hover: var(--color-slate-800);
   --color-border-basic-primary-disabled: var(--color-transparent);
   --color-border-basic-secondary: var(--color-slate-400);
@@ -317,15 +335,21 @@
   --color-bg-brand-primary: var(--color-tolv-navy-950);
   --color-bg-brand-primary-hover: var(--color-tolv-navy-800);
   --color-bg-brand-primary-disabled: var(--color-transparent);
-  --color-bg-brand-secondary: var(--color-tolv-navy-200);
-  --color-bg-brand-secondary-hover: var(--color-tolv-navy-300);
+  --color-bg-brand-secondary: var(--color-tolv-navy-100);
+  --color-bg-brand-secondary-hover: var(--color-tolv-navy-200);
   --color-bg-brand-secondary-disabled: var(--color-transparent);
+  --color-bg-brand-tertiary: var(--color-white);
+  --color-bg-brand-tertiary-hover: var(--color-tolv-navy-50);
+  --color-bg-brand-tertiary-disabled: var(--color-transparent);
   --color-bg-caution-primary: var(--color-red-600);
   --color-bg-caution-primary-hover: var(--color-red-400);
   --color-bg-caution-primary-disabled: var(--color-transparent);
   --color-bg-caution-secondary: var(--color-red-100);
-  --color-bg-caution-secondary-hover: var(--color-red-50);
+  --color-bg-caution-secondary-hover: var(--color-red-200);
   --color-bg-caution-secondary-disabled: var(--color-transparent);
+  --color-bg-caution-tertiary: var(--color-white);
+  --color-bg-caution-tertiary-hover: var(--color-red-50);
+  --color-bg-caution-tertiary-disabled: var(--color-transparent);
   --color-border-basic-primary-hover: var(--color-slate-200);
   --color-border-basic-primary-disabled: var(--color-transparent);
   --color-border-basic-secondary: var(--color-slate-600);

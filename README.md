@@ -22,6 +22,28 @@ CSS からは Semantic トークンを参照します。
 .button:hover { background: var(--color-bg-brand-primary-hover); } /* tolv-navy-800 */
 ```
 
+## コンポーネント
+
+### Button（`components/button.css`）
+
+`tokens.css` を先に読み込んだうえで参照します（ビルド不要・Light/Dark 自動追従）。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.4.0/tokens/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.4.0/components/button.css">
+
+<button class="tolv-btn tolv-btn--primary">
+  <span class="tolv-btn__icon" aria-hidden="true"><!-- svg --></span>
+  <span class="tolv-btn__label">ラベル</span>
+</button>
+```
+
+- **Type**: `--primary`（塗り）/ `--secondary`（ブランド枠）/ `--caution`（警告枠）
+- **Size**: 既定=Medium、`--sm`=Small
+- **State**: Default / `:hover` / 無効（`disabled` 属性 or `aria-disabled="true"`）
+- アイコンは前後どちらも任意。`.tolv-btn__label` の前後に `.tolv-btn__icon` を置く
+- 全バリアントは `components/button.demo.html` で確認可能
+
 ## トークン設計（2層）
 
 ```

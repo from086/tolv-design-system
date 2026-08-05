@@ -1,0 +1,149 @@
+/*
+ * tolv Design System — Button  (v0.4.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css のセマンティックトークンを参照するため、
+ * ページ側で tokens.css を先に読み込んでください（Light/Dark 自動追従）。
+ *
+ * 出典: Figma "tolv-design-system" Component ページ / Button (node 3616:1721)
+ *
+ * マークアップ例:
+ *   <button class="tolv-btn tolv-btn--primary">        ← Medium/Primary（既定）
+ *     <span class="tolv-btn__icon" aria-hidden="true"><svg>…</svg></span>
+ *     <span class="tolv-btn__label">ラベル</span>
+ *     <span class="tolv-btn__icon" aria-hidden="true"><svg>…</svg></span>
+ *   </button>
+ *
+ *   <button class="tolv-btn tolv-btn--sm tolv-btn--secondary">…</button>
+ *   <a class="tolv-btn tolv-btn--caution" aria-disabled="true">…</a>
+ *
+ * Type  : --primary（塗り） / --secondary（ブランド枠） / --caution（警告枠）
+ * Size  : 既定 = Medium、--sm = Small
+ * State : Default / :hover / 無効（:disabled | [aria-disabled="true"]）
+ * アイコンは前後どちらも任意。svg は fill:currentColor で文字色に追従。
+ */
+
+.tolv-btn {
+  /* ---- layout ---- */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 44px;                 /* Medium */
+  padding: var(--space-medium, 8px);
+  /* ---- shape ---- */
+  border: var(--border-regular, 1px) solid transparent;
+  border-radius: var(--radius-medium, 8px);
+  /* ---- typography ---- */
+  font-family: var(--font-sans, 'Noto Sans JP', sans-serif);
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-size-small, 16px);   /* Medium: 16px */
+  line-height: var(--line-height-small, 24px);
+  letter-spacing: var(--font-tracking-normal, 0);
+  /* ---- behaviour ---- */
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.tolv-btn__label {
+  /* Figma LabelArea の px = space-small。アイコン隣接時は 4px の間隔になる */
+  padding: 0 var(--space-small, 4px);
+  white-space: nowrap;
+}
+
+.tolv-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 24px;                      /* Medium */
+  height: 24px;
+  color: inherit;
+}
+.tolv-btn__icon svg,
+.tolv-btn__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.tolv-btn__icon svg { fill: currentColor; }
+
+/* ============ Size = Small ============ */
+.tolv-btn--sm {
+  min-height: 32px;
+  padding: var(--space-small, 4px) var(--space-medium, 8px);  /* py=4 px=8 */
+  font-size: var(--font-size-min, 12px);      /* Small: 12px */
+  line-height: var(--line-height-min, 18px);
+}
+.tolv-btn--sm .tolv-btn__icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============ Type = Primary（塗り・ブランド） ============ */
+.tolv-btn--primary {
+  background-color: var(--color-bg-brand-primary);
+  color: var(--color-fg-basic-inverse);
+  border-color: transparent;
+}
+.tolv-btn--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-bg-brand-primary-hover);
+  color: var(--color-fg-basic-inverse-hover);
+}
+
+/* ============ Type = Secondary（ブランド枠） ============ */
+.tolv-btn--secondary {
+  background-color: var(--color-bg-brand-tertiary);
+  color: var(--color-fg-brand-primary);
+  border-color: var(--color-border-brand-secondary);
+}
+.tolv-btn--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-bg-brand-tertiary-hover);
+  color: var(--color-fg-brand-primary-hover);
+  border-color: var(--color-border-brand-secondary-hover);
+}
+
+/* ============ Type = Caution（警告枠） ============ */
+.tolv-btn--caution {
+  background-color: var(--color-bg-caution-tertiary);
+  color: var(--color-fg-caution-primary);
+  border-color: var(--color-border-caution-primary);
+}
+.tolv-btn--caution:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-bg-caution-tertiary-hover);
+  color: var(--color-fg-caution-primary-hover);
+  border-color: var(--color-border-caution-primary-hover);
+}
+
+/* ============ State = Disabled ============ */
+.tolv-btn:disabled,
+.tolv-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+.tolv-btn--primary:disabled,
+.tolv-btn--primary[aria-disabled="true"] {
+  background-color: var(--color-bg-brand-primary-disabled);
+  color: var(--color-fg-basic-inverse-disabled);
+  border-color: transparent;
+}
+.tolv-btn--secondary:disabled,
+.tolv-btn--secondary[aria-disabled="true"] {
+  background-color: var(--color-bg-brand-tertiary-disabled);
+  color: var(--color-fg-brand-primary-disabled);
+  border-color: var(--color-border-brand-secondary-disabled);
+}
+.tolv-btn--caution:disabled,
+.tolv-btn--caution[aria-disabled="true"] {
+  background-color: var(--color-bg-caution-tertiary-disabled);
+  color: var(--color-fg-caution-primary-disabled);
+  border-color: var(--color-border-caution-primary-disabled);
+}
+
+/* ============ Focus（アクセシビリティ） ============ */
+.tolv-btn:focus-visible {
+  outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
+  outline-offset: 2px;
+}

@@ -2,6 +2,26 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.4.0] - 2026-08-05
+### Added
+- **Button コンポーネント**（素のCSS `components/button.css`）出典: Figma Component ページ Button (3616:1721)
+  - Size: Medium(既定)/Small、Type: Primary/Secondary/Caution、State: Default/Hover/Disabled、前後アイコン任意
+  - セマンティックトークンのみ参照し Light/Dark 自動追従。`components/button.demo.html` に全バリアントのデモ
+- **Semantic 背景 Tertiary**（出典: Figma ⛔️ Token）
+  - `--color-bg-brand-tertiary`（Default=white / Hover=tolv-navy-50 / Disabled=transparent）
+  - `--color-bg-caution-tertiary`（Default=white / Hover=red-50 / Disabled=transparent）
+  - Secondary/Caution ボタンの地色として使用
+
+### Changed
+- **Light**: `--color-bg-brand-secondary` を tolv-navy-200→**100**、`-hover` を 300→**200**（1段明るく／Figma追従）
+- **Light**: `--color-bg-caution-secondary-hover` を red-50→**red-200**（Hover を暗く／Default との整合）
+- **Dark**: Figma Dark フレーム（`3623:5015`）を正として secondary のプレースホルダー値を修正
+  - `bg-brand-secondary` navy-800→**900**、`-hover` navy-300→**800**
+  - `bg-caution-secondary-hover` red-950→**red-800**
+
+### Notes
+- 新規 Tertiary の Dark 値は Figma Dark フレーム（`3623:5015`）で確定：brand/caution とも Default=black / Hover=tint-950。ダーク全項目が Figma と一致することを確認済み
+
 ## [0.3.0] - 2026-08-05
 ### Added
 - **Semantic タイポグラフィ**（出典: Figma Font セクション `3624:5754`）
