@@ -42,7 +42,22 @@ CSS からは Semantic トークンを参照します。
 - **Size**: 既定=Medium、`--sm`=Small
 - **State**: Default / `:hover` / 無効（`disabled` 属性 or `aria-disabled="true"`）
 - アイコンは前後どちらも任意。`.tolv-btn__label` の前後に `.tolv-btn__icon` を置く
-- 全バリアントは `components/button.demo.html` で確認可能
+- 全バリアントは Storybook（下記）または `components/button.demo.html` で確認可能
+
+## 開発（Storybook）
+
+コンポーネントの確認・カタログ化に **Storybook（`@storybook/html-vite`）** を使います。配信物（`tokens.css` / `components/*.css`）はビルド不要のままで、Storybook は開発時の devDependency のみ（CDN 配信には影響しません）。
+
+```bash
+npm install          # 初回のみ
+npm run storybook    # 開発サーバ (http://localhost:6006)
+npm run build-storybook  # 静的ビルド → storybook-static/
+```
+
+- ストーリーは各コンポーネント隣の `*.stories.js`（例: `components/button.stories.js`）
+- 上部ツールバーの **Theme** で Light / Dark / Auto を切替（`:root[data-theme]` を操作）
+- **Accessibility** タブ（addon-a11y）でコントラスト等を確認可能
+- 新規コンポーネントは `components/<name>.css` ＋ `components/<name>.stories.js` を追加するだけ
 
 ## トークン設計（2層）
 

@@ -18,5 +18,14 @@
     "design-system",
     "tolv",
     "css"
-  ]
+  ],
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.5.6",
+    "@storybook/html-vite": "^10.5.6",
+    "storybook": "^10.5.6"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build"
+  }
 }
