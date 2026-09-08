@@ -5,3 +5,4 @@ node_modules/
 # Storybook
 storybook-static/
 *storybook.log
+.claude/launch.json

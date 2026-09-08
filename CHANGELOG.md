@@ -2,6 +2,21 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.5.0] - 2026-09-08
+### Added
+- **Form family**（素のCSS `components/form.css`）出典: Figma 🛠️ Component ページ
+  - `.tolv-input`（InputText: Default/Inputed/Disabled/Error、`::placeholder`）
+  - `.tolv-select`（Select: 閉/開`.is-open`/無効`.is-disabled`、候補メニュー）
+  - `.tolv-search`（IncrementalSearch: 虫めがね⇄×、候補リスト）
+  - `.tolv-list-item`（ListItem: Default/Hover`.is-active`/Selected/Disabled）
+  - `.tolv-field`（FormSet: ラベル + 補足 + コントロール + バリデーション、`--error`）
+  - 共通枠 = 1px border-basic-primary / radius medium、テキスト 12px Medium、Light/Dark 自動追従
+- Storybook に各コンポーネントの Playground + Overview ストーリーを追加（`components/*.stories.js`）
+
+### Notes
+- Select/Search の開閉トグルは CSS の状態クラス（`.is-open`）で表現。実際の開閉ワイヤリングは利用側の軽量JSに委ねる
+- バリデーションメッセージは通常=グレー（`fg-basic-secondary`）/ エラー=赤（`fg-caution-primary`）の2種（Figma準拠）
+
 ## [0.4.0] - 2026-08-05
 ### Added
 - **Button コンポーネント**（素のCSS `components/button.css`）出典: Figma Component ページ Button (3616:1721)

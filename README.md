@@ -46,6 +46,25 @@ CSS からは Semantic トークンを参照します。
 - アイコンは前後どちらも任意。`.tolv-btn__label` の前後に `.tolv-btn__icon` を置く
 - 全バリアントは Storybook（下記）または `components/button.demo.html` で確認可能
 
+### Form family（`components/form.css`）
+
+フォーム系5コンポーネントを1ファイルにまとめています（共通の入力枠・候補行を共有）。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.5.0/tokens/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.5.0/components/form.css">
+
+<input class="tolv-input" placeholder="テキスト">
+```
+
+- **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）
+- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + `__menu`。展開は `.is-open`、無効は `.is-disabled`）
+- **`.tolv-search`** … インクリメンタルサーチ（`.tolv-select` と同構造、閉=虫めがね／開=×）
+- **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
+- **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`））
+- 共通: 枠=1px `border-basic-primary`／radius medium、テキスト 12px。Light/Dark 自動追従
+- 全状態は Storybook 参照。Select/Search の開閉トグルは利用側で `.is-open` を付与（軽量JSで実装）
+
 ## 開発（Storybook）
 
 コンポーネントの確認・カタログ化に **Storybook（`@storybook/html-vite`）** を使います。配信物（`tokens.css` / `components/*.css`）はビルド不要のままで、Storybook は開発時の devDependency のみ（CDN 配信には影響しません）。

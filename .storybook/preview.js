@@ -1,6 +1,7 @@
 // グローバル読み込み：配信物の tokens / component CSS をそのまま使う
 import '../tokens/tokens.css';
 import '../components/button.css';
+import '../components/form.css';
 
 /** ツールバーのテーマ切替に応じて :root[data-theme] を設定 */
 const withTheme = (story, context) => {

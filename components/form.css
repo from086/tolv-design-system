@@ -1,0 +1,243 @@
+/*
+ * tolv Design System — Form family  (v0.5.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
+ * 含まれるコンポーネント:
+ *   .tolv-input        … テキスト入力（InputText）
+ *   .tolv-select       … ドロップダウン選択（Select）
+ *   .tolv-search       … インクリメンタルサーチ（IncrementalSearch）
+ *   .tolv-list-item    … 候補行（ListItem。Select/Search のメニュー内で使用）
+ *   .tolv-field        … ラベル＋コントロール＋メッセージの組（FormSet）
+ *
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ
+ *
+ * 共通仕様: 枠 = 1px border-basic-primary / radius medium(8px) / min-h 32px /
+ *           text = Noto Sans JP Medium 12px・行間18px。
+ *   State : Default / :focus(Edit) / Disabled(navy-100 地) / Error(red-600 枠)
+ */
+
+/* ============ 共通トークン ============ */
+:where(.tolv-input, .tolv-select, .tolv-search, .tolv-list-item, .tolv-field) {
+  --_radius: var(--radius-medium, 8px);
+  --_pad-y: var(--space-min, 2px);
+  --_pad-x: calc(var(--space-medium, 8px) + var(--space-small, 4px)); /* 8+4 = 12px */
+  --_gap: var(--space-medium, 8px);
+  --_font: var(--font-weight-medium, 500) var(--font-size-min, 12px) / var(--line-height-min, 18px) var(--font-sans, sans-serif);
+}
+
+/* ============ InputText（.tolv-input） ============
+ * ネイティブ <input> をそのまま装飾。placeholder=Default、値あり=Inputed。 */
+.tolv-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  padding: var(--_pad-y) var(--_pad-x);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--_radius);
+  background: transparent;
+  color: var(--color-fg-basic-primary);
+  font: var(--_font);
+  letter-spacing: var(--font-tracking-normal, 0);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tolv-input::placeholder { color: var(--color-fg-basic-primary-disabled); opacity: 1; }
+.tolv-input:focus-visible {
+  outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
+  outline-offset: 1px;
+}
+.tolv-input:disabled,
+.tolv-input[aria-disabled="true"] {
+  background: var(--color-bg-brand-secondary);   /* navy-100 */
+  color: var(--color-fg-basic-secondary);
+  cursor: not-allowed;
+}
+.tolv-input.is-error,
+.tolv-input[aria-invalid="true"] {
+  border-color: var(--color-border-caution-primary);   /* red-600 */
+}
+
+/* ============ 入力枠のコンテナ（Select / Search 共通） ============ */
+.tolv-select,
+.tolv-search {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--_radius);
+  background: transparent;
+  overflow: hidden;   /* メニューの角丸クリップ */
+}
+.tolv-select.is-error,
+.tolv-search.is-error { border-color: var(--color-border-caution-primary); }
+
+.tolv-select.is-disabled,
+.tolv-search.is-disabled { background: var(--color-bg-brand-secondary); }
+
+/* トリガー行（値 + 末尾アイコン） */
+.tolv-select__control,
+.tolv-search__control {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--_gap);
+  min-height: 32px;
+  width: 100%;
+  padding: var(--_pad-y) var(--space-medium, 8px);
+  border: 0;
+  background: transparent;
+  font: var(--_font);
+  color: var(--color-fg-basic-primary);
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tolv-select.is-disabled .tolv-select__control,
+.tolv-search.is-disabled .tolv-search__control {
+  color: var(--color-fg-basic-secondary);
+  cursor: not-allowed;
+}
+.tolv-select__control:focus-visible,
+.tolv-search__control:focus-visible {
+  outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
+  outline-offset: -2px;
+}
+
+/* 値ラベル（プレースホルダー時はグレー） */
+.tolv-select__value,
+.tolv-search__value {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0 var(--space-small, 4px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tolv-select__value:empty::before,
+.tolv-search__value:empty::before,
+.tolv-select__value[data-placeholder]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-fg-basic-primary-disabled);
+}
+
+/* 末尾アイコン（chevron / search / clear） */
+.tolv-select__icon,
+.tolv-search__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--color-fg-basic-secondary);
+}
+.tolv-select__icon svg,
+.tolv-search__icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* Select の chevron は open で反転 */
+.tolv-select.is-open .tolv-select__icon { transform: rotate(180deg); }
+
+/* Search のアイコン切替（閉=虫めがね / 開=×） */
+.tolv-search__icon--clear { display: none; }
+.tolv-search.is-open .tolv-search__icon--search { display: none; }
+.tolv-search.is-open .tolv-search__icon--clear { display: inline-flex; }
+
+/* ドロップダウンメニュー（同じ枠内に展開） */
+.tolv-select__menu,
+.tolv-search__menu {
+  display: none;
+  padding: var(--space-small, 4px) 0;
+}
+.tolv-select.is-open .tolv-select__menu,
+.tolv-search.is-open .tolv-search__menu { display: block; }
+
+/* ============ ListItem（.tolv-list-item） ============ */
+.tolv-list-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--_gap);
+  min-height: 32px;
+  width: 100%;
+  padding: var(--_pad-y) var(--space-medium, 8px);
+  border: 0;
+  background: transparent;
+  font: var(--_font);
+  color: var(--color-fg-basic-primary);
+  text-align: left;
+  cursor: pointer;
+}
+.tolv-list-item__label {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0 var(--space-small, 4px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tolv-list-item__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: inherit;
+  visibility: hidden;   /* 選択時のみ表示（レイアウトは確保） */
+}
+.tolv-list-item__check svg { width: 100%; height: 100%; fill: currentColor; }
+.tolv-list-item.is-selected .tolv-list-item__check,
+.tolv-list-item[aria-selected="true"] .tolv-list-item__check { visibility: visible; }
+
+.tolv-list-item:hover:not(.is-disabled):not([aria-disabled="true"]),
+.tolv-list-item.is-active {
+  background: var(--color-bg-basic-primary-hover);   /* neutral-50 */
+  color: var(--color-fg-basic-primary-hover);        /* neutral-800 */
+}
+.tolv-list-item.is-disabled,
+.tolv-list-item[aria-disabled="true"] {
+  color: var(--color-fg-basic-primary-disabled);
+  cursor: not-allowed;
+}
+
+/* ============ FormSet（.tolv-field） ============ */
+.tolv-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium, 8px);
+  width: 100%;
+}
+.tolv-field__label {
+  font: var(--font-weight-bold, 700) var(--font-size-min, 12px) / var(--line-height-min, 18px) var(--font-sans, sans-serif);
+  color: var(--color-fg-basic-primary);
+}
+.tolv-field__support {
+  font: var(--_font);
+  color: var(--color-fg-basic-secondary);
+}
+/* コントロール + メッセージ（内側の間隔は small） */
+.tolv-field__control-set {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small, 4px);
+}
+.tolv-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-small, 4px);
+  padding: 0 var(--space-small, 4px);
+  font: var(--_font);
+  color: var(--color-fg-basic-secondary);   /* 通常メッセージ = グレー */
+}
+.tolv-field__message--error { color: var(--color-fg-caution-primary); }  /* エラー = red-600 */
+.tolv-field__message-icon {
+  display: inline-flex;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+.tolv-field__message-icon svg { width: 100%; height: 100%; fill: currentColor; }
