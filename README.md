@@ -63,7 +63,21 @@ CSS からは Semantic トークンを参照します。
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
 - **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`））
 - 共通: 枠=1px `border-basic-primary`／radius medium、テキスト 12px。Light/Dark 自動追従
-- 全状態は Storybook 参照。Select/Search の開閉トグルは利用側で `.is-open` を付与（軽量JSで実装）
+- 全状態は Storybook 参照
+
+#### 挙動（`components/form.js`）
+
+Select / Search の開閉・選択・絞り込みは依存なしの `form.js` で付与します（読み込むだけで自動初期化）。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.6.0/components/form.css">
+<script src="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.6.0/components/form.js" defer></script>
+```
+
+- **Select**: `.tolv-select__control` クリックで開閉、候補クリックで確定 → `tolv:change`（`detail.value`）
+- **Search**: `.tolv-search__input` にフォーカス/入力で候補表示＋インクリメンタル絞り込み、選択で `tolv:select`、`×` でクリア
+- 外側クリック / Esc で閉じる
+- 動的に追加した要素は `TolvForm.init(親要素)` で再初期化
 
 ## 開発（Storybook）
 

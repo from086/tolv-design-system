@@ -10,15 +10,14 @@ const box = (inner) => `<div style="width:320px">${inner}</div>`;
 
 const render = ({ value, placeholder, open, disabled, error }) => {
   const cls = ['tolv-search', open ? 'is-open' : '', disabled ? 'is-disabled' : '', error ? 'is-error' : ''].filter(Boolean).join(' ');
-  const valueAttr = value ? '' : ` data-placeholder="${placeholder}"`;
   return box(
     `<div class="${cls}">`
     + `<div class="tolv-search__control">`
-    + `<span class="tolv-search__value"${valueAttr}>${value}</span>`
+    + `<input class="tolv-search__input" placeholder="${placeholder}" value="${value}"${disabled ? ' disabled' : ''}${error ? ' aria-invalid="true"' : ''}>`
     + `<span class="tolv-search__icon tolv-search__icon--search">${search}</span>`
     + `<span class="tolv-search__icon tolv-search__icon--clear">${close}</span></div>`
     + `<div class="tolv-search__menu" role="listbox">`
-    + result('テキスト') + result('テキスト') + result('テキスト')
+    + result('りんご') + result('みかん') + result('ぶどう') + result('もも')
     + `</div></div>`
   );
 };

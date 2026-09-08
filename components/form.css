@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.5.0)
+ * tolv Design System — Form family  (v0.6.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -123,6 +123,22 @@
   color: var(--color-fg-basic-primary-disabled);
 }
 
+/* Search は入力可能にする場合 <input class="tolv-search__input"> を使う */
+.tolv-search__input {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0 var(--space-small, 4px);
+  border: 0;
+  background: transparent;
+  color: var(--color-fg-basic-primary);
+  font: inherit;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tolv-search__input::placeholder { color: var(--color-fg-basic-primary-disabled); opacity: 1; }
+.tolv-search__input:disabled { color: var(--color-fg-basic-secondary); cursor: not-allowed; }
+
 /* 末尾アイコン（chevron / search / clear） */
 .tolv-select__icon,
 .tolv-search__icon {
@@ -155,6 +171,7 @@
 .tolv-search.is-open .tolv-search__menu { display: block; }
 
 /* ============ ListItem（.tolv-list-item） ============ */
+.tolv-list-item[hidden] { display: none; }  /* display:flex が [hidden] を上書きするのを防ぐ */
 .tolv-list-item {
   box-sizing: border-box;
   display: flex;

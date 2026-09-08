@@ -2,6 +2,17 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.6.0] - 2026-09-08
+### Added
+- **Form behavior**（素のJS `components/form.js`、依存なし）
+  - `.tolv-select`: クリックで開閉 / 候補クリックで選択・確定（`tolv:change`）/ 外側クリック・Escで閉じる
+  - `.tolv-search`: フォーカス/入力で候補表示・インクリメンタル絞り込み / 選択で確定（`tolv:select`）/ ×でクリア
+  - プログレッシブエンハンス（読み込むだけで自動初期化、動的追加は `TolvForm.init(root)`）
+- `.tolv-search__input`（入力可能な検索フィールド用スタイル）
+
+### Fixed
+- `.tolv-list-item[hidden]` を追加し、`display:flex` が `[hidden]` を上書きして絞り込み非表示が効かない問題を解消
+
 ## [0.5.0] - 2026-09-08
 ### Added
 - **Form family**（素のCSS `components/form.css`）出典: Figma 🛠️ Component ページ
