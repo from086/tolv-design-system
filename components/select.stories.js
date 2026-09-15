@@ -44,8 +44,8 @@ export const Overview = {
   render: () => {
     const row = (label, args) => `<tr><th style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);text-align:left;padding:8px 16px 8px 0;white-space:nowrap;vertical-align:top">${label}</th><td style="padding:8px 0">${render(args)}</td></tr>`;
     return `<table style="border-collapse:collapse">`
-      + row('Default (closed)', { value: '', placeholder: 'テキスト' })
-      + row('Selected', { value: 'りんご' })
+      + row('Unset (placeholder)', { value: '', placeholder: 'テキスト' })
+      + row('Default (selected)', { value: 'りんご' })
       + row('Open', { value: 'りんご', open: true })
       + row('Disabled', { value: 'りんご', disabled: true })
       + `</table>`;

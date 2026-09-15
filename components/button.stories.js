@@ -23,7 +23,7 @@ export default {
   tags: ['autodocs'],
   render: renderButton,
   argTypes: {
-    type: { control: 'inline-radio', options: ['Primary', 'Secondary', 'Caution'], description: '種別' },
+    type: { control: 'inline-radio', options: ['Primary', 'Secondary', 'Tertiary', 'Caution'], description: '種別' },
     size: { control: 'inline-radio', options: ['Medium', 'Small'], description: 'サイズ' },
     label: { control: 'text', description: 'ラベル文字列' },
     prefixIcon: { control: 'boolean', description: '先頭アイコン' },
@@ -47,7 +47,7 @@ export const Playground = {};
 export const Overview = {
   parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => {
-    const types = ['Primary', 'Secondary', 'Caution'];
+    const types = ['Primary', 'Secondary', 'Tertiary', 'Caution'];
     const states = [
       { name: 'Default', disabled: false },
       { name: 'Disabled', disabled: true },

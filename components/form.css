@@ -1,28 +1,32 @@
 /*
- * tolv Design System — Form family  (v0.6.0)
+ * tolv Design System — Form family  (v0.7.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
  *   .tolv-input        … テキスト入力（InputText）
  *   .tolv-select       … ドロップダウン選択（Select）
  *   .tolv-search       … インクリメンタルサーチ（IncrementalSearch）
+ *   .tolv-search--cell … セル型（Cell。白地・アイコン20px）
  *   .tolv-list-item    … 候補行（ListItem。Select/Search のメニュー内で使用）
  *   .tolv-field        … ラベル＋コントロール＋メッセージの組（FormSet）
+ *   .tolv-time         … 時刻入力（InputTime。HH:MM ＋ 時計アイコン）
+ *   .tolv-fixed-value  … 読み取り専用の値表示（FixedValue）
+ *   .tolv-divider      … 区切り線（Divider。--vertical で縦）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
  *
  * 共通仕様: 枠 = 1px border-basic-primary / radius medium(8px) / min-h 32px /
- *           text = Noto Sans JP Medium 12px・行間18px。
+ *           text = Noto Sans JP Medium 14px・行間20px（size/xsmall）。
  *   State : Default / :focus(Edit) / Disabled(navy-100 地) / Error(red-600 枠)
  */
 
 /* ============ 共通トークン ============ */
-:where(.tolv-input, .tolv-select, .tolv-search, .tolv-list-item, .tolv-field) {
+:where(.tolv-input, .tolv-select, .tolv-search, .tolv-list-item, .tolv-field, .tolv-time, .tolv-fixed-value, .tolv-cell) {
   --_radius: var(--radius-medium, 8px);
   --_pad-y: var(--space-min, 2px);
   --_pad-x: calc(var(--space-medium, 8px) + var(--space-small, 4px)); /* 8+4 = 12px */
   --_gap: var(--space-medium, 8px);
-  --_font: var(--font-weight-medium, 500) var(--font-size-min, 12px) / var(--line-height-min, 18px) var(--font-sans, sans-serif);
+  --_font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
 }
 
 /* ============ InputText（.tolv-input） ============
@@ -42,7 +46,7 @@
   -webkit-appearance: none;
   appearance: none;
 }
-.tolv-input::placeholder { color: var(--color-fg-basic-primary-disabled); opacity: 1; }
+.tolv-input::placeholder { color: var(--color-fg-basic-secondary); opacity: 1; }
 .tolv-input:focus-visible {
   outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
   outline-offset: 1px;
@@ -120,7 +124,7 @@
 .tolv-search__value:empty::before,
 .tolv-select__value[data-placeholder]:empty::before {
   content: attr(data-placeholder);
-  color: var(--color-fg-basic-primary-disabled);
+  color: var(--color-fg-basic-secondary);   /* Unset プレースホルダー */
 }
 
 /* Search は入力可能にする場合 <input class="tolv-search__input"> を使う */
@@ -136,7 +140,7 @@
   -webkit-appearance: none;
   appearance: none;
 }
-.tolv-search__input::placeholder { color: var(--color-fg-basic-primary-disabled); opacity: 1; }
+.tolv-search__input::placeholder { color: var(--color-fg-basic-secondary); opacity: 1; }
 .tolv-search__input:disabled { color: var(--color-fg-basic-secondary); cursor: not-allowed; }
 
 /* 末尾アイコン（chevron / search / clear） */
@@ -228,7 +232,7 @@
   width: 100%;
 }
 .tolv-field__label {
-  font: var(--font-weight-bold, 700) var(--font-size-min, 12px) / var(--line-height-min, 18px) var(--font-sans, sans-serif);
+  font: var(--font-weight-bold, 700) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
   color: var(--color-fg-basic-primary);
 }
 .tolv-field__support {
@@ -249,7 +253,8 @@
   font: var(--_font);
   color: var(--color-fg-basic-secondary);   /* 通常メッセージ = グレー */
 }
-.tolv-field__message--error { color: var(--color-fg-caution-primary); }  /* エラー = red-600 */
+.tolv-field__message--error { color: var(--color-fg-caution-primary); }    /* エラー = red-600 */
+.tolv-field__message--success { color: var(--color-fg-success-primary); }  /* Applied = green-600 */
 .tolv-field__message-icon {
   display: inline-flex;
   flex: none;
@@ -258,3 +263,82 @@
   color: inherit;
 }
 .tolv-field__message-icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* ============ Cell（.tolv-search--cell） ============
+ * Search のセル型バリアント：白地・アイコン20px・値の余白は min。テーブルセル向け。 */
+.tolv-search--cell { background: var(--color-bg-basic-primary); }
+.tolv-search--cell .tolv-search__value,
+.tolv-search--cell .tolv-search__input { padding: 0 var(--space-min, 2px); }
+.tolv-search--cell .tolv-search__icon { width: 20px; height: 20px; }
+
+/* ============ InputTime（.tolv-time） ============
+ * HH : MM ＋ 時計アイコン。セグメントは <input maxlength="2">。 */
+.tolv-time {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--_gap);
+  min-height: 32px;
+  padding: var(--_pad-y) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--_radius);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--_font);
+}
+.tolv-time__group { display: flex; align-items: center; flex: 1 0 0; min-width: 0; }
+.tolv-time__seg {
+  box-sizing: border-box;
+  width: 26px;
+  padding: 0 var(--space-min, 2px);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tolv-time__seg::placeholder { color: var(--color-fg-basic-secondary); opacity: 1; }
+.tolv-time__sep { padding: 0 var(--space-min, 2px); }
+.tolv-time__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--color-fg-basic-secondary);
+}
+.tolv-time__icon svg { width: 100%; height: 100%; fill: currentColor; }
+.tolv-time.is-disabled { background: var(--color-bg-brand-secondary); color: var(--color-fg-basic-secondary); }
+.tolv-time__seg:disabled { color: var(--color-fg-basic-secondary); cursor: not-allowed; }
+
+/* ============ FixedValue（.tolv-fixed-value） ============
+ * 枠なしの読み取り専用テキスト。入力と同じ高さ・余白に揃う。 */
+.tolv-fixed-value {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--space-min, 2px) var(--space-small, 4px);
+  color: var(--color-fg-basic-primary);
+  font: var(--_font);
+}
+
+/* ============ Divider（.tolv-divider） ============ */
+.tolv-divider {
+  margin: 0;
+  width: 100%;
+  height: 0;
+  border: 0;
+  border-top: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+}
+.tolv-divider--vertical {
+  width: 0;
+  height: auto;
+  align-self: stretch;
+  border-top: 0;
+  border-left: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+}

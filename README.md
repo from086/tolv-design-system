@@ -31,8 +31,8 @@ CSS からは Semantic トークンを参照します。
 `tokens.css` を先に読み込んだうえで参照します（ビルド不要・Light/Dark 自動追従）。
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.4.0/tokens/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.4.0/components/button.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/tokens/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/components/button.css">
 
 <button class="tolv-btn tolv-btn--primary">
   <span class="tolv-btn__icon" aria-hidden="true"><!-- svg --></span>
@@ -40,7 +40,7 @@ CSS からは Semantic トークンを参照します。
 </button>
 ```
 
-- **Type**: `--primary`（塗り）/ `--secondary`（ブランド枠）/ `--caution`（警告枠）
+- **Type**: `--primary`（塗り）/ `--secondary`（ブランド枠）/ `--tertiary`（ニュートラル枠）/ `--caution`（警告枠）
 - **Size**: 既定=Medium、`--sm`=Small
 - **State**: Default / `:hover` / 無効（`disabled` 属性 or `aria-disabled="true"`）
 - アイコンは前後どちらも任意。`.tolv-btn__label` の前後に `.tolv-btn__icon` を置く
@@ -48,11 +48,11 @@ CSS からは Semantic トークンを参照します。
 
 ### Form family（`components/form.css`）
 
-フォーム系5コンポーネントを1ファイルにまとめています（共通の入力枠・候補行を共有）。
+フォーム系コンポーネントを1ファイルにまとめています（共通の入力枠・候補行を共有）。
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.5.0/tokens/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.5.0/components/form.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/tokens/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/components/form.css">
 
 <input class="tolv-input" placeholder="テキスト">
 ```
@@ -60,9 +60,13 @@ CSS からは Semantic トークンを参照します。
 - **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）
 - **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + `__menu`。展開は `.is-open`、無効は `.is-disabled`）
 - **`.tolv-search`** … インクリメンタルサーチ（`.tolv-select` と同構造、閉=虫めがね／開=×）
+- **`.tolv-search--cell`** … セル型（Cell。白地・アイコン20px。テーブルセル向け）
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
-- **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`））
-- 共通: 枠=1px `border-basic-primary`／radius medium、テキスト 12px。Light/Dark 自動追従
+- **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））
+- **`.tolv-time`** … 時刻入力（InputTime。`__seg` × 2 + `__sep` + `__icon`）
+- **`.tolv-fixed-value`** … 読み取り専用の値表示（FixedValue）
+- **`.tolv-divider`** … 区切り線（`--vertical` で縦）
+- 共通: 枠=1px `border-basic-primary`／radius medium、テキスト **14px**（size/xsmall）。Light/Dark 自動追従
 - 全状態は Storybook 参照
 
 #### 挙動（`components/form.js`）
@@ -70,8 +74,8 @@ CSS からは Semantic トークンを参照します。
 Select / Search の開閉・選択・絞り込みは依存なしの `form.js` で付与します（読み込むだけで自動初期化）。
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.6.0/components/form.css">
-<script src="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.6.0/components/form.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/components/form.css">
+<script src="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/components/form.js" defer></script>
 ```
 
 - **Select**: `.tolv-select__control` クリックで開閉、候補クリックで確定 → `tolv:change`（`detail.value`）

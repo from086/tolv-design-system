@@ -2,6 +2,22 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.7.0] - 2026-09-15
+### Added
+- **トークン**: `--font-size-xsmall`(14px) / `--line-height-xsmall`(20px)、`--color-fg-success-primary`（Light=green-600 / Dark=green-400）
+- **Button**: `--tertiary`（ニュートラル枠。白地 + basic-primary 枠 + brand-primary 文字）
+- **Form family 新規**（`components/form.css`）
+  - `.tolv-search--cell`（Cell。白地・アイコン20px）
+  - `.tolv-time`（InputTime。HH:MM セグメント + 時計アイコン）
+  - `.tolv-fixed-value`（FixedValue。読み取り専用の値表示）
+  - `.tolv-divider`（Divider。横 / `--vertical` 縦）
+  - `.tolv-field__message--success`（FormValidation の Applied。緑）
+- Storybook: Cell / InputTime / FixedValue / Divider のストーリー、Button に Tertiary、FormSet に Applied を追加
+
+### Changed
+- **フォームのテキストを 12px→14px に変更**（Figma で InputText/Regular が size/min→size/xsmall に更新）。InputText/Select/Search/ListItem/FormSet ラベル等に波及
+- Select/Input のプレースホルダー色を `fg-basic-primary-disabled`(#d4d4d4)→`fg-basic-secondary`(#737373) に（Figma の Unset 準拠）
+
 ## [0.6.0] - 2026-09-08
 ### Added
 - **Form behavior**（素のJS `components/form.js`、依存なし）

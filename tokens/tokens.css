@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Design Tokens  (v0.4.0)
+ * tolv Design System — Design Tokens  (v0.7.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
  *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
@@ -90,6 +90,7 @@
   --color-fg-caution-primary: var(--color-red-600);
   --color-fg-caution-primary-hover: var(--color-red-400);
   --color-fg-caution-primary-disabled: var(--color-neutral-300);
+  --color-fg-success-primary: var(--color-green-600);
   --color-bg-basic-primary: var(--color-white);
   --color-bg-basic-primary-hover: var(--color-neutral-50);
   --color-bg-basic-primary-disabled: var(--color-transparent);
@@ -164,11 +165,13 @@
   --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, sans-serif;
   --font-mono: 'Noto Sans Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   --font-size-min: var(--font-size-xs);       /* 12px */
+  --font-size-xsmall: var(--font-size-sm);    /* 14px */
   --font-size-small: var(--font-size-base);   /* 16px */
   --font-size-medium: var(--font-size-lg);    /* 18px */
   --font-size-large: var(--font-size-xl);     /* 20px */
   --font-size-xlarge: var(--font-size-3xl);   /* 30px */
   --line-height-min: 18px;                     /* Global に primitive なし */
+  --line-height-xsmall: var(--font-leading-5); /* 20px */
   --line-height-small: var(--font-leading-6);  /* 24px */
   --line-height-medium: var(--font-leading-7); /* 28px */
   --line-height-large: var(--font-leading-8);  /* 32px */
@@ -203,6 +206,7 @@
     --color-fg-caution-primary: var(--color-red-400);
     --color-fg-caution-primary-hover: var(--color-red-600);
     --color-fg-caution-primary-disabled: var(--color-neutral-700);
+    --color-fg-success-primary: var(--color-green-400);
     --color-bg-basic-primary: var(--color-black);
     --color-bg-basic-primary-hover: var(--color-neutral-950);
     --color-bg-basic-primary-disabled: var(--color-transparent);
@@ -265,6 +269,7 @@
   --color-fg-caution-primary: var(--color-red-400);
   --color-fg-caution-primary-hover: var(--color-red-600);
   --color-fg-caution-primary-disabled: var(--color-neutral-700);
+  --color-fg-success-primary: var(--color-green-400);
   --color-bg-basic-primary: var(--color-black);
   --color-bg-basic-primary-hover: var(--color-neutral-950);
   --color-bg-basic-primary-disabled: var(--color-transparent);
@@ -326,6 +331,7 @@
   --color-fg-caution-primary: var(--color-red-600);
   --color-fg-caution-primary-hover: var(--color-red-400);
   --color-fg-caution-primary-disabled: var(--color-neutral-300);
+  --color-fg-success-primary: var(--color-green-600);
   --color-bg-basic-primary: var(--color-white);
   --color-bg-basic-primary-hover: var(--color-neutral-50);
   --color-bg-basic-primary-disabled: var(--color-transparent);
