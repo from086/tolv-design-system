@@ -2,6 +2,15 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.8.1] - 2026-09-15
+### Changed
+- **CalendarPanel**: CalendarSet の幅・余白を Figma に合わせて調整（ヘッダーを space-between、年Select=100px 固定、月ラベル=44px、Actions ボタン=48px 固定、Set の gap を 8px に）
+- **DateSelect=150px / InputTime=100px** に幅を固定
+
+### Fixed
+- **DateSelect**: カレンダーの月・年を変更してもポップオーバーが閉じないように（パネル内クリックの伝播を停止）
+- **InputTime**: 入力を数字のみ・時=0〜23／分=0〜59 に制限（`data-max` で上書き可、blur で 2 桁補完）
+
 ## [0.8.0] - 2026-09-15
 ### Added
 - **Calendar family**（`components/calendar.css` + `calendar.js`、依存なし）出典: Figma 🛠️ Component ページ

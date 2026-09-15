@@ -3,10 +3,10 @@ import { clock } from './_icons.js';
 
 const render = ({ hh, mm, disabled }) => {
   const cls = ['tolv-time', disabled ? 'is-disabled' : ''].filter(Boolean).join(' ');
-  const seg = (val, label) =>
-    `<input class="tolv-time__seg" maxlength="2" inputmode="numeric" placeholder="--" value="${val}"${disabled ? ' disabled' : ''} aria-label="${label}">`;
+  const seg = (val, label, max) =>
+    `<input class="tolv-time__seg" maxlength="2" inputmode="numeric" placeholder="--" value="${val}" data-max="${max}"${disabled ? ' disabled' : ''} aria-label="${label}">`;
   return `<div class="${cls}">`
-    + `<span class="tolv-time__group">${seg(hh, '時')}<span class="tolv-time__sep">:</span>${seg(mm, '分')}</span>`
+    + `<span class="tolv-time__group">${seg(hh, '時', 23)}<span class="tolv-time__sep">:</span>${seg(mm, '分', 59)}</span>`
     + `<span class="tolv-time__icon">${clock}</span>`
     + `</div>`;
 };

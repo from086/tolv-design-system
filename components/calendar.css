@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar family  (v0.8.0)
+ * tolv Design System — Calendar family  (v0.8.1)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。挙動は components/calendar.js。
  *   .tolv-date-cell    … 日セル（DateCell。Default/hover/Selected/Disabled）
@@ -51,14 +51,14 @@
   color: var(--color-fg-basic-primary);
   font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
 }
-.tolv-calendar__set { display: flex; flex-direction: column; gap: var(--space-small, 4px); }
+.tolv-calendar__set { display: flex; flex-direction: column; align-items: center; gap: var(--space-medium, 8px); }
 
 /* 年Select ＋ 月送り */
-.tolv-calendar__header { display: flex; align-items: center; gap: 6px; }
+.tolv-calendar__header { display: flex; align-items: center; justify-content: space-between; width: 100%; }
 .tolv-calendar__year {
   box-sizing: border-box;
-  flex: 1 0 0;
-  min-width: 0;
+  width: 100px;
+  flex: none;
   min-height: 32px;
   padding: var(--space-min, 2px) 28px var(--space-min, 2px) var(--space-medium, 8px);
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
@@ -73,8 +73,8 @@
   -webkit-appearance: none;
   appearance: none;
 }
-.tolv-calendar__month { flex: 1 0 0; display: flex; align-items: center; }
-.tolv-calendar__month-label { flex: 1 0 0; text-align: center; white-space: nowrap; }
+.tolv-calendar__month { flex: none; display: flex; align-items: center; }
+.tolv-calendar__month-label { width: 44px; flex: none; text-align: center; white-space: nowrap; }
 .tolv-calendar__nav {
   box-sizing: border-box;
   display: inline-flex;
@@ -96,12 +96,13 @@
 .tolv-calendar__week { display: flex; }
 
 /* 削除 / 今日 */
-.tolv-calendar__actions { display: flex; justify-content: space-between; }
+.tolv-calendar__actions { display: flex; justify-content: space-between; width: 100%; }
 .tolv-calendar__action {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 48px;
   height: 32px;
   padding: var(--space-small, 4px) var(--space-medium, 8px);
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
@@ -123,6 +124,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-medium, 8px);
+  width: 150px;
   min-height: 32px;
   padding: var(--space-min, 2px) var(--space-medium, 8px);
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);

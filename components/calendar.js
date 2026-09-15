@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar behavior  (v0.8.0)
+ * tolv Design System — Calendar behavior  (v0.8.1)
  * =====================================================================
  * 依存なしの素のJS。calendar.css の CalendarPanel / DateSelect に挙動を付与。
  *   - .tolv-calendar     : 月送り / 日選択 / 削除 / 今日（年はSelect）
@@ -94,6 +94,8 @@
     el.__tolvBound = true;
 
     el.addEventListener('click', function (e) {
+      // パネル内のクリックは外側クリック判定に伝播させない（月送り等でポップオーバーを閉じない）
+      e.stopPropagation();
       var cell = e.target.closest('.tolv-date-cell');
       if (cell && cell.dataset.date && !cell.disabled) {
         state.selected = cell.dataset.date; draw(); state.onSelect(state.selected); return;

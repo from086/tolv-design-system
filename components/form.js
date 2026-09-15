@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form behavior  (v0.6.0)
+ * tolv Design System — Form behavior  (v0.8.1)
  * =====================================================================
  * 依存なしの素のJS。form.css の Select / Search に開閉・選択の挙動を付与する。
  * プログレッシブエンハンス：読み込むだけで既存マークアップを自動初期化。
@@ -125,12 +125,29 @@
     });
   }
 
+  // InputTime: 数字のみ／時=0-23・分=0-59 に制限（data-max で上書き可）
+  function initTime(t) {
+    t.querySelectorAll('.tolv-time__seg').forEach(function (seg, i) {
+      var max = parseInt(seg.getAttribute('data-max'), 10);
+      if (isNaN(max)) max = i === 0 ? 23 : 59;
+      seg.addEventListener('input', function () {
+        var v = seg.value.replace(/\D/g, '').slice(0, 2);
+        if (v !== '' && parseInt(v, 10) > max) v = String(max);
+        seg.value = v;
+      });
+      seg.addEventListener('blur', function () {
+        if (seg.value !== '') seg.value = String(parseInt(seg.value, 10)).padStart(2, '0');
+      });
+    });
+  }
+
   var TolvForm = {
     init: function (root) {
       root = root || document;
       bindDocumentOnce();
       root.querySelectorAll('.tolv-select:not([data-tolv-init])').forEach(function (el) { el.setAttribute('data-tolv-init', ''); initSelect(el); });
       root.querySelectorAll('.tolv-search:not([data-tolv-init])').forEach(function (el) { el.setAttribute('data-tolv-init', ''); initSearch(el); });
+      root.querySelectorAll('.tolv-time:not([data-tolv-init])').forEach(function (el) { el.setAttribute('data-tolv-init', ''); initTime(el); });
     },
   };
 
