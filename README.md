@@ -83,6 +83,23 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - 外側クリック / Esc で閉じる
 - 動的に追加した要素は `TolvForm.init(親要素)` で再初期化
 
+### Calendar family（`components/calendar.css` + `calendar.js`）
+
+日付ピッカー一式。挙動は依存なしの `calendar.js`（読み込むだけで自動初期化）。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.8.0/components/calendar.css">
+<script src="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.8.0/components/calendar.js" defer></script>
+
+<!-- インラインのカレンダー -->
+<div data-tolv-calendar data-selected="2026-09-10"></div>
+```
+
+- **`.tolv-date-cell`** … 日セル（`:hover`／`.is-selected`／`:disabled`（前後月））
+- **`.tolv-calendar`** … カレンダー本体（年Select＋月送り`< >`＋日グリッド＋`削除`/`今日`）。`data-tolv-calendar` で自動描画、または `TolvCalendar.mount(el, {selected, onSelect})`
+- **`.tolv-date-select`** … 日付入力トリガー（`YYYY / MM / DD` ＋カレンダーアイコン）。クリックでカレンダーをポップオーバー表示、日選択で確定 → `tolv:datechange`（`detail.value` = `'YYYY-MM-DD'|null`）
+- 外側クリック / Esc で閉じる。グリッドは日曜始まり・前後月は非活性
+
 ## 開発（Storybook）
 
 コンポーネントの確認・カタログ化に **Storybook（`@storybook/html-vite`）** を使います。配信物（`tokens.css` / `components/*.css`）はビルド不要のままで、Storybook は開発時の devDependency のみ（CDN 配信には影響しません）。

@@ -2,6 +2,18 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.8.0] - 2026-09-15
+### Added
+- **Calendar family**（`components/calendar.css` + `calendar.js`、依存なし）出典: Figma 🛠️ Component ページ
+  - `.tolv-date-cell`（DateCell: Default/hover/Selected/Disabled）
+  - `.tolv-calendar`（CalendarPanel: 年Select＋月送り＋日グリッド＋削除/今日。`data-tolv-calendar` 自動描画 / `TolvCalendar.mount`）
+  - `.tolv-date-select`（DateSelect: `YYYY/MM/DD`＋カレンダーをポップオーバー。日選択で `tolv:datechange`）
+  - グリッドは日曜始まり・前後月は非活性、外側クリック/Escで閉じる
+- Storybook: DateCell / CalendarPanel / DateSelect のストーリー
+
+### Changed
+- **トークン `--color-fg-basic-primary-disabled` を neutral-300(#d4d4d4)→neutral-400(#a1a1a1)**（Figma 準拠。DateCell/ListItem の Disabled が対象）。※Light のみ変更、Dark は据え置き
+
 ## [0.7.0] - 2026-09-15
 ### Added
 - **トークン**: `--font-size-xsmall`(14px) / `--line-height-xsmall`(20px)、`--color-fg-success-primary`（Light=green-600 / Dark=green-400）

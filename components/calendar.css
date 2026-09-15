@@ -1,0 +1,161 @@
+/*
+ * tolv Design System — Calendar family  (v0.8.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css を参照。挙動は components/calendar.js。
+ *   .tolv-date-cell    … 日セル（DateCell。Default/hover/Selected/Disabled）
+ *   .tolv-calendar     … カレンダー本体（CalendarPanel。年Select＋月送り＋日グリッド＋削除/今日）
+ *   .tolv-date-select  … 日付入力トリガー（DateSelect。YYYY / MM / DD＋カレンダーを開く）
+ *
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ
+ */
+
+/* ============ DateCell（.tolv-date-cell） ============ */
+.tolv-date-cell {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-height: 32px;
+  padding: var(--space-min, 2px);
+  border: 0;
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  color: var(--color-fg-basic-primary);
+  font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+.tolv-date-cell:hover:not(:disabled),
+.tolv-date-cell.is-active {
+  background: var(--color-bg-brand-secondary-hover);   /* navy-200 */
+}
+.tolv-date-cell.is-selected,
+.tolv-date-cell.is-selected:hover {
+  background: var(--color-bg-brand-primary);           /* navy-950 */
+  color: var(--color-fg-basic-inverse);                /* white */
+}
+.tolv-date-cell:disabled {
+  color: var(--color-fg-basic-primary-disabled);       /* neutral-400 */
+  background: transparent;
+  cursor: default;
+}
+
+/* ============ CalendarPanel（.tolv-calendar） ============ */
+.tolv-calendar {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: var(--space-large, 16px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-large, 16px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+}
+.tolv-calendar__set { display: flex; flex-direction: column; gap: var(--space-small, 4px); }
+
+/* 年Select ＋ 月送り */
+.tolv-calendar__header { display: flex; align-items: center; gap: 6px; }
+.tolv-calendar__year {
+  box-sizing: border-box;
+  flex: 1 0 0;
+  min-width: 0;
+  min-height: 32px;
+  padding: var(--space-min, 2px) 28px var(--space-min, 2px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-bg-basic-primary)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right var(--space-medium, 8px) center;
+  background-size: 16px 16px;
+  color: var(--color-fg-basic-secondary);
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tolv-calendar__month { flex: 1 0 0; display: flex; align-items: center; }
+.tolv-calendar__month-label { flex: 1 0 0; text-align: center; white-space: nowrap; }
+.tolv-calendar__nav {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-height: 32px;
+  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-secondary);
+  cursor: pointer;
+}
+.tolv-calendar__nav svg { width: 20px; height: 20px; }
+
+/* 日グリッド（7×n） */
+.tolv-calendar__weeks { width: 224px; display: flex; flex-direction: column; }
+.tolv-calendar__week { display: flex; }
+
+/* 削除 / 今日 */
+.tolv-calendar__actions { display: flex; justify-content: space-between; }
+.tolv-calendar__action {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-brand-primary);
+  font: var(--font-weight-bold, 700) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+.tolv-calendar__action--today {
+  background: var(--color-bg-brand-tertiary);
+  border-color: var(--color-border-brand-secondary);   /* navy-600 */
+}
+
+/* ============ DateSelect（.tolv-date-select） ============ */
+.tolv-date-select {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-medium, 8px);
+  min-height: 32px;
+  padding: var(--space-min, 2px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+.tolv-date-select__group { display: flex; align-items: center; flex: 1 0 0; min-width: 0; }
+.tolv-date-select__seg { padding: 0 var(--space-min, 2px); }
+.tolv-date-select__seg[data-empty] { color: var(--color-fg-basic-secondary); }
+.tolv-date-select__sep { padding: 0 var(--space-min, 2px); color: var(--color-fg-basic-secondary); }
+.tolv-date-select__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--color-fg-basic-secondary);
+}
+.tolv-date-select__icon svg { width: 100%; height: 100%; }
+.tolv-date-select.is-disabled {
+  background: var(--color-bg-brand-secondary);
+  color: var(--color-fg-basic-secondary);
+  cursor: not-allowed;
+}
+.tolv-date-select__popover {
+  position: absolute;
+  top: calc(100% + var(--space-small, 4px));
+  left: 0;
+  z-index: 20;
+  display: none;
+}
+.tolv-date-select.is-open .tolv-date-select__popover { display: block; }

@@ -3,6 +3,8 @@ import '../tokens/tokens.css';
 import '../components/button.css';
 import '../components/form.css';
 import '../components/form.js'; // Select/Search の開閉・選択挙動
+import '../components/calendar.css';
+import '../components/calendar.js'; // Calendar/DateSelect の挙動
 
 /** ツールバーのテーマ切替に応じて :root[data-theme] を設定 */
 const withTheme = (story, context) => {
@@ -18,7 +20,10 @@ const withTheme = (story, context) => {
   document.body.style.color = 'var(--color-fg-basic-primary)';
   document.body.style.fontFamily = 'var(--font-sans)';
   // ストーリー描画後に Select/Search を初期化（都度の再描画に対応）
-  setTimeout(() => { if (window.TolvForm) window.TolvForm.init(); }, 0);
+  setTimeout(() => {
+    if (window.TolvForm) window.TolvForm.init();
+    if (window.TolvCalendar) window.TolvCalendar.init();
+  }, 0);
   return story();
 };
 

@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Design Tokens  (v0.7.0)
+ * tolv Design System — Design Tokens  (v0.8.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
  *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
@@ -74,7 +74,7 @@
   --color-fg-basic-primary: var(--color-neutral-950);
   --color-fg-basic-secondary: var(--color-neutral-600);
   --color-fg-basic-primary-hover: var(--color-neutral-800);
-  --color-fg-basic-primary-disabled: var(--color-neutral-300);
+  --color-fg-basic-primary-disabled: var(--color-neutral-400);
   --color-fg-basic-secondary-hover: var(--color-neutral-500);
   --color-fg-basic-secondary-disabled: var(--color-neutral-300);
   --color-fg-basic-inverse: var(--color-neutral-50);
@@ -315,7 +315,7 @@
   --color-fg-basic-primary: var(--color-neutral-950);
   --color-fg-basic-secondary: var(--color-neutral-600);
   --color-fg-basic-primary-hover: var(--color-neutral-800);
-  --color-fg-basic-primary-disabled: var(--color-neutral-300);
+  --color-fg-basic-primary-disabled: var(--color-neutral-400);
   --color-fg-basic-secondary-hover: var(--color-neutral-500);
   --color-fg-basic-secondary-disabled: var(--color-neutral-300);
   --color-fg-basic-inverse: var(--color-neutral-50);
