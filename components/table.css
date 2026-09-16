@@ -1,0 +1,115 @@
+/*
+ * tolv Design System — Table  (v0.11.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css を参照。
+ *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集) / Edit / Error）
+ *   .tolv-record  … テーブル行（Header / Default / Selected。CheckBox＋内容＋詳細ボタン）
+ *
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ
+ * CheckBox は controls.css、詳細ボタンは自前スタイル（button.css 非依存）。
+ */
+
+/* ============ Cell（.tolv-cell） ============ */
+.tolv-cell {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-medium, 8px);
+  min-height: 32px;
+  padding: var(--space-min, 2px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid transparent;   /* Edit/Error で色付け（レイアウト維持） */
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  color: var(--color-fg-basic-primary);
+}
+.tolv-cell__value {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0 var(--space-min, 2px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tolv-cell__input {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0 var(--space-min, 2px);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+.tolv-cell__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--color-fg-basic-secondary);
+}
+.tolv-cell__icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; }
+
+/* Head：太字＋並び替え（.tolv-sort-button を内包） */
+.tolv-cell--head { cursor: pointer; }
+.tolv-cell--head .tolv-cell__value { font-weight: var(--font-weight-bold, 700); flex: 0 0 auto; }
+
+/* 編集可能：hover で鉛筆アイコンを表示 */
+.tolv-cell--editable { cursor: pointer; }
+.tolv-cell--editable .tolv-cell__icon { visibility: hidden; }
+.tolv-cell--editable:hover .tolv-cell__icon { visibility: visible; }
+.tolv-cell--editable:hover { background: var(--color-bg-basic-primary-hover); }
+
+/* Edit：枠＋白地＋チェック */
+.tolv-cell.is-edit {
+  border-color: var(--color-border-basic-primary);
+  background: var(--color-bg-basic-primary);
+}
+.tolv-cell.is-edit .tolv-cell__icon { visibility: visible; color: var(--color-fg-basic-primary); }
+
+/* Error：赤枠＋× */
+.tolv-cell.is-error { border-color: var(--color-border-caution-primary); }
+.tolv-cell.is-error .tolv-cell__icon { visibility: visible; color: var(--color-fg-caution-primary); }
+
+/* ============ Record（.tolv-record） ============ */
+.tolv-record {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: var(--space-small, 4px) 0;
+  border-bottom: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  overflow: hidden;
+}
+.tolv-record--header { border-bottom-color: var(--color-border-basic-secondary); }
+.tolv-record.is-selected { background: var(--color-bg-basic-primary-hover); }
+
+.tolv-record__select { flex: none; display: inline-flex; align-items: center; min-height: 32px; padding: var(--space-small, 4px) var(--space-medium, 8px); }
+.tolv-record__content { flex: 1 0 0; min-width: 0; min-height: 32px; display: flex; align-items: center; }
+
+/* 右端の「詳細」アクション（フェード背景付き） */
+.tolv-record__action { position: absolute; right: 0; top: 0; bottom: 0; display: flex; align-items: center; padding-left: 40px; pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--color-bg-basic-primary) 40%); }
+.tolv-record.is-selected .tolv-record__action { background: linear-gradient(to right, transparent, var(--color-bg-basic-primary-hover) 40%); }
+.tolv-record__detail {
+  pointer-events: auto;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-brand-primary);
+  font: var(--font-weight-bold, 700) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+.tolv-record__detail:hover { background: var(--color-bg-basic-primary-hover); }
+.tolv-record__detail-label { padding: 0 var(--space-small, 4px); }
+.tolv-record__detail-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 20px; height: 20px; }
+.tolv-record__detail-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; }

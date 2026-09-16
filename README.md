@@ -61,7 +61,7 @@ CSS からは Semantic トークンを参照します。
 - **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + `__menu`。展開は `.is-open`、無効は `.is-disabled`）
 - **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）
 - **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）
-- **`.tolv-search--cell`** … セル型（Cell。白地・アイコン20px。テーブルセル向け）
+- **`.tolv-search--cell`** … 検索セル（`.tolv-search` の白地バリアント）
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
 - **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））
 - **`.tolv-time`** … 時刻入力（InputTime。`__seg` × 2 + `__sep` + `__icon`）
@@ -118,6 +118,18 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-checkbox`** … チェックボックス（`:checked` / `:indeterminate`（or `.is-indeterminate`）/ `:disabled`）
 - **`.tolv-radio`** … ラジオボタン（`__box` + `__dot`。`:checked` / `:disabled`）
 - **`.tolv-sort-button`** … 並び替えアイコンボタン（`.is-selected` で濃色、hover 地色。アイコンは asc/desc を利用側で指定）
+
+### Table（`components/table.css`）
+
+テーブルのセルと行。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.11.0/components/table.css">
+```
+
+- **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover で鉛筆）/ `.is-edit`（枠＋チェック）/ `.is-error`（赤枠＋×）
+- **`.tolv-record`** … テーブル行。`--header`（見出し・濃ボーダー）/ 既定（CheckBox＋内容＋`詳細`ボタン、右端フェード）/ `.is-selected`（選択地色＋チェック）
+- CheckBox は `controls.css`、詳細ボタンは自前スタイル。編集の開始/確定などの挙動は利用側で実装
 
 ## 開発（Storybook）
 

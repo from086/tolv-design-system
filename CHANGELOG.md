@@ -2,6 +2,17 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.11.0] - 2026-09-16
+### Added
+- **Table**（新規 `components/table.css`）出典: Figma 🛠️ Component ページ
+  - `.tolv-cell`（テーブルセル: Head/Default/Hover(編集可)/Edit/Error）
+  - `.tolv-record`（テーブル行: Header/Default/Selected。CheckBox＋内容＋詳細ボタン＋右端フェード）
+- Storybook: Cell（テーブル版に刷新）/ Record を追加
+
+### Notes
+- 旧 Cell（`.tolv-search--cell`、検索セル）は `form.css` に温存。テーブルセルは新しい `.tolv-cell`
+- これで Figma Component ページの新規・更新は一通り反映済み（Text h3 / icon Large 等の純タイポ・アイコンプリミティブは各利用箇所で対応）
+
 ## [0.10.0] - 2026-09-16
 ### Added
 - **Button `--quaternary`**（テキストボタン・枠なし。透明地 / hover=basic-primary-hover）
