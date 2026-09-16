@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Controls  (v0.10.0)
+ * tolv Design System — Controls  (v0.11.2)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-checkbox    … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
@@ -7,7 +7,8 @@
  *   .tolv-sort-button … 並び替えアイコンボタン（selected/未selected × hover）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
- * 共通: 高さ32・padding 4/8・radius medium・ラベル Bold 14px。box=20px。
+ * アイコンは Figma 実アセット（Asset/Icon/check_box*, radio_button*, sort_*）。
+ * 単色グリフを currentColor 化し、状態でグリフを切替。
  */
 
 /* ============ 共通（ラベル付きコントロール） ============ */
@@ -41,40 +42,36 @@
 .tolv-checkbox__label,
 .tolv-radio__label { padding: 0 var(--space-small, 4px); }
 
-/* 20px の箱 */
-.tolv-checkbox__box,
-.tolv-radio__box {
-  box-sizing: border-box;
+/* グリフ（20px、Figma アセットを currentColor で描画） */
+.tolv-checkbox__glyph,
+.tolv-radio__glyph {
+  display: inline-flex;
   flex: none;
   width: 20px; height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: var(--border-width-2, 2px) solid var(--color-fg-brand-primary);
-  color: var(--color-fg-basic-inverse);   /* チェック/マイナスの色（白） */
+  color: var(--color-fg-brand-primary);   /* 箱の色。hover でも据え置き（Figma準拠） */
 }
+.tolv-checkbox__glyph svg,
+.tolv-radio__glyph svg { display: block; width: 100%; height: 100%; fill: currentColor; }
+.tolv-checkbox__glyph > *,
+.tolv-radio__glyph > * { display: none; width: 100%; height: 100%; }
 
-/* ============ CheckBox ============ */
-.tolv-checkbox__box { border-radius: var(--radius-small, 4px); }
-.tolv-checkbox__mark { display: none; width: 100%; height: 100%; }
-.tolv-checkbox__mark svg { width: 100%; height: 100%; fill: none; stroke: currentColor; }
-/* checked */
-.tolv-checkbox__input:checked ~ .tolv-checkbox__box { background: var(--color-fg-brand-primary); }
-.tolv-checkbox__input:checked ~ .tolv-checkbox__box .tolv-checkbox__mark--check { display: block; }
-/* indeterminate（:indeterminate は JS で設定 / .is-indeterminate でも可） */
-.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__box,
-.tolv-checkbox.is-indeterminate .tolv-checkbox__box { background: var(--color-fg-brand-primary); }
-.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__box .tolv-checkbox__mark--minus,
-.tolv-checkbox.is-indeterminate .tolv-checkbox__box .tolv-checkbox__mark--minus { display: block; }
-.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__box .tolv-checkbox__mark--check,
-.tolv-checkbox.is-indeterminate .tolv-checkbox__box .tolv-checkbox__mark--check { display: none; }
+/* CheckBox: 状態でグリフ切替 */
+.tolv-checkbox__blank { display: inline-flex; }
+.tolv-checkbox__input:checked ~ .tolv-checkbox__glyph .tolv-checkbox__blank { display: none; }
+.tolv-checkbox__input:checked ~ .tolv-checkbox__glyph .tolv-checkbox__checked { display: inline-flex; }
+.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__glyph .tolv-checkbox__blank,
+.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__glyph .tolv-checkbox__checked,
+.tolv-checkbox.is-indeterminate .tolv-checkbox__glyph .tolv-checkbox__blank,
+.tolv-checkbox.is-indeterminate .tolv-checkbox__glyph .tolv-checkbox__checked { display: none; }
+.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__glyph .tolv-checkbox__indet,
+.tolv-checkbox.is-indeterminate .tolv-checkbox__glyph .tolv-checkbox__indet { display: inline-flex; }
 
-/* ============ RadioButton ============ */
-.tolv-radio__box { border-radius: 9999px; }
-.tolv-radio__dot { display: none; width: 10px; height: 10px; border-radius: 9999px; background: var(--color-fg-brand-primary); }
-.tolv-radio__input:checked ~ .tolv-radio__box .tolv-radio__dot { display: block; }
+/* RadioButton: 状態でグリフ切替 */
+.tolv-radio__off { display: inline-flex; }
+.tolv-radio__input:checked ~ .tolv-radio__glyph .tolv-radio__off { display: none; }
+.tolv-radio__input:checked ~ .tolv-radio__glyph .tolv-radio__on { display: inline-flex; }
 
-/* ============ Disabled（CheckBox / Radio 共通） ============ */
+/* Disabled（グリフ色＝グレー、ラベル色＝グレー、hover なし） */
 .tolv-checkbox:has(.tolv-checkbox__input:disabled),
 .tolv-radio:has(.tolv-radio__input:disabled),
 .tolv-checkbox.is-disabled,
@@ -86,15 +83,10 @@
 .tolv-radio:has(.tolv-radio__input:disabled):hover,
 .tolv-checkbox.is-disabled:hover,
 .tolv-radio.is-disabled:hover { background: transparent; color: var(--color-fg-brand-primary-disabled); }
-.tolv-checkbox__input:disabled ~ .tolv-checkbox__box,
-.tolv-radio__input:disabled ~ .tolv-radio__box,
-.tolv-checkbox.is-disabled .tolv-checkbox__box,
-.tolv-radio.is-disabled .tolv-radio__box { border-color: var(--color-fg-brand-primary-disabled); }
-.tolv-checkbox__input:disabled:checked ~ .tolv-checkbox__box,
-.tolv-checkbox__input:disabled:indeterminate ~ .tolv-checkbox__box,
-.tolv-checkbox.is-disabled.is-indeterminate .tolv-checkbox__box { background: var(--color-fg-brand-primary-disabled); }
-.tolv-radio__input:disabled ~ .tolv-radio__box .tolv-radio__dot,
-.tolv-radio.is-disabled .tolv-radio__box .tolv-radio__dot { background: var(--color-fg-brand-primary-disabled); }
+.tolv-checkbox__input:disabled ~ .tolv-checkbox__glyph,
+.tolv-radio__input:disabled ~ .tolv-radio__glyph,
+.tolv-checkbox.is-disabled .tolv-checkbox__glyph,
+.tolv-radio.is-disabled .tolv-radio__glyph { color: var(--color-fg-brand-primary-disabled); }
 
 /* ============ SortButton ============ */
 .tolv-sort-button {
@@ -111,4 +103,4 @@
 }
 .tolv-sort-button:hover { background: var(--color-bg-basic-primary-hover); }
 .tolv-sort-button.is-selected { color: var(--color-fg-basic-primary); }   /* 選択中 = 濃色 */
-.tolv-sort-button svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; }
+.tolv-sort-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }

@@ -1,10 +1,16 @@
-// RadioButton — .tolv-radio
+// RadioButton — .tolv-radio（Figma グリフ Asset/Icon/radio_button*）
+import { radioUnchecked, radioChecked } from './_icons.js';
+
+const glyph = `<span class="tolv-radio__glyph">`
+  + `<span class="tolv-radio__off">${radioUnchecked}</span>`
+  + `<span class="tolv-radio__on">${radioChecked}</span></span>`;
+
 const radio = ({ checked, disabled, label, name }) => {
   const cls = ['tolv-radio', disabled ? 'is-disabled' : ''].filter(Boolean).join(' ');
   const inputAttrs = [checked ? 'checked' : '', disabled ? 'disabled' : ''].filter(Boolean).join(' ');
   return `<label class="${cls}">`
     + `<input type="radio" class="tolv-radio__input" name="${name || 'r'}" ${inputAttrs}>`
-    + `<span class="tolv-radio__box"><span class="tolv-radio__dot"></span></span>`
+    + glyph
     + (label ? `<span class="tolv-radio__label">${label}</span>` : '')
     + `</label>`;
 };

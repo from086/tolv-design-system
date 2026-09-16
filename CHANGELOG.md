@@ -2,6 +2,12 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.11.2] - 2026-09-16
+### Fixed
+- **CheckBox / RadioButton を Figma 実グリフに統一**（CSS 構築の箱＋マークから Asset/Icon/check_box*・radio_button* のグリフSVGへ）。単色パスを currentColor 化し Light/Dark 対応
+- SortButton のアイコンを Figma の sort_asc / sort_desc に（線ベース→塗りベース）
+- 全コンポーネントのアイコンが Figma アセット準拠であることを確認（Cell/Record/Select/ListItem/Calendar/FormSet 等）
+
 ## [0.11.1] - 2026-09-16
 ### Fixed
 - **アイコンを Figma の実アセット（Asset/Icon/*）に統一**。手描きの線ベースから塗りベース（viewBox 20/14）へ差し替え

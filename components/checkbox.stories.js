@@ -1,6 +1,10 @@
-// CheckBox — .tolv-checkbox
-import { check as CHECK } from './_icons.js';
-const MINUS = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 10.8333V9.16667H15V10.8333H5Z"/></svg>';
+// CheckBox — .tolv-checkbox（Figma グリフ Asset/Icon/check_box*）
+import { checkboxBlank, checkboxChecked, checkboxIndeterminate } from './_icons.js';
+
+const glyph = `<span class="tolv-checkbox__glyph">`
+  + `<span class="tolv-checkbox__blank">${checkboxBlank}</span>`
+  + `<span class="tolv-checkbox__checked">${checkboxChecked}</span>`
+  + `<span class="tolv-checkbox__indet">${checkboxIndeterminate}</span></span>`;
 
 // checked: 'false' | 'true' | 'indeterminate'
 const box = ({ checked, disabled, label }) => {
@@ -8,10 +12,7 @@ const box = ({ checked, disabled, label }) => {
   const inputAttrs = [checked === 'true' ? 'checked' : '', disabled ? 'disabled' : ''].filter(Boolean).join(' ');
   return `<label class="${cls}">`
     + `<input type="checkbox" class="tolv-checkbox__input" ${inputAttrs}>`
-    + `<span class="tolv-checkbox__box">`
-    + `<span class="tolv-checkbox__mark tolv-checkbox__mark--check">${CHECK}</span>`
-    + `<span class="tolv-checkbox__mark tolv-checkbox__mark--minus">${MINUS}</span>`
-    + `</span>`
+    + glyph
     + (label ? `<span class="tolv-checkbox__label">${label}</span>` : '')
     + `</label>`;
 };

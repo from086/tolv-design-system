@@ -1,10 +1,9 @@
 // Record — .tolv-record（テーブル行：Header / Default / Selected）
-import { check as CHECK, chevronRight as CHEVRON } from './_icons.js';
-const MINUS = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 10.8333V9.16667H15V10.8333H5Z"/></svg>';
+import { chevronRight as CHEVRON, checkboxBlank, checkboxChecked } from './_icons.js';
 
 const checkbox = (checked) =>
   `<label class="tolv-checkbox"><input type="checkbox" class="tolv-checkbox__input"${checked ? ' checked' : ''}>`
-  + `<span class="tolv-checkbox__box"><span class="tolv-checkbox__mark tolv-checkbox__mark--check">${CHECK}</span><span class="tolv-checkbox__mark tolv-checkbox__mark--minus">${MINUS}</span></span></label>`;
+  + `<span class="tolv-checkbox__glyph"><span class="tolv-checkbox__blank">${checkboxBlank}</span><span class="tolv-checkbox__checked">${checkboxChecked}</span></span></label>`;
 
 const cells = (bold) => `<div style="display:flex;flex:1 0 0;min-width:0">`
   + ['商品名', '数量', '担当'].map((t) => `<div class="tolv-cell${bold ? ' tolv-cell--head' : ''}" style="width:160px"><span class="tolv-cell__value">${t}</span></div>`).join('')
