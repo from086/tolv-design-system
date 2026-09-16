@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar family  (v0.8.1)
+ * tolv Design System — Calendar family  (v0.11.1)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。挙動は components/calendar.js。
  *   .tolv-date-cell    … 日セル（DateCell。Default/hover/Selected/Disabled）
@@ -64,9 +64,9 @@
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23737373' d='M14.75 8.08333L9.75001 13.0833L4.75001 8.08333L5.91668 6.91667L9.75001 10.75L13.5833 6.91667L14.75 8.08333Z'/%3E%3C/svg%3E")
     no-repeat right var(--space-medium, 8px) center;
-  background-size: 16px 16px;
+  background-size: 20px 20px;
   color: var(--color-fg-basic-secondary);
   font: inherit;
   cursor: pointer;

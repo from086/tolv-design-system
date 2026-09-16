@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar behavior  (v0.8.1)
+ * tolv Design System — Calendar behavior  (v0.11.1)
  * =====================================================================
  * 依存なしの素のJS。calendar.css の CalendarPanel / DateSelect に挙動を付与。
  *   - .tolv-calendar     : 月送り / 日選択 / 削除 / 今日（年はSelect）
@@ -15,10 +15,11 @@
 (function (global) {
   'use strict';
 
+  // Figma 実アセット（Asset/Icon/arrow-*, date_edit）に準拠。fill:currentColor。
   var ICON = {
-    left: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
-    right: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
-    calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg>',
+    left: '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M11.6667 15L6.66667 10L11.6667 5L12.8333 6.16667L9 10L12.8333 13.8333L11.6667 15Z"/></svg>',
+    right: '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M10.5 10L6.66667 6.16667L7.83333 5L12.8333 10L7.83333 15L6.66667 13.8333L10.5 10Z"/></svg>',
+    calendar: '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4.16667 18.3333C3.70833 18.3333 3.31597 18.1701 2.98958 17.8437C2.66319 17.5174 2.5 17.125 2.5 16.6667V5C2.5 4.54167 2.66319 4.14931 2.98958 3.82292C3.31597 3.49653 3.70833 3.33333 4.16667 3.33333H5V1.66667H6.66667V3.33333H13.3333V1.66667H15V3.33333H15.8333C16.2917 3.33333 16.684 3.49653 17.0104 3.82292C17.3368 4.14931 17.5 4.54167 17.5 5V9.16667H15.8333V8.33333H4.16667V16.6667H10V18.3333H4.16667ZM4.16667 6.66667H15.8333V5H4.16667V6.66667ZM11.6667 18.3333V15.7708L16.2708 11.1875C16.3958 11.0625 16.5347 10.9722 16.6875 10.9167C16.8403 10.8611 16.9931 10.8333 17.1458 10.8333C17.3125 10.8333 17.4722 10.8646 17.625 10.9271C17.7778 10.9896 17.9167 11.0833 18.0417 11.2083L18.8125 11.9792C18.9236 12.1042 19.0104 12.2431 19.0729 12.3958C19.1354 12.5486 19.1667 12.7014 19.1667 12.8542C19.1667 13.0069 19.1389 13.1632 19.0833 13.3229C19.0278 13.4826 18.9375 13.625 18.8125 13.75L14.2292 18.3333H11.6667ZM12.9167 17.0833H13.7083L16.2292 14.5417L15.8542 14.1458L15.4583 13.7708L12.9167 16.2917V17.0833Z"/></svg>',
   };
 
   function pad(n) { return String(n).padStart(2, '0'); }

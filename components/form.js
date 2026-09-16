@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form behavior  (v0.9.0)
+ * tolv Design System — Form behavior  (v0.11.1)
  * =====================================================================
  * 依存なしの素のJS。form.css の Select / Search / InputTime に挙動を付与する。
  * プログレッシブエンハンス：読み込むだけで既存マークアップを自動初期化。
@@ -37,7 +37,8 @@
     });
   }
 
-  var ADD_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>';
+  // Figma 実アセット（Asset/Icon/add）に準拠。fill:currentColor。
+  var ADD_ICON = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9.32882 10.7631H4.32882V9.09647H9.32882V4.09647H10.9955V9.09647H15.9955V10.7631H10.9955V15.7631H9.32882V10.7631Z"/></svg>';
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
   }

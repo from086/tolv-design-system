@@ -2,6 +2,13 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.11.1] - 2026-09-16
+### Fixed
+- **アイコンを Figma の実アセット（Asset/Icon/*）に統一**。手描きの線ベースから塗りベース（viewBox 20/14）へ差し替え
+  - 配信物: `calendar.js`（月送り arrow-left/right、date_edit）/ `calendar.css`（年Select の chevron）/ `form.js`（add）
+  - Storybook 共通アイコン `_icons.js`: search / chevron(arrow-down/left/right) / close / check / add / pencil(stylus) / clock(time) / sort(asc/desc) / calendar / information / error に統一
+  - FormSet のメッセージアイコンを修正（ヒント=information / エラー=error / Applied=check）
+
 ## [0.11.0] - 2026-09-16
 ### Added
 - **Table**（新規 `components/table.css`）出典: Figma 🛠️ Component ページ

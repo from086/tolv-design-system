@@ -1,10 +1,6 @@
 // Cell — .tolv-cell（テーブルセル：Head / Default / Hover(編集) / Edit / Error）
-const ICON = {
-  pencil: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
-  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-  sort: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M5 12h9M5 16h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-};
+import { pencil, check, close, sortDesc } from './_icons.js';
+const ICON = { pencil, check, close, sort: sortDesc };
 const box = (inner) => `<div style="width:220px">${inner}</div>`;
 
 // status: 'head' | 'default' | 'editable' | 'edit' | 'error'

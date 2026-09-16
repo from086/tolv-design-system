@@ -1,5 +1,5 @@
 // FormSet — .tolv-field（ラベル + コントロール + メッセージ）
-import { errorMark, checkCircle } from './_icons.js';
+import { information, errorMark, check } from './_icons.js';
 
 const box = (inner) => `<div style="width:320px">${inner}</div>`;
 
@@ -9,7 +9,7 @@ const render = ({ label, supportText, value, placeholder, messageText, messageTy
   const isSuccess = messageType === 'success';
   const inputCls = ['tolv-input', isError ? 'is-error' : ''].filter(Boolean).join(' ');
   const msgCls = ['tolv-field__message', isError ? 'tolv-field__message--error' : '', isSuccess ? 'tolv-field__message--success' : ''].filter(Boolean).join(' ');
-  const icon = isSuccess ? checkCircle : errorMark;
+  const icon = isError ? errorMark : isSuccess ? check : information;
   return box(
     `<div class="tolv-field">`
     + `<label class="tolv-field__label">${label}</label>`

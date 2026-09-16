@@ -1,8 +1,8 @@
 // tolv Button — Storybook stories (@storybook/html-vite)
 // 素の HTML + button.css のクラスでレンダリングする。
 
-const chevron = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const icon = `<span class="tolv-btn__icon">${chevron}</span>`;
+import { chevronRight } from './_icons.js';
+const icon = `<span class="tolv-btn__icon">${chevronRight}</span>`;
 
 /** args から <button> の HTML 文字列を生成 */
 const renderButton = ({ type, size, label, prefixIcon, suffixIcon, disabled }) => {

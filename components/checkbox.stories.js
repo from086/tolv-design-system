@@ -1,6 +1,6 @@
 // CheckBox — .tolv-checkbox
-const CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const MINUS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+import { check as CHECK } from './_icons.js';
+const MINUS = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M5 10.8333V9.16667H15V10.8333H5Z"/></svg>';
 
 // checked: 'false' | 'true' | 'indeterminate'
 const box = ({ checked, disabled, label }) => {

@@ -1,8 +1,6 @@
 // SortButton — .tolv-sort-button（並び替えアイコンボタン）
-const ICON = {
-  asc: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h5M5 12h9M5 16h13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 5v6M18 5l-2.5 2.5M18 5l2.5 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  desc: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h13M5 12h9M5 16h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 19v-6M18 19l-2.5-2.5M18 19l2.5-2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-};
+import { sortAsc, sortDesc } from './_icons.js';
+const ICON = { asc: sortAsc, desc: sortDesc };
 
 const btn = ({ type, selected }) => {
   const cls = ['tolv-sort-button', selected ? 'is-selected' : ''].filter(Boolean).join(' ');

@@ -1,5 +1,5 @@
 // DateSelect — .tolv-date-select（クリックでカレンダーをポップオーバー表示）
-const calSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg>';
+import { calendar as calSvg } from './_icons.js';
 
 const render = ({ value, disabled }) => {
   const has = !!value;
