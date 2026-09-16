@@ -1,39 +1,46 @@
-// IncrementalSearch — .tolv-search
-import { search, close, check } from './_icons.js';
+// IncrementalSearch — .tolv-search（SuggestionPanel 版）
+// 入力するとマスターデータを絞り込んで下に SuggestionPanel を表示。
+// 0件なら「該当なし＋マスターに追加」。挙動は form.js（data-suggestions を渡す）。
+import { search, close, plus } from './_icons.js';
 
-const result = (label, selected) =>
-  `<div class="tolv-list-item${selected ? ' is-selected' : ''}" role="option"${selected ? ' aria-selected="true"' : ''}>`
-  + `<span class="tolv-list-item__label">${label}</span>`
-  + `<span class="tolv-list-item__check">${check}</span></div>`;
-
+const MASTER = ['りんご', 'みかん', 'ぶどう', 'もも', 'いちご'];
 const box = (inner) => `<div style="width:320px">${inner}</div>`;
 
-const render = ({ value, placeholder, open, disabled, error }) => {
-  const cls = ['tolv-search', open ? 'is-open' : '', disabled ? 'is-disabled' : '', error ? 'is-error' : ''].filter(Boolean).join(' ');
-  return box(
-    `<div class="${cls}">`
+const panelItems = (arr) =>
+  `<div class="tolv-suggestion-panel tolv-search__panel"><div class="tolv-suggestion-panel__items">`
+  + arr.map((m) => `<button type="button" class="tolv-suggestion-panel__item" data-value="${m}">${m}</button>`).join('')
+  + `</div></div>`;
+const panelNoData = () =>
+  `<div class="tolv-suggestion-panel tolv-search__panel"><div class="tolv-suggestion-panel__nodata">`
+  + `<p class="tolv-suggestion-panel__message">該当する項目がありません</p>`
+  + `<button type="button" class="tolv-suggestion-panel__add"><span class="tolv-suggestion-panel__add-icon">${plus}</span><span class="tolv-suggestion-panel__add-label">マスターに追加</span></button>`
+  + `</div></div>`;
+
+const field = ({ value, placeholder, open, disabled, error, panel, isStatic }) => {
+  const cls = ['tolv-search', value ? 'is-filled' : '', open ? 'is-open' : '', disabled ? 'is-disabled' : '', error ? 'is-error' : ''].filter(Boolean).join(' ');
+  return `<div class="${cls}" data-suggestions='${JSON.stringify(MASTER)}'${isStatic ? ' data-tolv-init' : ''}>`
     + `<div class="tolv-search__control">`
     + `<input class="tolv-search__input" placeholder="${placeholder}" value="${value}"${disabled ? ' disabled' : ''}${error ? ' aria-invalid="true"' : ''}>`
     + `<span class="tolv-search__icon tolv-search__icon--search">${search}</span>`
     + `<span class="tolv-search__icon tolv-search__icon--clear">${close}</span></div>`
-    + `<div class="tolv-search__menu" role="listbox">`
-    + result('りんご') + result('みかん') + result('ぶどう') + result('もも')
-    + `</div></div>`
-  );
+    + (panel || '')
+    + `</div>`;
 };
+
+// Playground: フォーカス/入力で form.js が SuggestionPanel を生成（マスター = りんご/みかん/…）
+const render = ({ value, placeholder, disabled, error }) => box(field({ value, placeholder, disabled, error }));
 
 export default {
   title: 'Components/IncrementalSearch',
   tags: ['autodocs'],
   render,
   argTypes: {
-    value: { control: 'text', description: '入力値（空でプレースホルダー・虫めがね）' },
+    value: { control: 'text' },
     placeholder: { control: 'text' },
-    open: { control: 'boolean', description: '候補表示（is-open, 入力中は×アイコン）' },
     disabled: { control: 'boolean' },
     error: { control: 'boolean' },
   },
-  args: { value: '', placeholder: 'テキスト', open: false, disabled: false, error: false },
+  args: { value: '', placeholder: 'テキスト（例: り）', disabled: false, error: false },
 };
 
 export const Playground = {};
@@ -41,12 +48,17 @@ export const Playground = {};
 export const Overview = {
   parameters: { controls: { disable: true }, layout: 'padded' },
   render: () => {
-    const row = (label, args) => `<tr><th style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);text-align:left;padding:8px 16px 8px 0;white-space:nowrap;vertical-align:top">${label}</th><td style="padding:8px 0">${render(args)}</td></tr>`;
+    const row = (label, html) => `<tr><th style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);text-align:left;padding:8px 16px 8px 0;white-space:nowrap">${label}</th><td style="padding:8px 0">${html}</td></tr>`;
+    const cap = (t) => `<div style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);margin-bottom:6px">${t}</div>`;
     return `<table style="border-collapse:collapse">`
-      + row('Default (search)', { value: '', placeholder: 'テキスト' })
-      + row('Open (results)', { value: 'テキスト', open: true })
-      + row('Disabled', { value: 'テキスト', disabled: true })
-      + row('Error', { value: 'テキスト', error: true })
-      + `</table>`;
+      + row('Default', box(field({ value: '', placeholder: 'テキスト', isStatic: true })))
+      + row('Inputed', box(field({ value: 'りんご', placeholder: 'テキスト', isStatic: true })))
+      + row('Disabled', box(field({ value: 'りんご', placeholder: 'テキスト', disabled: true, isStatic: true })))
+      + row('Error', box(field({ value: 'りんご', placeholder: 'テキスト', error: true, isStatic: true })))
+      + `</table>`
+      + `<div style="display:flex;gap:40px;align-items:flex-start;min-height:260px;margin-top:16px">`
+      + `<div>${cap('入力あり・候補一致（SuggestionPanel / Default）')}${box(field({ value: 'り', placeholder: 'テキスト', open: true, isStatic: true, panel: panelItems(['りんご']) }))}</div>`
+      + `<div>${cap('入力あり・候補なし（SuggestionPanel / NoData）')}${box(field({ value: 'ばなな', placeholder: 'テキスト', open: true, isStatic: true, panel: panelNoData() }))}</div>`
+      + `</div>`;
   },
 };

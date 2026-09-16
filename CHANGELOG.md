@@ -2,6 +2,22 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.9.0] - 2026-09-16
+### Added
+- **SuggestionPanel**（`.tolv-suggestion-panel`、`components/form.css`）出典: Figma 🛠️ Component ページ
+  - `__items`（マスターデータ一覧）/ `__nodata`（該当なし＋`__add`「マスターに追加」）
+
+### Changed
+- **IncrementalSearch の挙動を刷新**：インラインメニューを廃止し、入力でフローティングの SuggestionPanel を表示
+  - `data-suggestions`（JSON配列）のマスターデータを入力文字列で絞り込み表示
+  - 候補選択で入力欄へ確定し `tolv:select` を発火
+  - 一致0件で「該当する項目がありません」＋「マスターに追加」を表示。追加で候補に加えて確定し `tolv:additem` を発火（永続化は利用側）
+  - 末尾アイコンは値の有無で虫めがね⇄×（`.is-filled`）
+- `.tolv-search` を `position: relative` 化（ポップオーバー配置）。Cell の旧インラインメニューは `.tolv-search--cell` で温存
+
+### Notes
+- 今回のスコープは IncrementalSearch 一式のみ。Figma の他の新規（Button Quaternary / CheckBox / RadioButton / SortButton / Record / Cell 更新 等）は次回
+
 ## [0.8.1] - 2026-09-15
 ### Changed
 - **CalendarPanel**: CalendarSet の幅・余白を Figma に合わせて調整（ヘッダーを space-between、年Select=100px 固定、月ラベル=44px、Actions ボタン=48px 固定、Set の gap を 8px に）

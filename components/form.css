@@ -1,12 +1,13 @@
 /*
- * tolv Design System — Form family  (v0.8.1)
+ * tolv Design System — Form family  (v0.9.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
- *   .tolv-input        … テキスト入力（InputText）
- *   .tolv-select       … ドロップダウン選択（Select）
- *   .tolv-search       … インクリメンタルサーチ（IncrementalSearch）
- *   .tolv-search--cell … セル型（Cell。白地・アイコン20px）
+ *   .tolv-input           … テキスト入力（InputText）
+ *   .tolv-select          … ドロップダウン選択（Select）
+ *   .tolv-search          … インクリメンタルサーチ（IncrementalSearch。SuggestionPanel を使用）
+ *   .tolv-suggestion-panel… 候補パネル（マスターデータ一覧 / 該当なし＋追加）
+ *   .tolv-search--cell    … セル型（Cell。白地・アイコン20px）
  *   .tolv-list-item    … 候補行（ListItem。Select/Search のメニュー内で使用）
  *   .tolv-field        … ラベル＋コントロール＋メッセージの組（FormSet）
  *   .tolv-time         … 時刻入力（InputTime。HH:MM ＋ 時計アイコン）
@@ -72,8 +73,10 @@
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--_radius);
   background: transparent;
-  overflow: hidden;   /* メニューの角丸クリップ */
 }
+.tolv-select { overflow: hidden; }         /* インラインメニューの角丸クリップ */
+.tolv-search { position: relative; }        /* SuggestionPanel をポップオーバー配置 */
+.tolv-search--cell { overflow: hidden; }    /* Cell は旧インラインメニューを温存 */
 .tolv-select.is-error,
 .tolv-search.is-error { border-color: var(--color-border-caution-primary); }
 
@@ -160,10 +163,14 @@
 /* Select の chevron は open で反転 */
 .tolv-select.is-open .tolv-select__icon { transform: rotate(180deg); }
 
-/* Search のアイコン切替（閉=虫めがね / 開=×） */
+/* Search のアイコン切替（虫めがね / ×） */
 .tolv-search__icon--clear { display: none; }
-.tolv-search.is-open .tolv-search__icon--search { display: none; }
-.tolv-search.is-open .tolv-search__icon--clear { display: inline-flex; }
+/* IncrementalSearch: 値があれば × */
+.tolv-search.is-filled .tolv-search__icon--search { display: none; }
+.tolv-search.is-filled .tolv-search__icon--clear { display: inline-flex; }
+/* Cell(旧インラインメニュー): 開いたら × */
+.tolv-search--cell.is-open .tolv-search__icon--search { display: none; }
+.tolv-search--cell.is-open .tolv-search__icon--clear { display: inline-flex; }
 
 /* ドロップダウンメニュー（同じ枠内に展開） */
 .tolv-select__menu,
@@ -172,7 +179,70 @@
   padding: var(--space-small, 4px) 0;
 }
 .tolv-select.is-open .tolv-select__menu,
-.tolv-search.is-open .tolv-search__menu { display: block; }
+.tolv-search--cell.is-open .tolv-search__menu { display: block; }
+
+/* ============ SuggestionPanel（.tolv-suggestion-panel） ============
+ * IncrementalSearch の候補パネル。マスターデータ一覧 or 該当なし＋追加ボタン。
+ * IncrementalSearch では .tolv-search__panel としてフィールド下にポップオーバー配置。 */
+.tolv-search__panel {
+  position: absolute;
+  top: calc(100% + var(--space-small, 4px));
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: none;
+}
+.tolv-search.is-open .tolv-search__panel { display: block; }
+
+.tolv-suggestion-panel {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-large, 16px);
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-large, 16px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--_font);
+}
+.tolv-suggestion-panel__items { display: flex; flex-direction: column; }
+.tolv-suggestion-panel__item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 32px;
+  padding: var(--space-min, 2px) calc(var(--space-medium, 8px) + var(--space-min, 2px));  /* 10px */
+  border: 0;
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.tolv-suggestion-panel__item:hover {
+  background: var(--color-bg-basic-primary-hover);
+  color: var(--color-fg-basic-primary-hover);
+}
+/* 該当なし（NoData） */
+.tolv-suggestion-panel__nodata { display: flex; flex-direction: column; gap: var(--space-medium, 8px); align-items: flex-start; }
+.tolv-suggestion-panel__message { margin: 0; color: var(--color-fg-basic-secondary); }
+.tolv-suggestion-panel__add {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  border: var(--border-regular, 1px) solid var(--color-border-brand-secondary);   /* navy-600 */
+  border-radius: var(--radius-medium, 8px);
+  background: var(--color-bg-brand-tertiary);
+  color: var(--color-fg-brand-primary);
+  font: var(--font-weight-bold, 700) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  cursor: pointer;
+}
+.tolv-suggestion-panel__add-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 20px; height: 20px; }
+.tolv-suggestion-panel__add-icon svg { width: 100%; height: 100%; }
+.tolv-suggestion-panel__add-label { padding: 0 var(--space-small, 4px); }
 
 /* ============ ListItem（.tolv-list-item） ============ */
 .tolv-list-item[hidden] { display: none; }  /* display:flex が [hidden] を上書きするのを防ぐ */
