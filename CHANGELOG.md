@@ -2,6 +2,21 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.10.0] - 2026-09-16
+### Added
+- **Button `--quaternary`**（テキストボタン・枠なし。透明地 / hover=basic-primary-hover）
+- **Controls**（新規 `components/controls.css`）出典: Figma 🛠️ Component ページ
+  - `.tolv-checkbox`（False/True/Indeterminate × Default/Hover/Disabled、ネイティブ input）
+  - `.tolv-radio`（False/True × Default/Hover/Disabled）
+  - `.tolv-sort-button`（並び替えアイコンボタン、`.is-selected` / hover）
+- Storybook: CheckBox / RadioButton / SortButton、Button に Quaternary
+
+### Changed
+- **トークン `--color-bg-basic-primary-hover` を neutral-50→neutral-100(#f5f5f5)**（Figma 準拠・Light のみ。ListItem hover / Button Tertiary・Quaternary hover / CheckBox・Radio hover が対象）
+
+### Notes
+- 残りの新規（Record / Cell テーブル版）は次バッチで対応予定
+
 ## [0.9.0] - 2026-09-16
 ### Added
 - **SuggestionPanel**（`.tolv-suggestion-panel`、`components/form.css`）出典: Figma 🛠️ Component ページ

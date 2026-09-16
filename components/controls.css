@@ -1,0 +1,114 @@
+/*
+ * tolv Design System — Controls  (v0.10.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css を参照。
+ *   .tolv-checkbox    … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
+ *   .tolv-radio       … ラジオボタン（False/True × Default/Hover/Disabled）
+ *   .tolv-sort-button … 並び替えアイコンボタン（selected/未selected × hover）
+ *
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ
+ * 共通: 高さ32・padding 4/8・radius medium・ラベル Bold 14px。box=20px。
+ */
+
+/* ============ 共通（ラベル付きコントロール） ============ */
+.tolv-checkbox,
+.tolv-radio {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  border-radius: var(--radius-medium, 8px);
+  font: var(--font-weight-bold, 700) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  color: var(--color-fg-brand-primary);
+  cursor: pointer;
+  user-select: none;
+}
+.tolv-checkbox:hover,
+.tolv-radio:hover {
+  background: var(--color-bg-basic-primary-hover);
+  color: var(--color-fg-brand-primary-hover);
+}
+/* ネイティブ input はアクセシブルなまま視覚的に隠す */
+.tolv-checkbox__input,
+.tolv-radio__input {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: 0; padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.tolv-checkbox__label,
+.tolv-radio__label { padding: 0 var(--space-small, 4px); }
+
+/* 20px の箱 */
+.tolv-checkbox__box,
+.tolv-radio__box {
+  box-sizing: border-box;
+  flex: none;
+  width: 20px; height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-2, 2px) solid var(--color-fg-brand-primary);
+  color: var(--color-fg-basic-inverse);   /* チェック/マイナスの色（白） */
+}
+
+/* ============ CheckBox ============ */
+.tolv-checkbox__box { border-radius: var(--radius-small, 4px); }
+.tolv-checkbox__mark { display: none; width: 100%; height: 100%; }
+.tolv-checkbox__mark svg { width: 100%; height: 100%; fill: none; stroke: currentColor; }
+/* checked */
+.tolv-checkbox__input:checked ~ .tolv-checkbox__box { background: var(--color-fg-brand-primary); }
+.tolv-checkbox__input:checked ~ .tolv-checkbox__box .tolv-checkbox__mark--check { display: block; }
+/* indeterminate（:indeterminate は JS で設定 / .is-indeterminate でも可） */
+.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__box,
+.tolv-checkbox.is-indeterminate .tolv-checkbox__box { background: var(--color-fg-brand-primary); }
+.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__box .tolv-checkbox__mark--minus,
+.tolv-checkbox.is-indeterminate .tolv-checkbox__box .tolv-checkbox__mark--minus { display: block; }
+.tolv-checkbox__input:indeterminate ~ .tolv-checkbox__box .tolv-checkbox__mark--check,
+.tolv-checkbox.is-indeterminate .tolv-checkbox__box .tolv-checkbox__mark--check { display: none; }
+
+/* ============ RadioButton ============ */
+.tolv-radio__box { border-radius: 9999px; }
+.tolv-radio__dot { display: none; width: 10px; height: 10px; border-radius: 9999px; background: var(--color-fg-brand-primary); }
+.tolv-radio__input:checked ~ .tolv-radio__box .tolv-radio__dot { display: block; }
+
+/* ============ Disabled（CheckBox / Radio 共通） ============ */
+.tolv-checkbox:has(.tolv-checkbox__input:disabled),
+.tolv-radio:has(.tolv-radio__input:disabled),
+.tolv-checkbox.is-disabled,
+.tolv-radio.is-disabled {
+  color: var(--color-fg-brand-primary-disabled);
+  cursor: not-allowed;
+}
+.tolv-checkbox:has(.tolv-checkbox__input:disabled):hover,
+.tolv-radio:has(.tolv-radio__input:disabled):hover,
+.tolv-checkbox.is-disabled:hover,
+.tolv-radio.is-disabled:hover { background: transparent; color: var(--color-fg-brand-primary-disabled); }
+.tolv-checkbox__input:disabled ~ .tolv-checkbox__box,
+.tolv-radio__input:disabled ~ .tolv-radio__box,
+.tolv-checkbox.is-disabled .tolv-checkbox__box,
+.tolv-radio.is-disabled .tolv-radio__box { border-color: var(--color-fg-brand-primary-disabled); }
+.tolv-checkbox__input:disabled:checked ~ .tolv-checkbox__box,
+.tolv-checkbox__input:disabled:indeterminate ~ .tolv-checkbox__box,
+.tolv-checkbox.is-disabled.is-indeterminate .tolv-checkbox__box { background: var(--color-fg-brand-primary-disabled); }
+.tolv-radio__input:disabled ~ .tolv-radio__box .tolv-radio__dot,
+.tolv-radio.is-disabled .tolv-radio__box .tolv-radio__dot { background: var(--color-fg-brand-primary-disabled); }
+
+/* ============ SortButton ============ */
+.tolv-sort-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-min, 2px);
+  border: 0;
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  color: var(--color-fg-basic-primary-disabled);   /* 未選択 = グレー */
+  cursor: pointer;
+}
+.tolv-sort-button:hover { background: var(--color-bg-basic-primary-hover); }
+.tolv-sort-button.is-selected { color: var(--color-fg-basic-primary); }   /* 選択中 = 濃色 */
+.tolv-sort-button svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; }

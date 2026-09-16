@@ -40,7 +40,7 @@ CSS からは Semantic トークンを参照します。
 </button>
 ```
 
-- **Type**: `--primary`（塗り）/ `--secondary`（ブランド枠）/ `--tertiary`（ニュートラル枠）/ `--caution`（警告枠）
+- **Type**: `--primary`（塗り）/ `--secondary`（ブランド枠）/ `--tertiary`（ニュートラル枠）/ `--quaternary`（テキスト・枠なし）/ `--caution`（警告枠）
 - **Size**: 既定=Medium、`--sm`=Small
 - **State**: Default / `:hover` / 無効（`disabled` 属性 or `aria-disabled="true"`）
 - アイコンは前後どちらも任意。`.tolv-btn__label` の前後に `.tolv-btn__icon` を置く
@@ -100,6 +100,24 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-calendar`** … カレンダー本体（年Select＋月送り`< >`＋日グリッド＋`削除`/`今日`）。`data-tolv-calendar` で自動描画、または `TolvCalendar.mount(el, {selected, onSelect})`
 - **`.tolv-date-select`** … 日付入力トリガー（`YYYY / MM / DD` ＋カレンダーアイコン）。クリックでカレンダーをポップオーバー表示、日選択で確定 → `tolv:datechange`（`detail.value` = `'YYYY-MM-DD'|null`）
 - 外側クリック / Esc で閉じる。グリッドは日曜始まり・前後月は非活性
+
+### Controls（`components/controls.css`）
+
+ネイティブ input を装飾したフォームコントロール。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.10.0/components/controls.css">
+
+<label class="tolv-checkbox">
+  <input type="checkbox" class="tolv-checkbox__input">
+  <span class="tolv-checkbox__box"><span class="tolv-checkbox__mark tolv-checkbox__mark--check"><!-- ✓ --></span><span class="tolv-checkbox__mark tolv-checkbox__mark--minus"><!-- − --></span></span>
+  <span class="tolv-checkbox__label">ラベル</span>
+</label>
+```
+
+- **`.tolv-checkbox`** … チェックボックス（`:checked` / `:indeterminate`（or `.is-indeterminate`）/ `:disabled`）
+- **`.tolv-radio`** … ラジオボタン（`__box` + `__dot`。`:checked` / `:disabled`）
+- **`.tolv-sort-button`** … 並び替えアイコンボタン（`.is-selected` で濃色、hover 地色。アイコンは asc/desc を利用側で指定）
 
 ## 開発（Storybook）
 

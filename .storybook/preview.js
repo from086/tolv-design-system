@@ -5,6 +5,7 @@ import '../components/form.css';
 import '../components/form.js'; // Select/Search の開閉・選択挙動
 import '../components/calendar.css';
 import '../components/calendar.js'; // Calendar/DateSelect の挙動
+import '../components/controls.css'; // CheckBox / RadioButton / SortButton
 
 /** ツールバーのテーマ切替に応じて :root[data-theme] を設定 */
 const withTheme = (story, context) => {

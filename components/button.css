@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Button  (v0.7.0)
+ * tolv Design System — Button  (v0.10.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照するため、
  * ページ側で tokens.css を先に読み込んでください（Light/Dark 自動追従）。
@@ -118,6 +118,17 @@
   border-color: var(--color-border-basic-primary-hover);
 }
 
+/* ============ Type = Quaternary（テキストボタン・枠なし） ============ */
+.tolv-btn--quaternary {
+  background-color: transparent;
+  color: var(--color-fg-brand-primary);
+  border-color: transparent;
+}
+.tolv-btn--quaternary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-bg-basic-primary-hover);
+  color: var(--color-fg-brand-primary-hover);
+}
+
 /* ============ Type = Caution（警告枠） ============ */
 .tolv-btn--caution {
   background-color: var(--color-bg-caution-tertiary);
@@ -152,6 +163,12 @@
   background-color: var(--color-bg-brand-tertiary-disabled);
   color: var(--color-fg-brand-primary-disabled);
   border-color: var(--color-border-basic-primary-disabled);
+}
+.tolv-btn--quaternary:disabled,
+.tolv-btn--quaternary[aria-disabled="true"] {
+  background-color: transparent;
+  color: var(--color-fg-brand-primary-disabled);
+  border-color: transparent;
 }
 .tolv-btn--caution:disabled,
 .tolv-btn--caution[aria-disabled="true"] {
