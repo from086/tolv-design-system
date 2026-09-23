@@ -2,6 +2,13 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.12.1] - 2026-09-23
+### Fixed
+- **Record（Default）の「詳細」ボタンを sticky 化**。`position: absolute`（行の右端に固定・横スクロールで流れる）から `position: sticky; right: 0`（スクロール領域の右端に固定・常に表示）へ。Slot に重なる挙動は維持（`__action` は width:0、内側 `__action-inner` を absolute でフェード＋ボタン展開）
+  - 利用側は Record 群を `overflow-x: auto` のコンテナで囲むと、横スクロール時も「詳細」が右端に固定される
+  - `.tolv-record` の `overflow: hidden` を除去（sticky をクリップしないため）。ボタンラベルは `white-space: nowrap`
+  - マークアップ変更: `.tolv-record__action` の内側に `.tolv-record__action-inner` を追加
+
 ## [0.12.0] - 2026-09-23
 ### Added
 - **TrailingIconButton**（`.tolv-trailing-icon-button`、`components/controls.css`）末尾アイコンボタン（20px・hover 地色。arrow-down/up・Info・Help）

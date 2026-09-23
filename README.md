@@ -143,7 +143,8 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 ```
 
 - **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover で鉛筆）/ `.is-edit`（枠＋チェック）/ `.is-error`（赤枠＋×）
-- **`.tolv-record`** … テーブル行。`--header`（見出し・濃ボーダー）/ 既定（CheckBox＋内容＋`詳細`ボタン、右端フェード）/ `.is-selected`（選択地色＋チェック）
+- **`.tolv-record`** … テーブル行。`--header`（見出し・濃ボーダー）/ 既定（CheckBox＋内容＋`詳細`ボタン）/ `.is-selected`（選択地色＋チェック）
+  - `詳細` ボタン（`.tolv-record__action` > `.tolv-record__action-inner`）は **sticky で右端に固定**（Record 群を `overflow-x:auto` のコンテナで囲むと、横スクロール中も常に右端に表示され Slot に重なる）
 - CheckBox は `controls.css`、詳細ボタンは自前スタイル。編集の開始/確定などの挙動は利用側で実装
 
 ## 開発（Storybook）
