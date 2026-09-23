@@ -7,6 +7,7 @@ import '../components/calendar.css';
 import '../components/calendar.js'; // Calendar/DateSelect の挙動
 import '../components/controls.css'; // CheckBox / RadioButton / SortButton
 import '../components/table.css'; // Cell / Record
+import '../components/text.css'; // Text（見出し）
 
 /** ツールバーのテーマ切替に応じて :root[data-theme] を設定 */
 const withTheme = (story, context) => {

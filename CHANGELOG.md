@@ -2,6 +2,15 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.12.0] - 2026-09-23
+### Added
+- **TrailingIconButton**（`.tolv-trailing-icon-button`、`components/controls.css`）末尾アイコンボタン（20px・hover 地色。arrow-down/up・Info・Help）
+- **Text**（新規 `components/text.css`）見出し／本文（`--h1|h2|h3|body|caption`）。h1/h2/h3 に TrailingIconButton を配置可
+- アイコン: `arrow-up` / `information`(20px) / `help` を追加
+
+### Changed
+- **Cell（Head）のソートアイコンの余白を詰めた**（値と並び替えボタンの gap 8px → 0、余白は各内側 min のみ。Figma 準拠）
+
 ## [0.11.2] - 2026-09-16
 ### Fixed
 - **CheckBox / RadioButton を Figma 実グリフに統一**（CSS 構築の箱＋マークから Asset/Icon/check_box*・radio_button* のグリフSVGへ）。単色パスを currentColor 化し Light/Dark 対応

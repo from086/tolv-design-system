@@ -118,6 +118,21 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-checkbox`** … チェックボックス（`:checked` / `:indeterminate`（or `.is-indeterminate`）/ `:disabled`）
 - **`.tolv-radio`** … ラジオボタン（`__box` + `__dot`。`:checked` / `:disabled`）
 - **`.tolv-sort-button`** … 並び替えアイコンボタン（`.is-selected` で濃色、hover 地色。アイコンは asc/desc を利用側で指定）
+- **`.tolv-trailing-icon-button`** … 末尾アイコンボタン（20px アイコン＋hover 地色。arrow-down/up・Info・Help 等を利用側で指定）
+
+### Text（`components/text.css`）
+
+見出し／本文。`h1/h2/h3` には末尾に `.tolv-trailing-icon-button` を置ける。
+
+```html
+<span class="tolv-text tolv-text--h2">
+  <span class="tolv-text__label">見出し</span>
+  <button class="tolv-trailing-icon-button" aria-label="ヘルプ"><!-- ? svg --></button>
+</span>
+```
+
+- **`.tolv-text--h1|h2|h3`**（Bold、30/44・20/32・16/24）/ **`--body|caption`**（Medium）
+- 任意で先頭アイコン `.tolv-text__leading-icon`（32px）、末尾 `.tolv-trailing-icon-button`（`controls.css`）
 
 ### Table（`components/table.css`）
 

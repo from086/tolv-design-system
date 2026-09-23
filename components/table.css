@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Table  (v0.11.0)
+ * tolv Design System — Table  (v0.12.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集) / Edit / Error）
@@ -52,8 +52,8 @@
 }
 .tolv-cell__icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; }
 
-/* Head：太字＋並び替え（.tolv-sort-button を内包） */
-.tolv-cell--head { cursor: pointer; }
+/* Head：太字＋並び替え（.tolv-sort-button を内包）。値と sort の間は詰める（gap なし・余白は各内側 min） */
+.tolv-cell--head { cursor: pointer; gap: 0; }
 .tolv-cell--head .tolv-cell__value { font-weight: var(--font-weight-bold, 700); flex: 0 0 auto; }
 
 /* 編集可能：hover で鉛筆アイコンを表示 */

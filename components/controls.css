@@ -1,10 +1,11 @@
 /*
- * tolv Design System — Controls  (v0.11.2)
+ * tolv Design System — Controls  (v0.12.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
- *   .tolv-checkbox    … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
- *   .tolv-radio       … ラジオボタン（False/True × Default/Hover/Disabled）
- *   .tolv-sort-button … 並び替えアイコンボタン（selected/未selected × hover）
+ *   .tolv-checkbox            … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
+ *   .tolv-radio               … ラジオボタン（False/True × Default/Hover/Disabled）
+ *   .tolv-sort-button         … 並び替えアイコンボタン（selected/未selected × hover）
+ *   .tolv-trailing-icon-button… 末尾アイコンボタン（arrow-down/up・Info・Help 等 × hover）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
  * アイコンは Figma 実アセット（Asset/Icon/check_box*, radio_button*, sort_*）。
@@ -104,3 +105,19 @@
 .tolv-sort-button:hover { background: var(--color-bg-basic-primary-hover); }
 .tolv-sort-button.is-selected { color: var(--color-fg-basic-primary); }   /* 選択中 = 濃色 */
 .tolv-sort-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }
+
+/* ============ TrailingIconButton ============ */
+.tolv-trailing-icon-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-min, 2px);
+  border: 0;
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  color: var(--color-fg-basic-primary);
+  cursor: pointer;
+}
+.tolv-trailing-icon-button:hover { background: var(--color-bg-basic-primary-hover); }
+.tolv-trailing-icon-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }
