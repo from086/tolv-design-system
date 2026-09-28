@@ -1,0 +1,29 @@
+/*
+ * tolv Design System — Number  (v0.13.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css を参照。数値表示用のタイポグラフィ（等幅）。
+ *   .tolv-number                 … 数値（Noto Sans Mono・Medium・等幅数字）
+ *   .tolv-number--h1|h2|body|caption … サイズ
+ *   .tolv-number--plus|minus     … 符号色（plus=基本色 / minus=Caution 赤）
+ *
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Number・number-color
+ */
+
+.tolv-number {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-fg-basic-primary);
+  letter-spacing: var(--font-tracking-normal, 0);
+  font-variant-numeric: tabular-nums;   /* 桁揃え */
+}
+
+/* サイズ */
+.tolv-number--h1 { font-size: var(--font-size-xlarge, 30px); line-height: var(--line-height-xlarge, 44px); }
+.tolv-number--h2 { font-size: var(--font-size-large, 20px); line-height: var(--line-height-large, 32px); }
+.tolv-number--body { font-size: var(--font-size-small, 16px); line-height: var(--line-height-small, 24px); }
+.tolv-number--caption { font-size: var(--font-size-xsmall, 14px); line-height: var(--line-height-xsmall, 20px); }
+
+/* 符号色（既定 = plus = 基本色） */
+.tolv-number--plus { color: var(--color-fg-basic-primary); }
+.tolv-number--minus { color: var(--color-fg-caution-primary); }

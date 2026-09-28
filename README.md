@@ -147,6 +147,33 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
   - `詳細` ボタン（`.tolv-record__action` > `.tolv-record__action-inner`）は **sticky で右端に固定**（Record 群を `overflow-x:auto` のコンテナで囲むと、横スクロール中も常に右端に表示され Slot に重なる）
 - CheckBox は `controls.css`、詳細ボタンは自前スタイル。編集の開始/確定などの挙動は利用側で実装
 
+### Number（`components/number.css`）
+
+等幅（Noto Sans Mono）の数値表示。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.13.0/components/number.css">
+```
+
+```html
+<span class="tolv-number tolv-number--h1 tolv-number--plus">1,234</span>
+<span class="tolv-number tolv-number--body tolv-number--minus">-567</span>
+```
+
+- サイズ **`--h1`**(30/44) / **`--h2`**(20/32) / **`--body`**(16/24) / **`--caption`**(14/20)
+- 符号色 **`--plus`**（基本色）/ **`--minus`**（Caution 赤）。`tabular-nums` で桁揃え
+
+### Container / DropArea（`components/container.css`）
+
+要素を包む枠と、ドラッグ&ドロップ領域。
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.13.0/components/container.css">
+```
+
+- **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし
+- **`.tolv-drop-area`** … brand 地色＋brand 境界のドロップ領域（radius/padding large）
+
 ## 開発（Storybook）
 
 コンポーネントの確認・カタログ化に **Storybook（`@storybook/html-vite`）** を使います。配信物（`tokens.css` / `components/*.css`）はビルド不要のままで、Storybook は開発時の devDependency のみ（CDN 配信には影響しません）。

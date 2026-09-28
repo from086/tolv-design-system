@@ -2,6 +2,21 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.13.0] - 2026-09-28
+### Added
+- **Number**（新規 `components/number.css`）等幅（Noto Sans Mono・Medium）の数値表示。サイズ `--h1`(30/44)/`--h2`(20/32)/`--body`(16/24)/`--caption`(14/20)、符号色 `--plus`(基本色)/`--minus`(Caution 赤)。`font-variant-numeric: tabular-nums` で桁揃え
+- **Container**（新規 `components/container.css`）要素を包む枠。`base`（枠なし）/ `--primary`（白地＋基本境界）/ `--secondary`（強調境界）、角丸 large 既定・`--square` で角丸なし
+- **DropArea**（`components/container.css`）ドラッグ&ドロップ領域。brand-secondary 地色＋brand-primary 境界、radius/padding large
+- ストーリー用アイコン（`_icons.js`）に Figma Asset を追加: `viewList` / `filterAlt` / `articlePerson` / `assignment` / `tune` / `date` / `arrowDropUp` / `arrowDropDown`（配信 CSS には非依存）
+
+### Changed
+- **セマンティックカラーを Figma Token ページに一致**（Light/Dark 両モード）:
+  - `fg-basic-secondary` Light 600→500 / Dark 400→500、`fg-basic-secondary-hover` Light 500→400 / Dark 500→600
+  - `fg-basic-primary-disabled` Dark 700→600
+  - `bg-basic-primary-hover` Dark 950→900、`bg-basic-inverse-hover` Light 950→900 / Dark 50→100
+  - `bg-brand-tertiary-hover` Light navy50→navy100 / Dark navy950→navy900
+- FormSet のバリデーションメッセージアイコンを 18px→14px（Figma 準拠）
+
 ## [0.12.1] - 2026-09-23
 ### Fixed
 - **Record（Default）の「詳細」ボタンを sticky 化**。`position: absolute`（行の右端に固定・横スクロールで流れる）から `position: sticky; right: 0`（スクロール領域の右端に固定・常に表示）へ。Slot に重なる挙動は維持（`__action` は width:0、内側 `__action-inner` を absolute でフェード＋ボタン展開）

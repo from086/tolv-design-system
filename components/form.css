@@ -328,8 +328,8 @@
 .tolv-field__message-icon {
   display: inline-flex;
   flex: none;
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   color: inherit;
 }
 .tolv-field__message-icon svg { width: 100%; height: 100%; fill: currentColor; }

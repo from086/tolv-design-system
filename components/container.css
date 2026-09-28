@@ -1,0 +1,43 @@
+/*
+ * tolv Design System — Container / DropArea  (v0.13.0)
+ * =====================================================================
+ * 素のCSS。tokens/tokens.css を参照。要素を包む枠（レイアウトプリミティブ）。
+ *   .tolv-container              … コンテナ（base=枠なし / --primary=白地+基本境界 / --secondary=強調境界）
+ *   .tolv-container--square      … 角丸なし（既定は radius large）
+ *   .tolv-drop-area              … ドラッグ&ドロップ領域（brand 地色＋brand 境界）
+ *
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Container・DropArea
+ */
+
+.tolv-container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-large, 16px);
+  border: var(--border-regular, 1px) solid transparent;  /* base は枠なし（透明枠でサイズ維持） */
+  border-radius: var(--radius-large, 16px);
+  overflow: hidden;
+}
+/* primary：白地＋基本境界 */
+.tolv-container--primary {
+  background: var(--color-bg-basic-primary);
+  border-color: var(--color-border-basic-primary);
+}
+/* secondary：強調境界（地色なし） */
+.tolv-container--secondary { border-color: var(--color-border-basic-secondary); }
+/* 角丸なし */
+.tolv-container--square { border-radius: 0; }
+
+/* ============ DropArea（.tolv-drop-area） ============ */
+.tolv-drop-area {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-large, 16px);
+  border: var(--border-regular, 1px) solid var(--color-border-brand-primary);
+  border-radius: var(--radius-large, 16px);
+  background: var(--color-bg-brand-secondary);
+  overflow: hidden;
+}
