@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Button  (v0.10.0)
+ * tolv Design System — Button  (v0.14.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照するため、
  * ページ側で tokens.css を先に読み込んでください（Light/Dark 自動追従）。
@@ -75,12 +75,12 @@
 .tolv-btn--sm {
   min-height: 32px;
   padding: var(--space-small, 4px) var(--space-medium, 8px);  /* py=4 px=8 */
-  font-size: var(--font-size-min, 12px);      /* Small: 12px */
-  line-height: var(--line-height-min, 18px);
+  font-size: var(--font-size-xsmall, 14px);   /* Small: Label/Small 14/20 */
+  line-height: var(--line-height-xsmall, 20px);
 }
 .tolv-btn--sm .tolv-btn__icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;                                  /* icon Size=Small */
+  height: 20px;
 }
 
 /* ============ Type = Primary（塗り・ブランド） ============ */

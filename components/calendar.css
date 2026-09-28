@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar family  (v0.11.1)
+ * tolv Design System — Calendar family  (v0.14.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。挙動は components/calendar.js。
  *   .tolv-date-cell    … 日セル（DateCell。Default/hover/Selected/Disabled）
@@ -55,19 +55,37 @@
 
 /* 年Select ＋ 月送り */
 .tolv-calendar__header { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+/* 年 Select（Figma: Select Status=Default）。<select> は疑似要素を持てないためラッパーで矢印を描く */
+.tolv-calendar__year-wrap {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  width: 100px;
+  color: var(--color-fg-basic-primary);
+}
+.tolv-calendar__year-wrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--space-medium, 8px);
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  background: currentColor;   /* arrow-down・Primary（トークン追従・ダーク対応） */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.75 8.08333L9.75001 13.0833L4.75001 8.08333L5.91668 6.91667L9.75001 10.75L13.5833 6.91667L14.75 8.08333Z'/%3E%3C/svg%3E") no-repeat center / 20px 20px;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.75 8.08333L9.75001 13.0833L4.75001 8.08333L5.91668 6.91667L9.75001 10.75L13.5833 6.91667L14.75 8.08333Z'/%3E%3C/svg%3E") no-repeat center / 20px 20px;
+  pointer-events: none;
+}
 .tolv-calendar__year {
   box-sizing: border-box;
-  width: 100px;
-  flex: none;
+  width: 100%;
   min-height: 32px;
-  padding: var(--space-min, 2px) 28px var(--space-min, 2px) var(--space-medium, 8px);
+  /* 左: 枠 8 + 値 2 = 10 / 右: 枠 8 + アイコン 20 + gap 8 = 36 */
+  padding: var(--space-min, 2px) 36px var(--space-min, 2px) calc(var(--space-medium, 8px) + var(--space-min, 2px));
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
-  background: var(--color-bg-basic-primary)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23737373' d='M14.75 8.08333L9.75001 13.0833L4.75001 8.08333L5.91668 6.91667L9.75001 10.75L13.5833 6.91667L14.75 8.08333Z'/%3E%3C/svg%3E")
-    no-repeat right var(--space-medium, 8px) center;
-  background-size: 20px 20px;
-  color: var(--color-fg-basic-secondary);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
   font: inherit;
   cursor: pointer;
   -webkit-appearance: none;
@@ -75,6 +93,7 @@
 }
 .tolv-calendar__month { flex: none; display: flex; align-items: center; }
 .tolv-calendar__month-label { width: 44px; flex: none; text-align: center; white-space: nowrap; }
+/* 月送り（Figma: Button Small Tertiary・アイコンのみ） */
 .tolv-calendar__nav {
   box-sizing: border-box;
   display: inline-flex;
@@ -86,10 +105,10 @@
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary);
-  color: var(--color-fg-basic-secondary);
+  color: var(--color-fg-brand-primary);
   cursor: pointer;
 }
-.tolv-calendar__nav svg { width: 20px; height: 20px; }
+.tolv-calendar__nav svg { width: 20px; height: 20px; fill: currentColor; }
 
 /* 日グリッド（7×n） */
 .tolv-calendar__weeks { width: 224px; display: flex; flex-direction: column; }
@@ -116,6 +135,17 @@
   background: var(--color-bg-brand-tertiary);
   border-color: var(--color-border-brand-secondary);   /* navy-600 */
 }
+/* hover（Figma: 月送り・削除 = Button Tertiary / 今日 = Button Secondary） */
+.tolv-calendar__nav:hover,
+.tolv-calendar__action:hover {
+  background: var(--color-bg-basic-primary-hover);
+  border-color: var(--color-border-basic-primary-hover);
+  color: var(--color-fg-brand-primary-hover);
+}
+.tolv-calendar__action--today:hover {
+  background: var(--color-bg-brand-tertiary-hover);
+  border-color: var(--color-border-brand-secondary-hover);
+}
 
 /* ============ DateSelect（.tolv-date-select） ============ */
 .tolv-date-select {
@@ -137,7 +167,7 @@
 .tolv-date-select__group { display: flex; align-items: center; flex: 1 0 0; min-width: 0; }
 .tolv-date-select__seg { padding: 0 var(--space-min, 2px); }
 .tolv-date-select__seg[data-empty] { color: var(--color-fg-basic-secondary); }
-.tolv-date-select__sep { padding: 0 var(--space-min, 2px); color: var(--color-fg-basic-secondary); }
+.tolv-date-select__sep { padding: 0; color: var(--color-fg-basic-secondary); }
 .tolv-date-select__icon {
   display: inline-flex;
   align-items: center;
@@ -145,14 +175,15 @@
   flex: none;
   width: 20px;
   height: 20px;
-  color: var(--color-fg-basic-secondary);
+  color: var(--color-fg-basic-primary);
 }
-.tolv-date-select__icon svg { width: 100%; height: 100%; }
+.tolv-date-select__icon svg { width: 100%; height: 100%; fill: currentColor; }
 .tolv-date-select.is-disabled {
   background: var(--color-bg-brand-secondary);
-  color: var(--color-fg-basic-secondary);
+  color: var(--color-fg-basic-primary-disabled);
   cursor: not-allowed;
 }
+.tolv-date-select.is-disabled .tolv-date-select__icon { color: var(--color-fg-basic-primary-disabled); }
 .tolv-date-select__popover {
   position: absolute;
   top: calc(100% + var(--space-small, 4px));

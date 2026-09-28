@@ -2,7 +2,7 @@
 const render = ({ direction }) =>
   direction === 'vertical'
     ? `<div style="display:flex;align-items:stretch;height:48px;gap:16px;font:500 14px var(--font-sans)"><span style="align-self:center">左</span><div class="tolv-divider tolv-divider--vertical"></div><span style="align-self:center">右</span></div>`
-    : `<div style="width:280px;font:500 14px var(--font-sans)"><div>上</div><hr class="tolv-divider" style="margin:12px 0"><div>下</div></div>`;
+    : `<div style="width:280px;font:500 14px var(--font-sans)"><div>上</div><hr class="tolv-divider"><div>下</div></div>`;
 
 export default {
   title: 'Components/Divider',

@@ -64,7 +64,7 @@
 
     return '<div class="tolv-calendar__set">'
       + '<div class="tolv-calendar__header">'
-      + '<select class="tolv-calendar__year" aria-label="年">' + years + '</select>'
+      + '<span class="tolv-calendar__year-wrap"><select class="tolv-calendar__year" aria-label="年">' + years + '</select></span>'
       + '<div class="tolv-calendar__month">'
       + '<button type="button" class="tolv-calendar__nav" data-nav="prev" aria-label="前の月">' + ICON.left + '</button>'
       + '<span class="tolv-calendar__month-label">' + (state.month + 1) + '月</span>'

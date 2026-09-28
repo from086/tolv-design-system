@@ -41,7 +41,7 @@ CSS からは Semantic トークンを参照します。
 ```
 
 - **Type**: `--primary`（塗り）/ `--secondary`（ブランド枠）/ `--tertiary`（ニュートラル枠）/ `--quaternary`（テキスト・枠なし）/ `--caution`（警告枠）
-- **Size**: 既定=Medium、`--sm`=Small
+- **Size**: 既定=Medium（16/24・アイコン24px）、`--sm`=Small（14/20・アイコン20px）
 - **State**: Default / `:hover` / 無効（`disabled` 属性 or `aria-disabled="true"`）
 - アイコンは前後どちらも任意。`.tolv-btn__label` の前後に `.tolv-btn__icon` を置く
 - 全バリアントは Storybook（下記）または `components/button.demo.html` で確認可能
@@ -66,7 +66,7 @@ CSS からは Semantic トークンを参照します。
 - **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））
 - **`.tolv-time`** … 時刻入力（InputTime。`__seg` × 2 + `__sep` + `__icon`）
 - **`.tolv-fixed-value`** … 読み取り専用の値表示（FixedValue）
-- **`.tolv-divider`** … 区切り線（`--vertical` で縦）
+- **`.tolv-divider`** … 区切り線（`--vertical` で縦）。線の前後に 4px の余白を持つ
 - 共通: 枠=1px `border-basic-primary`／radius medium、テキスト **14px**（size/xsmall）。Light/Dark 自動追従
 - 全状態は Storybook 参照
 
@@ -118,7 +118,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-checkbox`** … チェックボックス（`:checked` / `:indeterminate`（or `.is-indeterminate`）/ `:disabled`）
 - **`.tolv-radio`** … ラジオボタン（`__box` + `__dot`。`:checked` / `:disabled`）
 - **`.tolv-sort-button`** … 並び替えアイコンボタン（`.is-selected` で濃色、hover 地色。アイコンは asc/desc を利用側で指定）
-- **`.tolv-trailing-icon-button`** … 末尾アイコンボタン（20px アイコン＋hover 地色。arrow-down/up・Info・Help 等を利用側で指定）
+- **`.tolv-trailing-icon-button`** … 末尾アイコンボタン（20px アイコン＋hover 地色。arrow-down/up・Info・Help 等を利用側で指定）。**Help は `--secondary`（グレー）** を付ける
 
 ### Text（`components/text.css`）
 
@@ -127,12 +127,13 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 ```html
 <span class="tolv-text tolv-text--h2">
   <span class="tolv-text__label">見出し</span>
-  <button class="tolv-trailing-icon-button" aria-label="ヘルプ"><!-- ? svg --></button>
+  <button class="tolv-trailing-icon-button tolv-trailing-icon-button--secondary" aria-label="ヘルプ"><!-- ? svg --></button>
 </span>
 ```
 
 - **`.tolv-text--h1|h2|h3`**（Bold、30/44・20/32・16/24）/ **`--body|caption`**（Medium）
-- 任意で先頭アイコン `.tolv-text__leading-icon`（32px）、末尾 `.tolv-trailing-icon-button`（`controls.css`）
+- 文字色 **`--primary|secondary|brand|caution|success`**（未指定なら Type の既定色）
+- 任意で先頭アイコン `.tolv-text__leading-icon`（h1 は 32px・gap 8、他は 20px・gap 4）、末尾 `.tolv-trailing-icon-button`（`controls.css`）
 
 ### Table（`components/table.css`）
 

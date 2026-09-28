@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Controls  (v0.12.0)
+ * tolv Design System — Controls  (v0.14.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-checkbox            … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
@@ -49,8 +49,11 @@
   display: inline-flex;
   flex: none;
   width: 20px; height: 20px;
-  color: var(--color-fg-brand-primary);   /* 箱の色。hover でも据え置き（Figma準拠） */
+  color: var(--color-fg-brand-primary);
 }
+/* hover はラベルもグリフも brand-hover（Figma: button-label-color / icon-color とも State=Hover） */
+.tolv-checkbox:hover .tolv-checkbox__glyph,
+.tolv-radio:hover .tolv-radio__glyph { color: var(--color-fg-brand-primary-hover); }
 .tolv-checkbox__glyph svg,
 .tolv-radio__glyph svg { display: block; width: 100%; height: 100%; fill: currentColor; }
 .tolv-checkbox__glyph > *,
@@ -120,4 +123,6 @@
   cursor: pointer;
 }
 .tolv-trailing-icon-button:hover { background: var(--color-bg-basic-primary-hover); }
+/* グレーのアイコン（Figma: Help は icon-color Secondary） */
+.tolv-trailing-icon-button--secondary { color: var(--color-fg-basic-secondary); }
 .tolv-trailing-icon-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }

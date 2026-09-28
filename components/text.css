@@ -1,19 +1,21 @@
 /*
- * tolv Design System — Text  (v0.12.0)
+ * tolv Design System — Text  (v0.14.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。見出し／本文のタイポグラフィ。
  *   .tolv-text                … 行（任意の先頭アイコン＋テキスト＋任意の TrailingIconButton）
  *   .tolv-text--h1|h2|h3      … 見出し（Bold）
  *   .tolv-text--body|caption  … 本文／キャプション（Medium）
+ *   .tolv-text--primary|secondary|brand|caution|success … 文字色（Figma text-color）
  *
- * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Text
+ * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Text・text-color
+ * 間隔と先頭アイコン: h1 = gap 8・32px / h2・h3・body・caption = gap 4・20px。h3 は上下 4px。
  * TrailingIconButton は controls.css の .tolv-trailing-icon-button を使用。
  */
 
 .tolv-text {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-medium, 8px);
+  gap: var(--space-small, 4px);
   font-family: var(--font-sans, sans-serif);
   font-weight: var(--font-weight-bold, 700);
   color: var(--color-fg-basic-primary);
@@ -21,11 +23,19 @@
 }
 .tolv-text__label { min-width: 0; }
 
-/* 見出し */
-.tolv-text--h1 { font-size: var(--font-size-xlarge, 30px); line-height: var(--line-height-xlarge, 44px); }
+/* 見出し（Text/Heading1〜3） */
+.tolv-text--h1 {
+  gap: var(--space-medium, 8px);
+  font-size: var(--font-size-xlarge, 30px);
+  line-height: var(--line-height-xlarge, 44px);
+}
 .tolv-text--h2 { font-size: var(--font-size-large, 20px); line-height: var(--line-height-large, 32px); }
-.tolv-text--h3 { font-size: var(--font-size-small, 16px); line-height: var(--line-height-small, 24px); }
-/* 本文・キャプション（Medium） */
+.tolv-text--h3 {
+  padding: var(--space-small, 4px) 0;
+  font-size: var(--font-size-small, 16px);
+  line-height: var(--line-height-small, 24px);
+}
+/* 本文・キャプション（Text/Body・Text/Caption、Medium） */
 .tolv-text--body {
   font-weight: var(--font-weight-medium, 500);
   font-size: var(--font-size-small, 16px);
@@ -38,14 +48,22 @@
   color: var(--color-fg-basic-secondary);
 }
 
-/* 先頭アイコン（32px、任意） */
+/* 文字色（Figma text-color の Color） */
+.tolv-text--primary { color: var(--color-fg-basic-primary); }
+.tolv-text--secondary { color: var(--color-fg-basic-secondary); }
+.tolv-text--brand { color: var(--color-fg-brand-primary); }
+.tolv-text--caution { color: var(--color-fg-caution-primary); }
+.tolv-text--success { color: var(--color-fg-success-primary); }
+
+/* 先頭アイコン（任意）: 既定 20px、h1 のみ 32px */
 .tolv-text__leading-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   color: var(--color-fg-basic-primary);
 }
+.tolv-text--h1 .tolv-text__leading-icon { width: 32px; height: 32px; }
 .tolv-text__leading-icon svg { width: 100%; height: 100%; fill: currentColor; }

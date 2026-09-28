@@ -2,6 +2,35 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.14.0] - 2026-09-28
+Figma の実データ（Plugin API で取得したバリアント・Auto Layout 数値・変数・内部インスタンス）と突き合わせ、見た目から推測していた箇所を修正。
+
+### Added
+- **Success 系トークン一式**: `fg-success-primary-hover|-disabled`、`bg-success-primary|secondary|tertiary`（各 hover/disabled）、`border-success-primary`（hover/disabled）。Light/Dark 対応
+- **Text の文字色** `--primary|secondary|brand|caution|success`（Figma text-color）
+- **TrailingIconButton `--secondary`**（グレー。Help 用）
+
+### Changed
+- **Button Small**: 文字 12/18 → **14/20**（Label/Small）、アイコン 18 → **20px**
+- **入力系の文字の左右余白** 12 → **10px**（枠 8 + 値 2）。Input/Select/Search/ListItem
+- **末尾アイコン**（Select/Search/DateSelect/InputTime）と ListItem のチェック: 18 → **20px**、色 secondary → **primary**
+- **Select**: 開いたとき矢印を回転させず Disabled 色に。Disabled 時も矢印は Disabled 色
+- **IncrementalSearch**: 入力中（Edit）と Disabled はアイコン非表示
+- **Disabled の文字色** secondary → **fg-basic-primary-disabled**（Input/Select/Search/DateSelect/InputTime）
+- **入力系の地色** transparent → **bg-basic-primary**
+- **Text**: h2/h3/body/caption は gap **4px**・先頭アイコン **20px**（h1 は 8px・32px のまま）、h3 に上下 4px
+- **FormSet**: 全体 gap 0、ラベル部は左右 4・下 2、ラベルと補足の間 2、コントロール直下にメッセージ。メッセージは縦中央揃え
+- **Divider**: 線の前後に 4px
+- **Cell**: Default/Hover はアイコンを値の直後に（Hover は間隔 0・地色なし）。アイコンは全状態 primary 色（Error の × も）。Error は白地
+- **Record**: 詳細エリアを 100px（フェード 25px）に。**Selected では詳細ボタン非表示**。詳細ボタンの hover を Button Tertiary と同じに
+- **CheckBox/Radio**: hover でグリフも brand-hover に
+- **カレンダー**: 年 Select の文字・矢印を primary（矢印はトークン追従でダーク対応。マークアップに `.tolv-calendar__year-wrap` を追加）、月送りを brand 色、月送り・削除・今日に hover
+- **SuggestionPanel「マスターに追加」**: hover を Button Secondary と同じに
+- DateSelect「/」・InputTime「:」の左右余白を 0 に
+
+### Fixed
+- Cell / Record 詳細ボタンのアイコンに `stroke` が残り、1px 太く描画されていた問題
+
 ## [0.13.0] - 2026-09-28
 ### Added
 - **Number**（新規 `components/number.css`）等幅（Noto Sans Mono・Medium）の数値表示。サイズ `--h1`(30/44)/`--h2`(20/32)/`--body`(16/24)/`--caption`(14/20)、符号色 `--plus`(基本色)/`--minus`(Caution 赤)。`font-variant-numeric: tabular-nums` で桁揃え

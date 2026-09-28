@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Design Tokens  (v0.13.0)
+ * tolv Design System — Design Tokens  (v0.14.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
  *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
@@ -91,6 +91,20 @@
   --color-fg-caution-primary-hover: var(--color-red-400);
   --color-fg-caution-primary-disabled: var(--color-neutral-300);
   --color-fg-success-primary: var(--color-green-600);
+  --color-fg-success-primary-hover: var(--color-green-400);
+  --color-fg-success-primary-disabled: var(--color-neutral-300);
+  --color-bg-success-primary: var(--color-green-600);
+  --color-bg-success-primary-hover: var(--color-green-400);
+  --color-bg-success-primary-disabled: var(--color-transparent);
+  --color-bg-success-secondary: var(--color-green-100);
+  --color-bg-success-secondary-hover: var(--color-green-200);
+  --color-bg-success-secondary-disabled: var(--color-transparent);
+  --color-bg-success-tertiary: var(--color-white);
+  --color-bg-success-tertiary-hover: var(--color-green-50);
+  --color-bg-success-tertiary-disabled: var(--color-transparent);
+  --color-border-success-primary: var(--color-green-600);
+  --color-border-success-primary-hover: var(--color-green-500);
+  --color-border-success-primary-disabled: var(--color-transparent);
   --color-bg-basic-primary: var(--color-white);
   --color-bg-basic-primary-hover: var(--color-neutral-100);
   --color-bg-basic-primary-disabled: var(--color-transparent);
@@ -207,6 +221,20 @@
     --color-fg-caution-primary-hover: var(--color-red-600);
     --color-fg-caution-primary-disabled: var(--color-neutral-700);
     --color-fg-success-primary: var(--color-green-400);
+    --color-fg-success-primary-hover: var(--color-green-600);
+    --color-fg-success-primary-disabled: var(--color-neutral-700);
+    --color-bg-success-primary: var(--color-green-400);
+    --color-bg-success-primary-hover: var(--color-green-600);
+    --color-bg-success-primary-disabled: var(--color-transparent);
+    --color-bg-success-secondary: var(--color-green-900);
+    --color-bg-success-secondary-hover: var(--color-green-800);
+    --color-bg-success-secondary-disabled: var(--color-transparent);
+    --color-bg-success-tertiary: var(--color-black);
+    --color-bg-success-tertiary-hover: var(--color-green-950);
+    --color-bg-success-tertiary-disabled: var(--color-transparent);
+    --color-border-success-primary: var(--color-green-400);
+    --color-border-success-primary-hover: var(--color-green-500);
+    --color-border-success-primary-disabled: var(--color-transparent);
     --color-bg-basic-primary: var(--color-black);
     --color-bg-basic-primary-hover: var(--color-neutral-900);
     --color-bg-basic-primary-disabled: var(--color-transparent);
@@ -270,6 +298,20 @@
   --color-fg-caution-primary-hover: var(--color-red-600);
   --color-fg-caution-primary-disabled: var(--color-neutral-700);
   --color-fg-success-primary: var(--color-green-400);
+  --color-fg-success-primary-hover: var(--color-green-600);
+  --color-fg-success-primary-disabled: var(--color-neutral-700);
+  --color-bg-success-primary: var(--color-green-400);
+  --color-bg-success-primary-hover: var(--color-green-600);
+  --color-bg-success-primary-disabled: var(--color-transparent);
+  --color-bg-success-secondary: var(--color-green-900);
+  --color-bg-success-secondary-hover: var(--color-green-800);
+  --color-bg-success-secondary-disabled: var(--color-transparent);
+  --color-bg-success-tertiary: var(--color-black);
+  --color-bg-success-tertiary-hover: var(--color-green-950);
+  --color-bg-success-tertiary-disabled: var(--color-transparent);
+  --color-border-success-primary: var(--color-green-400);
+  --color-border-success-primary-hover: var(--color-green-500);
+  --color-border-success-primary-disabled: var(--color-transparent);
   --color-bg-basic-primary: var(--color-black);
   --color-bg-basic-primary-hover: var(--color-neutral-900);
   --color-bg-basic-primary-disabled: var(--color-transparent);
@@ -332,6 +374,20 @@
   --color-fg-caution-primary-hover: var(--color-red-400);
   --color-fg-caution-primary-disabled: var(--color-neutral-300);
   --color-fg-success-primary: var(--color-green-600);
+  --color-fg-success-primary-hover: var(--color-green-400);
+  --color-fg-success-primary-disabled: var(--color-neutral-300);
+  --color-bg-success-primary: var(--color-green-600);
+  --color-bg-success-primary-hover: var(--color-green-400);
+  --color-bg-success-primary-disabled: var(--color-transparent);
+  --color-bg-success-secondary: var(--color-green-100);
+  --color-bg-success-secondary-hover: var(--color-green-200);
+  --color-bg-success-secondary-disabled: var(--color-transparent);
+  --color-bg-success-tertiary: var(--color-white);
+  --color-bg-success-tertiary-hover: var(--color-green-50);
+  --color-bg-success-tertiary-disabled: var(--color-transparent);
+  --color-border-success-primary: var(--color-green-600);
+  --color-border-success-primary-hover: var(--color-green-500);
+  --color-border-success-primary-disabled: var(--color-transparent);
   --color-bg-basic-primary: var(--color-white);
   --color-bg-basic-primary-hover: var(--color-neutral-100);
   --color-bg-basic-primary-disabled: var(--color-transparent);

@@ -2,7 +2,8 @@
 import { arrowDown, arrowUp, infoCircle, help } from './_icons.js';
 
 const ICON = { 'arrow-down': arrowDown, 'arrow-up': arrowUp, Info: infoCircle, Help: help };
-const btn = ({ type }) => `<button type="button" class="tolv-trailing-icon-button" aria-label="${type}">${ICON[type]}</button>`;
+// Help はグレー（Figma: icon-color Secondary）→ --secondary
+const btn = ({ type }) => `<button type="button" class="tolv-trailing-icon-button${type === 'Help' ? ' tolv-trailing-icon-button--secondary' : ''}" aria-label="${type}">${ICON[type]}</button>`;
 
 export default {
   title: 'Components/TrailingIconButton',
