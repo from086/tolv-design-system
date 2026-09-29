@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Table  (v0.16.1)
+ * tolv Design System — Table  (v0.16.2)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集ボタン) / Edit = Form 部品＋Undo/Submit の入れ物）
@@ -45,16 +45,20 @@
 
 /* Edit：InputSlot（Figma Cell Status=Edit）。
  * Form 系コンポーネント（.tolv-input / .tolv-select / .tolv-date-select / .tolv-time）を先頭に置き、
- * 続けて CellActionButton の Undo / Submit を 4px 間隔で並べる。
+ * 続けて CellActionButton の Undo / Submit を置く。入力とボタン群の間は 4px、ボタン同士は 0（Figma CellActions）。
  * 入力は横いっぱいに伸び、ボタンは固定幅。エラーは中の入力側（.is-error 等）で表す。 */
 .tolv-cell.is-edit {
-  gap: var(--space-small, 4px);
+  gap: 0;
   padding: 0;
 }
-.tolv-cell.is-edit > :first-child { flex: 1 1 auto; min-width: 0; }
+.tolv-cell.is-edit > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-right: var(--space-small, 4px);
+}
 
 /* ============ CellActionButton（.tolv-cell-action-button） ============
- * Cell 用のアイコンボタン（32×32・枠なし）。Type = --edit（鉛筆・グレー）/ --undo（取り消し）/ --submit（確定・緑）。
+ * Cell 用のアイコンボタン（32×32。Submit のみ緑枠）。Type = --edit（鉛筆・グレー）/ --undo（取り消し）/ --submit（確定・緑。白地＋緑枠）。
  * Status = Default / :hover（地色）/ :disabled（アイコンを Disabled 色に） */
 .tolv-cell-action-button {
   box-sizing: border-box;
@@ -79,9 +83,24 @@
 }
 .tolv-cell-action-button--edit { color: var(--color-fg-basic-secondary); }
 .tolv-cell-action-button--undo { color: var(--color-fg-basic-primary); }
-.tolv-cell-action-button--submit { color: var(--color-fg-success-primary); }
+/* Submit：白地＋緑の枠（枠は内側扱い：padding から枠の太さを引き、外形 32×32 を維持） */
+.tolv-cell-action-button--submit {
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px));
+  border: var(--border-regular, 1px) solid var(--color-border-success-primary);
+  background: var(--color-bg-success-tertiary);
+  color: var(--color-fg-success-primary);
+}
+.tolv-cell-action-button--submit:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--color-bg-success-tertiary-hover);
+  border-color: var(--color-border-success-primary-hover);
+}
 .tolv-cell-action-button:disabled,
 .tolv-cell-action-button[aria-disabled="true"] { background: var(--color-bg-basic-primary-disabled); cursor: not-allowed; }
+.tolv-cell-action-button--submit:disabled,
+.tolv-cell-action-button--submit[aria-disabled="true"] {
+  background: var(--color-bg-success-tertiary-disabled);
+  border-color: var(--color-border-success-primary-disabled);
+}
 .tolv-cell-action-button--edit:disabled,
 .tolv-cell-action-button--edit[aria-disabled="true"] { color: var(--color-fg-basic-secondary-disabled); }
 .tolv-cell-action-button--undo:disabled,

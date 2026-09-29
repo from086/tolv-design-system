@@ -145,8 +145,8 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 
 - **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover・フォーカスで編集ボタン）/ `.is-edit`（下記）
   - **`--editable`** は値の直後に CellActionButton（Edit）を置く。hover / フォーカス時だけ表示
-  - **`.is-edit`** は入れ物（InputSlot）。先頭に Form 系コンポーネント（`.tolv-input` / `.tolv-select` / `.tolv-date-select` / `.tolv-time`）、続けて CellActionButton の Undo・Submit を 4px 間隔で置く。エラーは中の入力側で表す（`.tolv-input.is-error` など）
-- **`.tolv-cell-action-button`** … Cell 用アイコンボタン（32×32・枠なし）。`--edit`（鉛筆・グレー）/ `--undo` / `--submit`（確定・緑）。hover で地色、`disabled` でアイコンが Disabled 色
+  - **`.is-edit`** は入れ物（InputSlot）。先頭に Form 系コンポーネント（`.tolv-input` / `.tolv-select` / `.tolv-date-select` / `.tolv-time`）、続けて CellActionButton の Undo・Submit を置く（入力とボタン群の間 4px、ボタン同士は 0）。エラーは中の入力側で表す（`.tolv-input.is-error` など）
+- **`.tolv-cell-action-button`** … Cell 用アイコンボタン（32×32）。`--edit`（鉛筆・グレー）/ `--undo` / `--submit`（確定・緑。白地＋緑枠）。hover で地色、`disabled` でアイコンが Disabled 色
 
 ```html
 <!-- Hover（編集可） -->

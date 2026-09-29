@@ -2,6 +2,11 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.16.2] - 2026-09-30
+### Changed
+- **CellActionButton Submit**: 白地（bg-success-tertiary）＋緑の枠 1px（border-success-primary、内側扱いで外形 32×32 のまま）。hover で地・枠が hover 色、disabled で地・枠とも透明
+- **Cell Edit**: Undo と Submit の間隔 4px → 0（Figma CellActions）。入力とボタン群の間は 4px のまま。マークアップ変更なし
+
 ## [0.16.1] - 2026-09-29
 ### Fixed
 - **Cell（編集可）の Edit ボタンにキーボードで到達できなかった問題**。隠し方を `visibility: hidden`（フォーカスを受け取れない）から `opacity: 0` に変更。Tab でフォーカスすると表示される
