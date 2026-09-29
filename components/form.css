@@ -51,6 +51,20 @@
   appearance: none;
 }
 
+/* Type=Number（.tolv-input--number）: 数値入力。Figma input-value Type=Number（InputNumber/Regular）に合わせ
+ * 等幅（Noto Sans Mono）・右寄せ・桁そろえ。type="number" のブラウザ既定の増減ボタンは出さない。 */
+.tolv-input--number {
+  font-family: var(--font-mono, monospace);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  -moz-appearance: textfield;
+}
+.tolv-input--number::-webkit-inner-spin-button,
+.tolv-input--number::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* ============ TextArea（.tolv-textarea） ============
  * ネイティブ <textarea> を InputText と同じ枠で装飾（Figma TextArea）。既定の高さ 120px・縦方向にリサイズ可。
  * 文字の開始位置 = 上 6px（枠 4 + input-value 2）/ 左 10px（枠 8 + input-value 2）。枠は内側扱い。 */

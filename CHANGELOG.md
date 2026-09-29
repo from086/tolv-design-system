@@ -2,6 +2,10 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.21.0] - 2026-09-30
+### Added
+- **InputText Type=Number（`.tolv-input--number`）**: 数値入力。Figma input-value Type=Number（InputNumber/Regular）に合わせ、等幅（Noto Sans Mono Medium 14/20）・右寄せ・桁そろえ（tabular-nums）。`type="number"` のときのブラウザ既定の増減ボタンは非表示
+
 ## [0.20.1] - 2026-09-30
 ### Added
 - ストーリー用アイコン（`_icons.js`）に Figma Asset の **`print`**（印刷）/ **`language`**（言語）を追加（outline スタイル）

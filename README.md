@@ -57,7 +57,7 @@ CSS からは Semantic トークンを参照します。
 <input class="tolv-input" placeholder="テキスト">
 ```
 
-- **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）
+- **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）。数値入力は **`--number`**（等幅・右寄せ・桁そろえ。`inputmode="decimal"` 推奨、`type="number"` でも増減ボタンは出ない）
 - **`.tolv-textarea`** … 複数行テキスト入力（`<textarea>`。InputText と同じ枠と状態、既定の高さ 120px・縦にリサイズ可）
 - **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）。パネルの幅はフィールド幅以上で、選択肢の長さに合わせて広がる（幅の狭い Select でも文字を省略しない）。画面の右寄りに置く Select は **`.tolv-select--align-end`** を付けると右端そろえで開く
 - **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する
