@@ -143,14 +143,23 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.11.0/components/table.css">
 ```
 
-- **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover で鉛筆）/ `.is-edit`（下記）
-  - **`.is-edit`** は入れ物（InputSlot）。先頭に Form 系コンポーネント（`.tolv-input` / `.tolv-select` / `.tolv-date-select` / `.tolv-time`）、続けて Undo・Submit ボタンを置く。エラーは中の入力側で表す（`.tolv-input.is-error` など）
+- **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover・フォーカスで編集ボタン）/ `.is-edit`（下記）
+  - **`--editable`** は値の直後に CellActionButton（Edit）を置く。hover / フォーカス時だけ表示
+  - **`.is-edit`** は入れ物（InputSlot）。先頭に Form 系コンポーネント（`.tolv-input` / `.tolv-select` / `.tolv-date-select` / `.tolv-time`）、続けて CellActionButton の Undo・Submit を 4px 間隔で置く。エラーは中の入力側で表す（`.tolv-input.is-error` など）
+- **`.tolv-cell-action-button`** … Cell 用アイコンボタン（32×32・枠なし）。`--edit`（鉛筆・グレー）/ `--undo` / `--submit`（確定・緑）。hover で地色、`disabled` でアイコンが Disabled 色
 
 ```html
+<!-- Hover（編集可） -->
+<div class="tolv-cell tolv-cell--editable">
+  <span class="tolv-cell__value">テキスト</span>
+  <button type="button" class="tolv-cell-action-button tolv-cell-action-button--edit" aria-label="編集"><!-- stylus svg --></button>
+</div>
+
+<!-- Edit -->
 <div class="tolv-cell is-edit">
   <input class="tolv-input" value="テキスト">
-  <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--quaternary" aria-label="元に戻す"><span class="tolv-btn__icon"><!-- undo svg --></span></button>
-  <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--primary" aria-label="確定"><span class="tolv-btn__icon"><!-- check svg --></span></button>
+  <button type="button" class="tolv-cell-action-button tolv-cell-action-button--undo" aria-label="元に戻す"><!-- undo svg --></button>
+  <button type="button" class="tolv-cell-action-button tolv-cell-action-button--submit" aria-label="確定" disabled><!-- check svg --></button>
 </div>
 ```
 - **`.tolv-record`** … テーブル行。`--header`（見出し・濃ボーダー）/ 既定（CheckBox＋内容＋`詳細`ボタン）/ `.is-selected`（選択地色＋チェック）

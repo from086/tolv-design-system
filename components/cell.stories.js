@@ -1,5 +1,5 @@
 // Cell — .tolv-cell（テーブルセル：Head / Default / Hover(編集) / Edit）
-// Edit は InputSlot：Form 系コンポーネント＋Undo（Quaternary）/ Submit（Primary）ボタンを並べる。
+// Hover は値の直後に CellActionButton（Edit）。Edit は InputSlot：Form 系コンポーネント＋CellActionButton（Undo / Submit）。
 import { pencil, check, sortDesc, chevronDown, calendar, clock, undo } from './_icons.js';
 const box = (inner, w = 260) => `<div style="width:${w}px">${inner}</div>`;
 
@@ -26,10 +26,11 @@ const SLOT = {
     + `</span><span class="tolv-time__icon">${clock}</span></div>`,
 };
 
-// Undo / Submit（アイコンのみの Small ボタン）。Submit は未変更なら disabled
-const actions = (changed) =>
-  `<button type="button" class="tolv-btn tolv-btn--sm tolv-btn--quaternary" aria-label="元に戻す"><span class="tolv-btn__icon">${undo}</span></button>`
-  + `<button type="button" class="tolv-btn tolv-btn--sm tolv-btn--primary" aria-label="確定"${changed ? '' : ' disabled'}><span class="tolv-btn__icon">${check}</span></button>`;
+// CellActionButton
+const actionBtn = (type, icon, label, disabled) =>
+  `<button type="button" class="tolv-cell-action-button tolv-cell-action-button--${type}" aria-label="${label}"${disabled ? ' disabled' : ''}>${icon}</button>`;
+// Undo / Submit。Submit は未変更なら disabled
+const actions = (changed) => actionBtn('undo', undo, '元に戻す') + actionBtn('submit', check, '確定', !changed);
 
 // status: 'head' | 'default' | 'editable' | 'edit'
 const cell = ({ status, text, input = 'InputText', error = false, changed = true }) => {
@@ -40,7 +41,7 @@ const cell = ({ status, text, input = 'InputText', error = false, changed = true
     return `<div class="tolv-cell is-edit">${SLOT[input]({ text, error })}${actions(changed)}</div>`;
   }
   if (status === 'editable') {
-    return `<div class="tolv-cell tolv-cell--editable"><span class="tolv-cell__value">${text}</span><span class="tolv-cell__icon">${pencil}</span></div>`;
+    return `<div class="tolv-cell tolv-cell--editable"><span class="tolv-cell__value">${text}</span>${actionBtn('edit', pencil, '編集')}</div>`;
   }
   return `<div class="tolv-cell"><span class="tolv-cell__value">${text}</span></div>`;
 };
@@ -70,7 +71,7 @@ export const Overview = {
     return `<table style="border-collapse:collapse">`
       + row('Head（並び替え）', { status: 'head' })
       + row('Default', { status: 'default' })
-      + row('Hover（編集可・ホバーで鉛筆）', { status: 'editable' })
+      + row('Hover（編集可・ホバーで編集ボタン）', { status: 'editable' })
       + row('Edit / InputText', { status: 'edit', input: 'InputText' })
       + row('Edit / InputText（未変更）', { status: 'edit', input: 'InputText', changed: false })
       + row('Edit / InputText（エラー）', { status: 'edit', input: 'InputText', error: true })

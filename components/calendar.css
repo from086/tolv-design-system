@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar family  (v0.14.0)
+ * tolv Design System — Calendar family  (v0.16.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。挙動は components/calendar.js。
  *   .tolv-date-cell    … 日セル（DateCell。Default/hover/Selected/Disabled）
@@ -44,7 +44,7 @@
 .tolv-calendar {
   box-sizing: border-box;
   display: inline-block;
-  padding: var(--space-large, 16px);
+  padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-large, 16px);
   background: var(--color-bg-basic-primary);
@@ -81,7 +81,7 @@
   width: 100%;
   min-height: 32px;
   /* 左: 枠 8 + 値 2 = 10 / 右: 枠 8 + アイコン 20 + gap 8 = 36 */
-  padding: var(--space-min, 2px) 36px var(--space-min, 2px) calc(var(--space-medium, 8px) + var(--space-min, 2px));
+  padding: var(--space-min, 2px) calc(36px - var(--border-regular, 1px)) var(--space-min, 2px) calc(var(--space-medium, 8px) + var(--space-min, 2px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary);
@@ -101,7 +101,7 @@
   justify-content: center;
   flex: none;
   min-height: 32px;
-  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary);
@@ -123,7 +123,7 @@
   justify-content: center;
   width: 48px;
   height: 32px;
-  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary);
@@ -156,7 +156,7 @@
   gap: var(--space-medium, 8px);
   width: 150px;
   min-height: 32px;
-  padding: var(--space-min, 2px) var(--space-medium, 8px);
+  padding: var(--space-min, 2px) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary);

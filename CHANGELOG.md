@@ -2,6 +2,19 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.16.0] - 2026-09-29
+### Added
+- **CellActionButton**（`.tolv-cell-action-button`、`components/table.css`）Cell 用アイコンボタン。32×32・padding 4・角丸 8・枠なし。`--edit`（stylus・グレー）/ `--undo`（undo・Primary）/ `--submit`（check・Success）× Default / hover（地色）/ disabled（アイコン Disabled 色）
+
+### Changed（⚠️ マークアップ変更あり）
+- **Cell Hover**: 鉛筆アイコン（`.tolv-cell__icon`）を廃止し、値の 8px 右に CellActionButton（Edit）を置く形に。hover / フォーカス時だけ表示
+- **Cell Edit**: Undo / Submit を CellActionButton に変更（旧: `.tolv-btn--sm`）、間隔 0 → 4px
+- **Cell**: 透明の 1px 枠を廃止（Figma はセルに枠なし）。値の開始位置が 11px → 10px に
+- **枠を内側扱いに（Figma と同じ）**: 枠付き部品の padding から枠の太さを引き、外形を Figma に揃えた
+  - Button（Medium 122→**120**px / Small 108→**106**px）、Record 詳細ボタン（74→**72**）、カレンダー月送り（38→**36**）、SuggestionPanel「マスターに追加」
+  - 入力系（InputText / Select / Search / InputTime / DateSelect / 年 Select）の文字の開始位置 11→**10**px
+  - Container / DropArea（154→**152**）、SuggestionPanel・CalendarPanel の内側余白、Record の高さ 41→**40**
+
 ## [0.15.0] - 2026-09-29
 ### Changed（⚠️ マークアップ変更あり）
 - **Cell の Edit を入れ物（InputSlot）に変更**（Figma Cell Status=Edit）。`.tolv-cell.is-edit` の中に Form 系コンポーネント（InputText / Select / DateSelect / InputTime）と、Undo（`.tolv-btn--sm.tolv-btn--quaternary`・undo アイコン）/ Submit（`.tolv-btn--sm.tolv-btn--primary`・check アイコン）を隙間なく並べる。入力は横いっぱい

@@ -1,8 +1,9 @@
 /*
- * tolv Design System — Table  (v0.15.0)
+ * tolv Design System — Table  (v0.16.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
- *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集) / Edit = Form 部品＋Undo/Submit の入れ物）
+ *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集ボタン) / Edit = Form 部品＋Undo/Submit の入れ物）
+ *   .tolv-cell-action-button … Cell 用アイコンボタン（Edit / Undo / Submit）
  *   .tolv-record  … テーブル行（Header / Default / Selected。CheckBox＋内容＋詳細ボタン）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
@@ -16,14 +17,11 @@
   align-items: center;
   gap: var(--space-medium, 8px);
   min-height: 32px;
-  padding: var(--space-min, 2px) var(--space-medium, 8px);
-  border: var(--border-regular, 1px) solid transparent;   /* 状態間でサイズを揃える透明枠（Edit は 0） */
-  border-radius: var(--radius-medium, 8px);
-  background: transparent;
+  padding: var(--space-min, 2px) var(--space-medium, 8px);   /* 枠なし（Figma）。値の開始位置 = 8 + 2 = 10px */
   font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
   color: var(--color-fg-basic-primary);
 }
-/* 値は内容幅（Default/Hover はアイコンが値の直後に並ぶ） */
+/* 値は内容幅（Hover の編集ボタンは値の直後に並ぶ） */
 .tolv-cell__value {
   flex: 0 1 auto;
   min-width: 0;
@@ -32,37 +30,63 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.tolv-cell__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 20px;
-  height: 20px;
-  color: var(--color-fg-basic-primary);   /* 鉛筆・チェック・× とも Primary（Figma icon-color） */
-}
-.tolv-cell__icon svg { width: 100%; height: 100%; fill: currentColor; }
 
 /* Head：太字＋並び替え（.tolv-sort-button を内包）。値と sort の間は詰める（gap なし・余白は各内側 min） */
 .tolv-cell--head { cursor: pointer; gap: 0; }
 .tolv-cell--head .tolv-cell__value { font-weight: var(--font-weight-bold, 700); flex: 0 0 auto; }
 
-/* 編集可能：hover で鉛筆アイコンを値の直後に表示（地色は変えない・値との間隔 0） */
-.tolv-cell--editable { cursor: pointer; gap: 0; }
-.tolv-cell--editable .tolv-cell__icon { visibility: hidden; }
-.tolv-cell--editable:hover .tolv-cell__icon { visibility: visible; }
+/* 編集可能（Figma Cell Status=Hover）：値の右 8px に CellActionButton（Edit）を置き、hover / フォーカス時だけ表示。
+ * ボタンは 32×32 なのでセルの上下・右の余白は 0 */
+.tolv-cell--editable { padding-block: 0; padding-right: 0; }
+.tolv-cell--editable > .tolv-cell-action-button { visibility: hidden; }
+.tolv-cell--editable:hover > .tolv-cell-action-button,
+.tolv-cell--editable:focus-within > .tolv-cell-action-button { visibility: visible; }
 
 /* Edit：InputSlot（Figma Cell Status=Edit）。
  * Form 系コンポーネント（.tolv-input / .tolv-select / .tolv-date-select / .tolv-time）を先頭に置き、
- * 続けて Undo（.tolv-btn--sm.tolv-btn--quaternary）/ Submit（.tolv-btn--sm.tolv-btn--primary）を隙間なく並べる。
+ * 続けて CellActionButton の Undo / Submit を 4px 間隔で並べる。
  * 入力は横いっぱいに伸び、ボタンは固定幅。エラーは中の入力側（.is-error 等）で表す。 */
 .tolv-cell.is-edit {
-  gap: 0;
+  gap: var(--space-small, 4px);
   padding: 0;
-  border-width: 0;
 }
 .tolv-cell.is-edit > :first-child { flex: 1 1 auto; min-width: 0; }
-.tolv-cell.is-edit > .tolv-btn { flex: none; }
+
+/* ============ CellActionButton（.tolv-cell-action-button） ============
+ * Cell 用のアイコンボタン（32×32・枠なし）。Type = --edit（鉛筆・グレー）/ --undo（取り消し）/ --submit（確定・緑）。
+ * Status = Default / :hover（地色）/ :disabled（アイコンを Disabled 色に） */
+.tolv-cell-action-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: var(--space-small, 4px);
+  border: 0;
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  color: var(--color-fg-basic-primary);
+  cursor: pointer;
+}
+.tolv-cell-action-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }
+.tolv-cell-action-button:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--color-bg-basic-primary-hover); }
+.tolv-cell-action-button:focus-visible {
+  outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
+  outline-offset: -2px;
+}
+.tolv-cell-action-button--edit { color: var(--color-fg-basic-secondary); }
+.tolv-cell-action-button--undo { color: var(--color-fg-basic-primary); }
+.tolv-cell-action-button--submit { color: var(--color-fg-success-primary); }
+.tolv-cell-action-button:disabled,
+.tolv-cell-action-button[aria-disabled="true"] { background: var(--color-bg-basic-primary-disabled); cursor: not-allowed; }
+.tolv-cell-action-button--edit:disabled,
+.tolv-cell-action-button--edit[aria-disabled="true"] { color: var(--color-fg-basic-secondary-disabled); }
+.tolv-cell-action-button--undo:disabled,
+.tolv-cell-action-button--undo[aria-disabled="true"] { color: var(--color-fg-basic-primary-disabled); }
+.tolv-cell-action-button--submit:disabled,
+.tolv-cell-action-button--submit[aria-disabled="true"] { color: var(--color-fg-success-primary-disabled); }
 
 /* ============ Record（.tolv-record） ============ */
 .tolv-record {
@@ -72,7 +96,7 @@
   align-items: center;
   gap: 10px;
   width: 100%;
-  padding: var(--space-small, 4px) 0;
+  padding: var(--space-small, 4px) 0 calc(var(--space-small, 4px) - var(--border-regular, 1px));   /* 下線込みで 40px（Figma） */
   border-bottom: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   /* 横スクロール時に sticky な詳細ボタンをクリップしないよう overflow は付けない
    * （横スクロールは利用側の外側コンテナ（overflow-x:auto）で行う） */
@@ -111,7 +135,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-basic-primary);

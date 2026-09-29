@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Button  (v0.14.0)
+ * tolv Design System — Button  (v0.16.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照するため、
  * ページ側で tokens.css を先に読み込んでください（Light/Dark 自動追従）。
@@ -29,7 +29,8 @@
   justify-content: center;
   box-sizing: border-box;
   min-height: 44px;                 /* Medium */
-  padding: var(--space-medium, 8px);
+  /* 枠は Figma と同じく「内側」扱い：padding から枠の太さを引き、外形を Figma に揃える（Medium 120×44 等） */
+  padding: calc(var(--space-medium, 8px) - var(--border-regular, 1px));
   /* ---- shape ---- */
   border: var(--border-regular, 1px) solid transparent;
   border-radius: var(--radius-medium, 8px);
@@ -74,7 +75,7 @@
 /* ============ Size = Small ============ */
 .tolv-btn--sm {
   min-height: 32px;
-  padding: var(--space-small, 4px) var(--space-medium, 8px);  /* py=4 px=8 */
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));  /* py=4 px=8（枠内側） */
   font-size: var(--font-size-xsmall, 14px);   /* Small: Label/Small 14/20 */
   line-height: var(--line-height-xsmall, 20px);
 }

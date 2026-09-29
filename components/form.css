@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.15.0)
+ * tolv Design System — Form family  (v0.16.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -37,7 +37,7 @@
   display: block;
   width: 100%;
   min-height: 32px;
-  padding: var(--_pad-y) var(--_pad-x);
+  padding: var(--_pad-y) calc(var(--_pad-x) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--_radius);
   background: var(--color-bg-basic-primary);   /* input-background Style=default */
@@ -92,7 +92,7 @@
   gap: var(--_gap);
   min-height: calc(32px - 2 * var(--border-regular, 1px));   /* 外枠込みで 32px（Figma） */
   width: 100%;
-  padding: var(--_pad-y) var(--space-medium, 8px);
+  padding: var(--_pad-y) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 外枠の内側 */
   border: 0;
   background: transparent;
   font: var(--_font);
@@ -201,7 +201,7 @@
 .tolv-suggestion-panel {
   box-sizing: border-box;
   width: 100%;
-  padding: var(--space-large, 16px);
+  padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-large, 16px);
   background: var(--color-bg-basic-primary);
@@ -236,7 +236,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 32px;
-  padding: var(--space-small, 4px) var(--space-medium, 8px);
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-brand-secondary);   /* navy-600 */
   border-radius: var(--radius-medium, 8px);
   background: var(--color-bg-brand-tertiary);
@@ -372,7 +372,7 @@
   gap: var(--_gap);
   width: 100px;
   min-height: 32px;
-  padding: var(--_pad-y) var(--space-medium, 8px);
+  padding: var(--_pad-y) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--_radius);
   background: var(--color-bg-basic-primary);
