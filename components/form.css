@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.14.0)
+ * tolv Design System — Form family  (v0.15.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -90,7 +90,7 @@
   display: flex;
   align-items: center;
   gap: var(--_gap);
-  min-height: 32px;
+  min-height: calc(32px - 2 * var(--border-regular, 1px));   /* 外枠込みで 32px（Figma） */
   width: 100%;
   padding: var(--_pad-y) var(--space-medium, 8px);
   border: 0;
@@ -327,10 +327,12 @@
   font: var(--_font);
   color: var(--color-fg-basic-secondary);
 }
-/* ラベル部の下 2px ＋ コントロール + メッセージ（間隔なし） */
+/* ラベル部の下 2px ＋ コントロール + validation-area（間隔なし）。
+ * validation-area はメッセージの有無に関わらず 1 行分（20px）を確保する（Figma: 高さ固定 20）。
+ * メッセージを出すときは .tolv-field__message をコントロールの直後に置く。 */
 .tolv-field__control-set {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto minmax(var(--line-height-xsmall, 20px), auto);
   gap: 0;
   margin-top: var(--space-min, 2px);
 }

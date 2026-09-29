@@ -2,6 +2,19 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.15.0] - 2026-09-29
+### Changed（⚠️ マークアップ変更あり）
+- **Cell の Edit を入れ物（InputSlot）に変更**（Figma Cell Status=Edit）。`.tolv-cell.is-edit` の中に Form 系コンポーネント（InputText / Select / DateSelect / InputTime）と、Undo（`.tolv-btn--sm.tolv-btn--quaternary`・undo アイコン）/ Submit（`.tolv-btn--sm.tolv-btn--primary`・check アイコン）を隙間なく並べる。入力は横いっぱい
+  - 移行: 旧 `<input class="tolv-cell__input">` ＋ `.tolv-cell__icon` の構成は廃止。`.tolv-cell__input` を削除
+- **Cell の Error を削除**（Figma から Error バリアントが削除）。エラーは Edit 内の入力側で表す（例: `.tolv-input.is-error`）
+- **FormSet**: validation-area（コントロール直下の 20px）をメッセージの有無に関わらず確保
+
+### Fixed
+- Select / IncrementalSearch の高さが外枠の分 34px になっていたのを 32px に（Figma 準拠）
+
+### Added
+- ストーリー用アイコンに `undo`（Asset/Icon/undo）
+
 ## [0.14.0] - 2026-09-28
 Figma の実データ（Plugin API で取得したバリアント・Auto Layout 数値・変数・内部インスタンス）と突き合わせ、見た目から推測していた箇所を修正。
 

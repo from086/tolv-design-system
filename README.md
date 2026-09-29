@@ -63,7 +63,7 @@ CSS からは Semantic トークンを参照します。
 - **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）
 - **`.tolv-search--cell`** … 検索セル（`.tolv-search` の白地バリアント）
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
-- **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））
+- **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））。コントロール直下のメッセージ領域（20px）は**メッセージがなくても確保**される
 - **`.tolv-time`** … 時刻入力（InputTime。`__seg` × 2 + `__sep` + `__icon`）
 - **`.tolv-fixed-value`** … 読み取り専用の値表示（FixedValue）
 - **`.tolv-divider`** … 区切り線（`--vertical` で縦）。線の前後に 4px の余白を持つ
@@ -143,7 +143,16 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.11.0/components/table.css">
 ```
 
-- **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover で鉛筆）/ `.is-edit`（枠＋チェック）/ `.is-error`（赤枠＋×）
+- **`.tolv-cell`** … テーブルセル。`--head`（太字＋並び替え）/ 既定（値）/ `--editable`（hover で鉛筆）/ `.is-edit`（下記）
+  - **`.is-edit`** は入れ物（InputSlot）。先頭に Form 系コンポーネント（`.tolv-input` / `.tolv-select` / `.tolv-date-select` / `.tolv-time`）、続けて Undo・Submit ボタンを置く。エラーは中の入力側で表す（`.tolv-input.is-error` など）
+
+```html
+<div class="tolv-cell is-edit">
+  <input class="tolv-input" value="テキスト">
+  <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--quaternary" aria-label="元に戻す"><span class="tolv-btn__icon"><!-- undo svg --></span></button>
+  <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--primary" aria-label="確定"><span class="tolv-btn__icon"><!-- check svg --></span></button>
+</div>
+```
 - **`.tolv-record`** … テーブル行。`--header`（見出し・濃ボーダー）/ 既定（CheckBox＋内容＋`詳細`ボタン）/ `.is-selected`（選択地色＋チェック）
   - `詳細` ボタン（`.tolv-record__action` > `.tolv-record__action-inner`）は **sticky で右端に固定**（Record 群を `overflow-x:auto` のコンテナで囲むと、横スクロール中も常に右端に表示され Slot に重なる）
 - CheckBox は `controls.css`、詳細ボタンは自前スタイル。編集の開始/確定などの挙動は利用側で実装
