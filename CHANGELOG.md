@@ -2,6 +2,10 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.18.2] - 2026-09-30
+### Changed
+- **DateSelect / InputTime の入力枠の上下 padding 2 → 4px**（Figma）。これで入力欄はすべて上下 4px に統一。高さ 32px・文字位置は従来と同じ（見た目の変化なし）
+
 ## [0.18.1] - 2026-09-30
 ### Changed
 - **入力枠の上下 padding 2 → 4px**（Figma: InputText / TextArea / Select / IncrementalSearch の input frame）

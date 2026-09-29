@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.18.1)
+ * tolv Design System — Form family  (v0.18.2)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -26,8 +26,8 @@
 /* ============ 共通トークン ============ */
 :where(.tolv-input, .tolv-textarea, .tolv-select, .tolv-search, .tolv-list-item, .tolv-field, .tolv-time, .tolv-fixed-value, .tolv-cell) {
   --_radius: var(--radius-medium, 8px);
-  --_pad-y: var(--space-min, 2px);          /* ListItem / InputTime 等の上下 */
-  --_pad-y-input: var(--space-small, 4px);  /* 入力枠（InputText / TextArea / Select / Search）の上下（Figma input frame） */
+  --_pad-y: var(--space-min, 2px);          /* ListItem 等の上下 */
+  --_pad-y-input: var(--space-small, 4px);  /* 入力枠（InputText / TextArea / Select / Search / InputTime）の上下（Figma input frame） */
   --_pad-x: calc(var(--space-medium, 8px) + var(--space-min, 2px)); /* 枠 8 + 値 2 = 10px（Figma input / input-value） */
   --_gap: var(--space-medium, 8px);
   --_font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
@@ -432,7 +432,7 @@
   gap: var(--_gap);
   width: 100px;
   min-height: 32px;
-  padding: var(--_pad-y) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側 */
+  padding: calc(var(--_pad-y-input) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側（上下 4・左右 8） */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--_radius);
   background: var(--color-bg-basic-primary);
