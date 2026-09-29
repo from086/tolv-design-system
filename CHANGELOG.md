@@ -2,6 +2,12 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.18.1] - 2026-09-30
+### Changed
+- **入力枠の上下 padding 2 → 4px**（Figma: InputText / TextArea / Select / IncrementalSearch の input frame）
+  - **TextArea**: 文字の開始位置 上 4px → **6px**（枠 4 + input-value 2）
+  - InputText / Select / IncrementalSearch / カレンダーの年 Select: padding を Figma の値（上下 4 + 2）で記述。高さ 32px・文字位置は従来と同じ（見た目の変化なし）
+
 ## [0.18.0] - 2026-09-30
 ### Added
 - **TextArea**（`.tolv-textarea`、`components/form.css`）複数行テキスト入力。InputText と同じ枠・状態（placeholder / Disabled / Error）、既定の高さ 120px・縦にリサイズ可。文字の開始位置は上 4px・左 10px
