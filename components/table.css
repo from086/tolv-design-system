@@ -1,9 +1,11 @@
 /*
- * tolv Design System — Table  (v0.16.2)
+ * tolv Design System — Table  (v0.17.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集ボタン) / Edit = Form 部品＋Undo/Submit の入れ物）
  *   .tolv-cell-action-button … Cell 用アイコンボタン（Edit / Undo / Submit）
+ *   .tolv-pager       … ページ送り（前へ / 件数 / 次へ）
+ *   .tolv-table-bar   … テーブル上部のバー（左スロット・右スロット・Pager）
  *   .tolv-record  … テーブル行（Header / Default / Selected。CheckBox＋内容＋詳細ボタン）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
@@ -173,3 +175,45 @@
 .tolv-record__detail-label { padding: 0 var(--space-small, 4px); }
 .tolv-record__detail-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 20px; height: 20px; }
 .tolv-record__detail-icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+/* ============ Pager（.tolv-pager） ============
+ * 前へ / 件数表示 / 次へ（Figma Pager）。間隔 16px。
+ * ボタンは Button Small Tertiary のアイコンのみ（button.css）、数字は Number body（number.css）、「-」「/」は Text body（text.css）。
+ * ページ移動の挙動は利用側で実装する（端では該当ボタンを disabled に）。 */
+.tolv-pager {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-large, 16px);
+}
+.tolv-pager__counter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-medium, 8px);
+  white-space: nowrap;
+}
+
+/* ============ TableBar（.tolv-table-bar） ============
+ * テーブル上部のバー（Figma TableBar）。左スロット（残り幅いっぱい）・右スロット（内容幅・右寄せ）・Pager を 16px 間隔で並べる。
+ * 各スロット内の要素は 8px 間隔。高さ 32px。 */
+.tolv-table-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--space-large, 16px);
+  width: 100%;
+  min-height: 32px;
+}
+.tolv-table-bar__leading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-medium, 8px);
+  flex: 1 1 0;
+  min-width: 0;
+}
+.tolv-table-bar__trailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-medium, 8px);
+  flex: none;
+}

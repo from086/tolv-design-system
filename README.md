@@ -165,6 +165,28 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-record`** … テーブル行。`--header`（見出し・濃ボーダー）/ 既定（CheckBox＋内容＋`詳細`ボタン）/ `.is-selected`（選択地色＋チェック）
   - `詳細` ボタン（`.tolv-record__action` > `.tolv-record__action-inner`）は **sticky で右端に固定**（Record 群を `overflow-x:auto` のコンテナで囲むと、横スクロール中も常に右端に表示され Slot に重なる）
 - CheckBox は `controls.css`、詳細ボタンは自前スタイル。編集の開始/確定などの挙動は利用側で実装
+- **`.tolv-pager`** … ページ送り（前へ / 件数 / 次へ、間隔 16px）。ボタンは Button Small Tertiary のアイコンのみ、数字は Number body、「-」「/」は Text body（`button.css` / `number.css` / `text.css` も読み込む）。端のページではボタンを `disabled` に。ページ移動の挙動は利用側で実装
+- **`.tolv-table-bar`** … テーブル上部のバー。`__leading`（残り幅いっぱい）/ `__trailing`（内容幅・右寄せ）/ Pager を 16px 間隔で並べる（スロット内は 8px 間隔）
+
+```html
+<div class="tolv-table-bar">
+  <div class="tolv-table-bar__leading">
+    <span class="tolv-text tolv-text--body tolv-text--secondary">未選択</span>
+  </div>
+  <div class="tolv-table-bar__trailing">
+    <div class="tolv-select" style="width:120px"><!-- 表示件数の Select --></div>
+  </div>
+  <nav class="tolv-pager" aria-label="ページ送り">
+    <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--tertiary" aria-label="前へ" disabled><span class="tolv-btn__icon"><!-- arrow-left svg --></span></button>
+    <span class="tolv-pager__counter">
+      <span class="tolv-number tolv-number--body">1</span><span class="tolv-text tolv-text--body">-</span>
+      <span class="tolv-number tolv-number--body">100</span><span class="tolv-text tolv-text--body">/</span>
+      <span class="tolv-number tolv-number--body">2,000</span>
+    </span>
+    <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--tertiary" aria-label="次へ"><span class="tolv-btn__icon"><!-- arrow-right svg --></span></button>
+  </nav>
+</div>
+```
 
 ### Number（`components/number.css`）
 

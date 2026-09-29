@@ -2,6 +2,11 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.17.0] - 2026-09-30
+### Added
+- **Pager**（`.tolv-pager`、`components/table.css`）前へ / 件数表示 / 次へ（間隔 16px、件数表示内は 8px）。ボタンは Button Small Tertiary のアイコンのみ、数字は Number body、「-」「/」は Text body
+- **TableBar**（`.tolv-table-bar`、`components/table.css`）テーブル上部のバー。左スロット `__leading`（残り幅いっぱい）/ 右スロット `__trailing`（内容幅・右寄せ）/ Pager を 16px 間隔で並べる（スロット内 8px）
+
 ## [0.16.2] - 2026-09-30
 ### Changed
 - **CellActionButton Submit**: 白地（bg-success-tertiary）＋緑の枠 1px（border-success-primary、内側扱いで外形 32×32 のまま）。hover で地・枠が hover 色、disabled で地・枠とも透明
