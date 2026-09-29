@@ -214,7 +214,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.13.0/components/container.css">
 ```
 
-- **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし
+- **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし。中身はかたまりを中央に置き、各要素を左ぞろえで縦に 8px 間隔で並べる（Figma の Slot と同じ）
 - **`.tolv-drop-area`** … ドロップ領域（地色 bg-basic-secondary＋強調色の 1px 破線枠、radius/padding large）。**`--square`** で角丸なし
 
 ## 開発（Storybook）

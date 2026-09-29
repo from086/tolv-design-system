@@ -2,6 +2,13 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.22.0] - 2026-09-30
+### Changed
+- **Container の中身の並び**: Figma の Slot に gap 8 が付いたのに合わせ、中身のかたまりを中央に置き、各要素を**左ぞろえで縦に 8px 間隔**で並べる形に変更（従来は横並び・間隔なし）。中身が1つのときの見た目は変わらない
+
+### Confirmed
+- Figma InputText に **Type=Text/Number** が追加。コードの `.tolv-input--number`（v0.21.0）と一致していることを確認（変更なし）
+
 ## [0.21.0] - 2026-09-30
 ### Added
 - **InputText Type=Number（`.tolv-input--number`）**: 数値入力。Figma input-value Type=Number（InputNumber/Regular）に合わせ、等幅（Noto Sans Mono Medium 14/20）・右寄せ・桁そろえ（tabular-nums）。`type="number"` のときのブラウザ既定の増減ボタンは非表示

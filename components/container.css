@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Container / DropArea  (v0.20.0)
+ * tolv Design System — Container / DropArea  (v0.22.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。要素を包む枠（レイアウトプリミティブ）。
  *   .tolv-container              … コンテナ（base=枠なし / --primary=白地+基本境界 / --secondary=強調境界）
@@ -10,11 +10,13 @@
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Container・DropArea
  */
 
+/* 中身は Figma の Slot と同じ並び：かたまりを中央に置き、各要素は左ぞろえで縦に 8px 間隔 */
 .tolv-container {
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-content: center;
+  justify-items: start;
+  gap: var(--space-medium, 8px);
   padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側（外形 = Figma） */
   border: var(--border-regular, 1px) solid transparent;  /* base は枠なし（透明枠でサイズ維持） */
   border-radius: var(--radius-large, 16px);

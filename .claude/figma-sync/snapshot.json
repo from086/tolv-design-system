@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-09-30",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.20.1",
+ "syncedRelease": "v0.22.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -95,19 +95,19 @@
    "id": "3615:1663",
    "props": "1xip5x5",
    "variants": {
-    "Style=base, Radius=True": "usksm8",
-    "Style=base, Radius=False": "1ptuhwo",
-    "Style=primary, Radius=True": "d1zo6v",
-    "Style=primary, Radius=False": "nwiigv",
-    "Style=Secondary, Radius=True": "uljrhj",
-    "Style=Secondary, Radius=False": "opeawf"
+    "Style=base, Radius=True": "zoqfy2",
+    "Style=base, Radius=False": "1bdg3gi",
+    "Style=primary, Radius=True": "8i64pd",
+    "Style=primary, Radius=False": "52hsm1",
+    "Style=Secondary, Radius=True": "15be51d",
+    "Style=Secondary, Radius=False": "jlyguh"
    }
   },
   "CalendarPanel": {
    "id": "3817:2848",
    "props": "3hnx9",
    "variants": {
-    "CalendarPanel": "iagcv5"
+    "CalendarPanel": "1r7hcor"
    }
   },
   "input-background": {
@@ -260,18 +260,23 @@
     "Status=Head": "1sytvb",
     "Status=Default": "1onmc5z",
     "Status=Hover": "1gpqhpj",
-    "Status=Edit": "7c9u5t"
+    "Status=Edit": "jsk3hc"
    }
   },
   "InputText": {
    "id": "3778:1272",
-   "props": "u7eeeo",
+   "props": "38o1k5",
    "variants": {
-    "Status=Default": "bohpyi",
-    "Status=Edit": "qatd8t",
-    "Status=Inputed": "1v0kbnq",
-    "Status=Disabled": "yzn8hx",
-    "Status=Error": "16uk3w2"
+    "Status=Default, Type=Text": "ma1l7n",
+    "Status=Default, Type=Number": "1xawt3u",
+    "Status=Edit, Type=Text": "v5wxqe",
+    "Status=Edit, Type=Number": "qclicd",
+    "Status=Inputed, Type=Text": "1vhii0v",
+    "Status=Inputed, Type=Number": "1hc2et2",
+    "Status=Disabled, Type=Text": "1oka40u",
+    "Status=Disabled, Type=Number": "1abq96d",
+    "Status=Error, Type=Text": "1ez6o4r",
+    "Status=Error, Type=Number": "62vt42"
    }
   },
   "TextArea": {
@@ -289,7 +294,7 @@
    "id": "3784:3058",
    "props": "mwsj8k",
    "variants": {
-    "FormSet": "flglaz"
+    "FormSet": "1eccw8a"
    }
   },
   "Select": {
@@ -409,15 +414,15 @@
    "id": "3905:1359",
    "props": "1vmw39w",
    "variants": {
-    "Type=Default": "fs707k",
-    "Type=NoData": "103iy5k"
+    "Type=Default": "1kwvey2",
+    "Type=NoData": "16z5z7m"
    }
   },
   "SelectPanel": {
    "id": "3977:4117",
    "props": "7jo3n1",
    "variants": {
-    "Type=Default": "udjf7m"
+    "Type=Default": "bpmefw"
    }
   },
   "SortButton": {

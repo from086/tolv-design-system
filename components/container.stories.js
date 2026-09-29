@@ -26,11 +26,19 @@ export const Overview = {
     const cell = (label, args) => `<div style="display:flex;flex-direction:column;gap:8px;align-items:center">`
       + container(args)
       + `<span style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary)">${label}</span></div>`;
+    // 中身が複数：Slot と同じく左ぞろえで縦に 8px 間隔
+    const multi = `<div class="tolv-container tolv-container--primary">`
+      + `<span class="tolv-text tolv-text--h3"><span class="tolv-text__label">見出し</span></span>`
+      + `<span class="tolv-text tolv-text--body"><span class="tolv-text__label">本文のテキストが入ります</span></span>`
+      + `<span class="tolv-text tolv-text--caption"><span class="tolv-text__label">キャプション</span></span>`
+      + `</div>`;
     return `<div style="display:flex;flex-wrap:wrap;gap:24px">`
       + cell('base', { style: 'base', square: false })
       + cell('primary', { style: 'primary', square: false })
       + cell('secondary', { style: 'secondary', square: false })
       + cell('primary / square', { style: 'primary', square: true })
-      + `</div>`;
+      + `</div>`
+      + `<div style="margin-top:24px;display:flex;flex-direction:column;gap:8px;align-items:flex-start">${multi}`
+      + `<span style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary)">中身が複数（左ぞろえ・縦に 8px 間隔）</span></div>`;
   },
 };
