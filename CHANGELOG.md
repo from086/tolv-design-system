@@ -2,6 +2,19 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.18.0] - 2026-09-30
+### Added
+- **TextArea**（`.tolv-textarea`、`components/form.css`）複数行テキスト入力。InputText と同じ枠・状態（placeholder / Disabled / Error）、既定の高さ 120px・縦にリサイズ可。文字の開始位置は上 4px・左 10px
+- **SelectPanel**（`.tolv-select-panel`、`components/form.css`）Select の選択肢パネル（Container primary ＋ ListItem 一覧、選択中はチェック）
+
+### Changed
+- **Select**: 選択肢を枠内に広げる形式から、**SelectPanel をフィールドの 4px 下にポップオーバー表示**する形式に変更。開いても高さ 32px のまま。開いている間は値の文字も Disabled 色（Figma Select Status=Edit）
+  - マークアップ: 選択肢の要素に `tolv-select-panel` を併記（`class="tolv-select-panel tolv-select__menu"`）。旧マークアップ（`tolv-select__menu` のみ）でもパネル表示になる。form.js の変更なし
+- **input-value の上下 padding 0 → 2px**（Figma）。単一行の入力（InputText / Select / DateSelect / InputTime）は高さ 32px の中央揃えのため見た目の変化なし。TextArea の文字の上端位置に反映
+
+### Fixed
+- IncrementalSearch の SuggestionPanel が枠の内側基準で配置され、上の間隔 3px・幅が 2px 狭かったのを、フィールドの外形基準（下 4px・同じ幅）に修正（SelectPanel も同じ基準）
+
 ## [0.17.0] - 2026-09-30
 ### Added
 - **Pager**（`.tolv-pager`、`components/table.css`）前へ / 件数表示 / 次へ（間隔 16px、件数表示内は 8px）。ボタンは Button Small Tertiary のアイコンのみ、数字は Number body、「-」「/」は Text body

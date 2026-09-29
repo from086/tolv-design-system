@@ -58,7 +58,9 @@ CSS からは Semantic トークンを参照します。
 ```
 
 - **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）
-- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + `__menu`。展開は `.is-open`、無効は `.is-disabled`）
+- **`.tolv-textarea`** … 複数行テキスト入力（`<textarea>`。InputText と同じ枠と状態、既定の高さ 120px・縦にリサイズ可）
+- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）
+- **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する
 - **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）
 - **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）
 - **`.tolv-search--cell`** … 検索セル（`.tolv-search` の白地バリアント）
@@ -79,7 +81,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 <script src="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.7.0/components/form.js" defer></script>
 ```
 
-- **Select**: `.tolv-select__control` クリックで開閉、候補クリックで確定 → `tolv:change`（`detail.value`）
+- **Select**: `.tolv-select__control` クリックで SelectPanel を開閉、候補クリックで確定して閉じる → `tolv:change`（`detail.value`）
 - **Search (IncrementalSearch)**: `data-suggestions='["A","B"]'` のマスターデータを入力で絞り込み、下に SuggestionPanel を表示。候補選択で `tolv:select`、0件時は「マスターに追加」で候補に追加＋確定し `tolv:additem` を発火（永続化は利用側）
 - 外側クリック / Esc で閉じる
 - 動的に追加した要素は `TolvForm.init(親要素)` で再初期化

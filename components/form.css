@@ -1,10 +1,12 @@
 /*
- * tolv Design System — Form family  (v0.16.0)
+ * tolv Design System — Form family  (v0.18.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
  *   .tolv-input           … テキスト入力（InputText）
- *   .tolv-select          … ドロップダウン選択（Select）
+ *   .tolv-textarea        … 複数行テキスト入力（TextArea）
+ *   .tolv-select          … ドロップダウン選択（Select。選択肢は SelectPanel をポップオーバー表示）
+ *   .tolv-select-panel    … Select の選択肢パネル（SelectPanel）
  *   .tolv-search          … インクリメンタルサーチ（IncrementalSearch。SuggestionPanel を使用）
  *   .tolv-suggestion-panel… 候補パネル（マスターデータ一覧 / 該当なし＋追加）
  *   .tolv-search--cell    … セル型（Cell。白地・アイコン20px）
@@ -22,7 +24,7 @@
  */
 
 /* ============ 共通トークン ============ */
-:where(.tolv-input, .tolv-select, .tolv-search, .tolv-list-item, .tolv-field, .tolv-time, .tolv-fixed-value, .tolv-cell) {
+:where(.tolv-input, .tolv-textarea, .tolv-select, .tolv-search, .tolv-list-item, .tolv-field, .tolv-time, .tolv-fixed-value, .tolv-cell) {
   --_radius: var(--radius-medium, 8px);
   --_pad-y: var(--space-min, 2px);
   --_pad-x: calc(var(--space-medium, 8px) + var(--space-min, 2px)); /* 枠 8 + 値 2 = 10px（Figma input / input-value） */
@@ -47,19 +49,46 @@
   -webkit-appearance: none;
   appearance: none;
 }
-.tolv-input::placeholder { color: var(--color-fg-basic-secondary); opacity: 1; }
-.tolv-input:focus-visible {
+
+/* ============ TextArea（.tolv-textarea） ============
+ * ネイティブ <textarea> を InputText と同じ枠で装飾（Figma TextArea）。既定の高さ 120px・縦方向にリサイズ可。
+ * 文字の開始位置 = 上 4px（枠 2 + input-value 2）/ 左 10px（枠 8 + input-value 2）。枠は内側扱い。 */
+.tolv-textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  height: 120px;
+  padding: calc(var(--_pad-y) + var(--space-min, 2px) - var(--border-regular, 1px)) calc(var(--_pad-x) - var(--border-regular, 1px));
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--_radius);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--_font);
+  letter-spacing: var(--font-tracking-normal, 0);
+  resize: vertical;
+}
+
+/* InputText / TextArea 共通の状態 */
+.tolv-input::placeholder,
+.tolv-textarea::placeholder { color: var(--color-fg-basic-secondary); opacity: 1; }
+.tolv-input:focus-visible,
+.tolv-textarea:focus-visible {
   outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
   outline-offset: 1px;
 }
 .tolv-input:disabled,
-.tolv-input[aria-disabled="true"] {
+.tolv-input[aria-disabled="true"],
+.tolv-textarea:disabled,
+.tolv-textarea[aria-disabled="true"] {
   background: var(--color-bg-brand-secondary);   /* navy-100 */
   color: var(--color-fg-basic-primary-disabled);
   cursor: not-allowed;
 }
 .tolv-input.is-error,
-.tolv-input[aria-invalid="true"] {
+.tolv-input[aria-invalid="true"],
+.tolv-textarea.is-error,
+.tolv-textarea[aria-invalid="true"] {
   border-color: var(--color-border-caution-primary);   /* red-600 */
 }
 
@@ -74,7 +103,7 @@
   border-radius: var(--_radius);
   background: var(--color-bg-basic-primary);
 }
-.tolv-select { overflow: hidden; }         /* インラインメニューの角丸クリップ */
+.tolv-select { position: relative; }        /* SelectPanel をポップオーバー配置 */
 .tolv-search { position: relative; }        /* SuggestionPanel をポップオーバー配置 */
 .tolv-search--cell { overflow: hidden; }    /* Cell は旧インラインメニューを温存 */
 .tolv-select.is-error,
@@ -176,27 +205,57 @@
 .tolv-search--cell.is-open .tolv-search__icon--search { display: none; }
 .tolv-search--cell.is-open .tolv-search__icon--clear { display: inline-flex; }
 
-/* ドロップダウンメニュー（同じ枠内に展開） */
-.tolv-select__menu,
+/* Cell(旧インラインメニュー): 同じ枠内に展開 */
 .tolv-search__menu {
   display: none;
   padding: var(--space-small, 4px) 0;
 }
-.tolv-select.is-open .tolv-select__menu,
 .tolv-search--cell.is-open .tolv-search__menu { display: block; }
+
+/* Select: 開いている間（Edit）は値も Disabled 色（Figma Select Status=Edit） */
+.tolv-select.is-open .tolv-select__value { color: var(--color-fg-basic-primary-disabled); }
+
+/* ============ SelectPanel（.tolv-select-panel） ============
+ * Select の選択肢パネル（Figma SelectPanel = Container primary ＋ ListItem 一覧、選択中はチェック）。
+ * Select 内では .tolv-select__menu としてフィールドの 4px 下にポップオーバー表示（枠内には広げない）。
+ * 旧マークアップ（.tolv-select__menu のみ）でもパネルの見た目になる。 */
+.tolv-select-panel,
+.tolv-select__menu {
+  box-sizing: border-box;
+  width: 100%;
+  padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-large, 16px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+}
+.tolv-select__menu {
+  position: absolute;
+  /* 基準は枠の内側なので、枠の太さ分ずらしてフィールドの外形に揃える（下 4px・同じ幅） */
+  top: calc(100% + var(--border-regular, 1px) + var(--space-small, 4px));
+  left: calc(-1 * var(--border-regular, 1px));
+  right: calc(-1 * var(--border-regular, 1px));
+  z-index: 20;
+  width: auto;
+  display: none;
+}
+.tolv-select.is-open .tolv-select__menu { display: block; }
 
 /* ============ SuggestionPanel（.tolv-suggestion-panel） ============
  * IncrementalSearch の候補パネル。マスターデータ一覧 or 該当なし＋追加ボタン。
  * IncrementalSearch では .tolv-search__panel としてフィールド下にポップオーバー配置。 */
 .tolv-search__panel {
   position: absolute;
-  top: calc(100% + var(--space-small, 4px));
-  left: 0;
-  right: 0;
+  /* フィールドの外形に揃える（下 4px・同じ幅） */
+  top: calc(100% + var(--border-regular, 1px) + var(--space-small, 4px));
+  left: calc(-1 * var(--border-regular, 1px));
+  right: calc(-1 * var(--border-regular, 1px));
   z-index: 20;
   display: none;
 }
 .tolv-search.is-open .tolv-search__panel { display: block; }
+.tolv-search > .tolv-search__panel { width: auto; }   /* left/right で幅を決める（.tolv-suggestion-panel の width:100% より優先） */
 
 .tolv-suggestion-panel {
   box-sizing: border-box;

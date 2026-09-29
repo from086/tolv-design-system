@@ -10,7 +10,7 @@ const SLOT = {
   Select: ({ text }) =>
     `<div class="tolv-select"><button type="button" class="tolv-select__control" aria-haspopup="listbox" aria-expanded="false">`
     + `<span class="tolv-select__value">${text}</span><span class="tolv-select__icon">${chevronDown}</span></button>`
-    + `<div class="tolv-select__menu" role="listbox">`
+    + `<div class="tolv-select-panel tolv-select__menu" role="listbox">`
     + ['りんご', 'みかん', 'ぶどう'].map((o) => `<div class="tolv-list-item${o === text ? ' is-selected' : ''}" role="option"><span class="tolv-list-item__label">${o}</span><span class="tolv-list-item__check">${check}</span></div>`).join('')
     + `</div></div>`,
   DateSelect: () =>

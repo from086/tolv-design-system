@@ -1,4 +1,4 @@
-// Select — .tolv-select
+// Select — .tolv-select（選択肢は SelectPanel をフィールドの下にポップオーバー表示）
 import { chevronDown, check } from './_icons.js';
 
 const listItem = (label, selected) =>
@@ -17,7 +17,7 @@ const render = ({ value, placeholder, open, disabled, error }) => {
     + `<button type="button" class="tolv-select__control"${disabled ? ' disabled' : ''} aria-haspopup="listbox" aria-expanded="${open ? 'true' : 'false'}">`
     + `<span class="tolv-select__value"${valueAttr}>${value}</span>`
     + `<span class="tolv-select__icon">${chevronDown}</span></button>`
-    + `<div class="tolv-select__menu" role="listbox">`
+    + `<div class="tolv-select-panel tolv-select__menu" role="listbox">`
     + options.map((o) => listItem(o, o === value)).join('')
     + `</div></div>`
   );
@@ -30,7 +30,7 @@ export default {
   argTypes: {
     value: { control: 'text', description: '選択値（空でプレースホルダー）' },
     placeholder: { control: 'text' },
-    open: { control: 'boolean', description: 'メニュー展開（is-open）' },
+    open: { control: 'boolean', description: 'SelectPanel を開く（is-open）' },
     disabled: { control: 'boolean' },
     error: { control: 'boolean' },
   },
@@ -46,8 +46,8 @@ export const Overview = {
     return `<table style="border-collapse:collapse">`
       + row('Unset (placeholder)', { value: '', placeholder: 'テキスト' })
       + row('Default (selected)', { value: 'りんご' })
-      + row('Open', { value: 'りんご', open: true })
       + row('Disabled', { value: 'りんご', disabled: true })
-      + `</table>`;
+      + row('Open（SelectPanel）', { value: 'りんご', open: true })
+      + `</table><div style="height:140px"></div>`;   // ポップオーバー分の余白
   },
 };
