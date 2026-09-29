@@ -59,7 +59,7 @@ CSS からは Semantic トークンを参照します。
 
 - **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）
 - **`.tolv-textarea`** … 複数行テキスト入力（`<textarea>`。InputText と同じ枠と状態、既定の高さ 120px・縦にリサイズ可）
-- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）
+- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）。パネルの幅はフィールド幅以上で、選択肢の長さに合わせて広がる（幅の狭い Select でも文字を省略しない）。画面の右寄りに置く Select は **`.tolv-select--align-end`** を付けると右端そろえで開く
 - **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する
 - **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）
 - **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）
@@ -176,7 +176,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
     <span class="tolv-text tolv-text--body tolv-text--secondary">未選択</span>
   </div>
   <div class="tolv-table-bar__trailing">
-    <div class="tolv-select" style="width:120px"><!-- 表示件数の Select --></div>
+    <div class="tolv-select tolv-select--align-end" style="width:120px"><!-- 表示件数の Select（右寄りなので右端そろえで開く） --></div>
   </div>
   <nav class="tolv-pager" aria-label="ページ送り">
     <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--tertiary" aria-label="前へ" disabled><span class="tolv-btn__icon"><!-- arrow-left svg --></span></button>

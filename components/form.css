@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.18.2)
+ * tolv Design System — Form family  (v0.19.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -233,15 +233,23 @@
 }
 .tolv-select__menu {
   position: absolute;
-  /* 基準は枠の内側なので、枠の太さ分ずらしてフィールドの外形に揃える（下 4px・同じ幅） */
+  /* 基準は枠の内側なので、枠の太さ分ずらしてフィールドの外形に揃える（下 4px・左端そろえ） */
   top: calc(100% + var(--border-regular, 1px) + var(--space-small, 4px));
   left: calc(-1 * var(--border-regular, 1px));
-  right: calc(-1 * var(--border-regular, 1px));
+  right: auto;
   z-index: 20;
-  width: auto;
+  /* 幅 = フィールドの外形幅以上・選択肢の長さに合わせて広がる（幅の狭い Select でも文字を省略しない） */
+  width: max-content;
+  min-width: calc(100% + 2 * var(--border-regular, 1px));
+  max-width: calc(100vw - 2 * var(--space-large, 16px));   /* 画面からはみ出さない上限 */
   display: none;
 }
 .tolv-select.is-open .tolv-select__menu { display: block; }
+/* 右端そろえで開く（画面の右寄りに置く Select 向け）: <div class="tolv-select tolv-select--align-end"> */
+.tolv-select--align-end .tolv-select__menu {
+  left: auto;
+  right: calc(-1 * var(--border-regular, 1px));
+}
 
 /* ============ SuggestionPanel（.tolv-suggestion-panel） ============
  * IncrementalSearch の候補パネル。マスターデータ一覧 or 該当なし＋追加ボタン。

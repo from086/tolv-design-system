@@ -2,6 +2,14 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.19.0] - 2026-09-30
+### Added
+- **`.tolv-select--align-end`**: SelectPanel を右端そろえで開く（画面の右寄りに置く Select 向け。TableBar の表示件数など）
+
+### Fixed
+- **幅の狭い Select で選択肢が省略される問題**。SelectPanel の幅を「フィールドの外形幅以上・選択肢の長さに合わせて広がる（max-content）」に変更。上限は画面幅 − 32px
+  - 例: 幅 120px の表示件数 Select → パネル 146px で「50件表示」「100件表示」「200件表示」を省略なしで表示。幅の広い Select はこれまでどおりフィールドと同じ幅
+
 ## [0.18.2] - 2026-09-30
 ### Changed
 - **DateSelect / InputTime の入力枠の上下 padding 2 → 4px**（Figma）。これで入力欄はすべて上下 4px に統一。高さ 32px・文字位置は従来と同じ（見た目の変化なし）
