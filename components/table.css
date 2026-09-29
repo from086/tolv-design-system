@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Table  (v0.16.0)
+ * tolv Design System — Table  (v0.16.1)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-cell    … テーブルセル（Head / Default / Hover(編集ボタン) / Edit = Form 部品＋Undo/Submit の入れ物）
@@ -36,11 +36,12 @@
 .tolv-cell--head .tolv-cell__value { font-weight: var(--font-weight-bold, 700); flex: 0 0 auto; }
 
 /* 編集可能（Figma Cell Status=Hover）：値の右 8px に CellActionButton（Edit）を置き、hover / フォーカス時だけ表示。
- * ボタンは 32×32 なのでセルの上下・右の余白は 0 */
+ * ボタンは 32×32 なのでセルの上下・右の余白は 0。
+ * 隠すのは opacity（visibility:hidden だとフォーカスを受け取れず、Tab で到達できないため） */
 .tolv-cell--editable { padding-block: 0; padding-right: 0; }
-.tolv-cell--editable > .tolv-cell-action-button { visibility: hidden; }
+.tolv-cell--editable > .tolv-cell-action-button { opacity: 0; }
 .tolv-cell--editable:hover > .tolv-cell-action-button,
-.tolv-cell--editable:focus-within > .tolv-cell-action-button { visibility: visible; }
+.tolv-cell--editable:focus-within > .tolv-cell-action-button { opacity: 1; }
 
 /* Edit：InputSlot（Figma Cell Status=Edit）。
  * Form 系コンポーネント（.tolv-input / .tolv-select / .tolv-date-select / .tolv-time）を先頭に置き、

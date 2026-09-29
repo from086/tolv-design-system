@@ -2,6 +2,10 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.16.1] - 2026-09-29
+### Fixed
+- **Cell（編集可）の Edit ボタンにキーボードで到達できなかった問題**。隠し方を `visibility: hidden`（フォーカスを受け取れない）から `opacity: 0` に変更。Tab でフォーカスすると表示される
+
 ## [0.16.0] - 2026-09-29
 ### Added
 - **CellActionButton**（`.tolv-cell-action-button`、`components/table.css`）Cell 用アイコンボタン。32×32・padding 4・角丸 8・枠なし。`--edit`（stylus・グレー）/ `--undo`（undo・Primary）/ `--submit`（check・Success）× Default / hover（地色）/ disabled（アイコン Disabled 色）
