@@ -215,7 +215,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 ```
 
 - **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし
-- **`.tolv-drop-area`** … brand 地色＋brand 境界のドロップ領域（radius/padding large）
+- **`.tolv-drop-area`** … ドロップ領域（地色 bg-basic-secondary＋強調色の 1px 破線枠、radius/padding large）。**`--square`** で角丸なし
 
 ## 開発（Storybook）
 

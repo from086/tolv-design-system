@@ -2,6 +2,15 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.20.0] - 2026-09-30
+### Added
+- **トークン `--color-bg-basic-secondary`**（Hover / Disabled 含む）: Light neutral-100/200、Dark neutral-900/800（Figma Background/Basic/Secondary）
+- **トークン `--space-xlarge`**（32px）/ **`--opacity-min`**（0%）/ **`--breakpoint-xlarge`**（1536px）（Figma の Spacing / Opacity / Breakpoint に合わせて追加）
+- **DropArea `--square`**（角丸なし。Figma Radius=False）
+
+### Changed
+- **DropArea の色と枠**: 地色 brand-secondary → **bg-basic-secondary**、枠 brand-primary の実線 → **border-basic-secondary の破線（1px・dash 2 / gap 2）**。破線は SVG マスクで描き、色はトークンに追従（ダークモード対応）
+
 ## [0.19.0] - 2026-09-30
 ### Added
 - **`.tolv-select--align-end`**: SelectPanel を右端そろえで開く（画面の右寄りに置く Select 向け。TableBar の表示件数など）

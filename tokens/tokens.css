@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Design Tokens  (v0.14.0)
+ * tolv Design System — Design Tokens  (v0.20.0)
  * =====================================================================
  * 2層構成の素のCSSカスタムプロパティ。ビルド不要でどのページからも利用可。
  *   Layer 1 Primitive : Global (Tailwind v4) + Brand (tolv-navy)
@@ -108,6 +108,9 @@
   --color-bg-basic-primary: var(--color-white);
   --color-bg-basic-primary-hover: var(--color-neutral-100);
   --color-bg-basic-primary-disabled: var(--color-transparent);
+  --color-bg-basic-secondary: var(--color-neutral-100);
+  --color-bg-basic-secondary-hover: var(--color-neutral-200);
+  --color-bg-basic-secondary-disabled: var(--color-transparent);
   --color-bg-basic-inverse: var(--color-black);
   --color-bg-basic-inverse-hover: var(--color-neutral-900);
   --color-bg-basic-inverse-disabled: var(--color-transparent);
@@ -149,6 +152,7 @@
   --space-small: var(--spacing-1);   /* 4px */
   --space-medium: var(--spacing-2);  /* 8px */
   --space-large: var(--spacing-4);   /* 16px */
+  --space-xlarge: var(--spacing-8);  /* 32px */
 
   /* ---- Semantic · Radius (Min/Small/Medium/Large) ----
    * None / Full は Global の --radius-none(0) / --radius-full(9999px) をそのまま使用 */
@@ -162,6 +166,7 @@
   --border-bold: 4px;                       /* 4px（Global に直接の primitive なし） */
 
   /* ---- Semantic · Opacity ---- */
+  --opacity-min: 0%;
   --opacity-weaker: 5%;
   --opacity-weak: 20%;
   --opacity-medium: 50%;
@@ -173,6 +178,7 @@
   --breakpoint-small: var(--breakpoint-sm);   /* 640px */
   --breakpoint-medium: var(--breakpoint-md);  /* 768px */
   --breakpoint-large: var(--breakpoint-lg);   /* 1024px */
+  --breakpoint-xlarge: var(--breakpoint-2xl); /* 1536px */
 
   /* ---- Semantic · Typography ---- 出典: Figma Font セクション (3624:5754)
    * 注: Semantic の Sans は Noto Sans JP（Global の Inter とは別）、Mono は Noto Sans Mono */
@@ -238,6 +244,9 @@
     --color-bg-basic-primary: var(--color-black);
     --color-bg-basic-primary-hover: var(--color-neutral-900);
     --color-bg-basic-primary-disabled: var(--color-transparent);
+    --color-bg-basic-secondary: var(--color-neutral-900);
+    --color-bg-basic-secondary-hover: var(--color-neutral-800);
+    --color-bg-basic-secondary-disabled: var(--color-transparent);
     --color-bg-basic-inverse: var(--color-white);
     --color-bg-basic-inverse-hover: var(--color-neutral-100);
     --color-bg-basic-inverse-disabled: var(--color-transparent);
@@ -315,6 +324,9 @@
   --color-bg-basic-primary: var(--color-black);
   --color-bg-basic-primary-hover: var(--color-neutral-900);
   --color-bg-basic-primary-disabled: var(--color-transparent);
+  --color-bg-basic-secondary: var(--color-neutral-900);
+  --color-bg-basic-secondary-hover: var(--color-neutral-800);
+  --color-bg-basic-secondary-disabled: var(--color-transparent);
   --color-bg-basic-inverse: var(--color-white);
   --color-bg-basic-inverse-hover: var(--color-neutral-100);
   --color-bg-basic-inverse-disabled: var(--color-transparent);
@@ -391,6 +403,9 @@
   --color-bg-basic-primary: var(--color-white);
   --color-bg-basic-primary-hover: var(--color-neutral-100);
   --color-bg-basic-primary-disabled: var(--color-transparent);
+  --color-bg-basic-secondary: var(--color-neutral-100);
+  --color-bg-basic-secondary-hover: var(--color-neutral-200);
+  --color-bg-basic-secondary-disabled: var(--color-transparent);
   --color-bg-basic-inverse: var(--color-black);
   --color-bg-basic-inverse-hover: var(--color-neutral-900);
   --color-bg-basic-inverse-disabled: var(--color-transparent);

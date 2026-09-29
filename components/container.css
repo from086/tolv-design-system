@@ -1,10 +1,11 @@
 /*
- * tolv Design System — Container / DropArea  (v0.16.0)
+ * tolv Design System — Container / DropArea  (v0.20.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。要素を包む枠（レイアウトプリミティブ）。
  *   .tolv-container              … コンテナ（base=枠なし / --primary=白地+基本境界 / --secondary=強調境界）
  *   .tolv-container--square      … 角丸なし（既定は radius large）
- *   .tolv-drop-area              … ドラッグ&ドロップ領域（brand 地色＋brand 境界）
+ *   .tolv-drop-area              … ドラッグ&ドロップ領域（basic-secondary の地色＋強調色の破線枠）
+ *   .tolv-drop-area--square      … 角丸なし（既定は radius large）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Container・DropArea
  */
@@ -29,15 +30,35 @@
 /* 角丸なし */
 .tolv-container--square { border-radius: 0; }
 
-/* ============ DropArea（.tolv-drop-area） ============ */
+/* ============ DropArea（.tolv-drop-area） ============
+ * Figma DropArea（Style=primary × Radius=True/False）。地色 bg-basic-secondary・枠 border-basic-secondary。
+ * 枠は 1px の破線（dash 2 / gap 2）。border-style:dashed は破線の長さを指定できないため、
+ * SVG マスクで破線を描き、色はトークン（背景色）で塗る（ダークモードでも追従）。
+ * マスクの角丸 rx=16 は --radius-large と同じ値。 */
 .tolv-drop-area {
   box-sizing: border-box;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
-  border: var(--border-regular, 1px) solid var(--color-border-brand-primary);
+  padding: var(--space-large, 16px);   /* 枠は ::before で内側に描くので、padding は Figma の値そのまま */
   border-radius: var(--radius-large, 16px);
-  background: var(--color-bg-brand-secondary);
+  background: var(--color-bg-basic-secondary);
   overflow: hidden;
+}
+.tolv-drop-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--color-border-basic-secondary);
+  /* stroke-width 2 を外形線上に引き、外側の半分は切れて内側 1px が残る（Figma の stroke INSIDE と同じ） */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='16' ry='16' fill='none' stroke='black' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='16' ry='16' fill='none' stroke='black' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+}
+/* 角丸なし */
+.tolv-drop-area--square { border-radius: 0; }
+.tolv-drop-area--square::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='2' stroke-dasharray='2 2'/%3E%3C/svg%3E");
 }
