@@ -2,6 +2,11 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.20.1] - 2026-09-30
+### Added
+- ストーリー用アイコン（`_icons.js`）に Figma Asset の **`print`**（印刷）/ **`language`**（言語）を追加（outline スタイル）
+- Storybook に **Foundations/Icons**（アイコン一覧）を追加
+
 ## [0.20.0] - 2026-09-30
 ### Added
 - **トークン `--color-bg-basic-secondary`**（Hover / Disabled 含む）: Light neutral-100/200、Dark neutral-900/800（Figma Background/Basic/Secondary）

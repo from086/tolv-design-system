@@ -1,49 +1,638 @@
 {
-  "takenAt": "2026-09-30",
-  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
-  "syncedRelease": "v0.20.0",
-  "components": {
-    "Text": {"id": "3610:1599", "props": "gidjt8", "variants": {"Type=h1": "o8hopg", "Type=h2": "1xc9aq5", "Type=h3": "12pai6x", "Type=body": "r35fa3", "Type=caption": "1bvqufg"}},
-    "text-color": {"id": "3615:1622", "props": "1lnqwst", "variants": {"Color=Primary": "f14h0i", "Color=Secondary": "1l2eg16", "Color=Brand": "1qo2zfu", "Color=Caution": "1oafu9u", "Color=Success": "1ivwh72"}},
-    "input-value": {"id": "3777:960", "props": "g1uold", "variants": {"Size=Regular, Status=Placeholder, Type=Text": "1mqp0za", "Size=Regular, Status=Edit, Type=Text": "1ciuj91", "Size=Regular, Status=Inputed, Type=Text": "v8jsw8", "Size=Regular, Status=Disabled, Type=Text": "16nvz3u", "Size=Regular, Status=Placeholder, Type=Number": "jm2v9", "Size=Regular, Status=Edit, Type=Number": "1xx7ktg", "Size=Regular, Status=Inputed, Type=Number": "1kv2n13", "Size=Regular, Status=Disabled, Type=Number": "j211l5"}},
-    "form-label": {"id": "3778:1442", "props": "gxicjz", "variants": {"Size=default": "15yht4k"}},
-    "form-validation-message": {"id": "3778:1452", "props": "5hu9bu", "variants": {"Type=Normal": "1dlrpp3", "Type=Error": "14duv0h", "Type=Applied": "9lbn4a"}},
-    "button-label-color": {"id": "3681:2232", "props": "lr899", "variants": {"Color=Inverse, State=Default": "5itkff", "Color=Inverse, State=Hover": "1xwxh7t", "Color=Inverse, State=Disabled": "jqa7u9", "Color=Basic, State=Default": "7j0cih", "Color=Basic, State=Hover": "5b3ndj", "Color=Basic, State=Disabled": "1aaiusf", "Color=Brand, State=Default": "a2ba2r", "Color=Brand, State=Hover": "v5irb5", "Color=Brand, State=Disabled": "1kx878p", "Color=Caution, State=Default": "ynx78b", "Color=Caution, State=Hover": "1mzlqxl", "Color=Caution, State=Disabled": "14da7ep"}},
-    "Number": {"id": "3617:1761", "props": "h1x0fb", "variants": {"Type=h1": "1j2z1er", "Type=h2": "l0om9b", "Type=body": "1ej5lst", "Type=caption": "1gzz8xu"}},
-    "number-color": {"id": "3617:1770", "props": "1q1g8nm", "variants": {"Color=Plus": "16er7wo", "Color=Minus": "ffzum9"}},
-    "Container": {"id": "3615:1663", "props": "1xip5x5", "variants": {"Style=base, Radius=True": "usksm8", "Style=base, Radius=False": "1ptuhwo", "Style=primary, Radius=True": "d1zo6v", "Style=primary, Radius=False": "nwiigv", "Style=Secondary, Radius=True": "uljrhj", "Style=Secondary, Radius=False": "opeawf"}},
-    "CalendarPanel": {"id": "3817:2848", "props": "3hnx9", "variants": {"CalendarPanel": "iagcv5"}},
-    "input-background": {"id": "3778:1078", "props": "1lvd5pd", "variants": {"Style=default": "bayauf", "Style=disabled": "1ytxl0j", "Style=error": "dm01vh"}},
-    "DropArea": {"id": "3617:1861", "props": "tp4rve", "variants": {"Style=primary, Redius=True": "1htsq0b", "Style=primary, Redius=False": "r7yjn7"}},
-    "Button": {"id": "3616:1721", "props": "v6p55n", "variants": {"Size=Medium, Type=Primary, Status=Default": "ngx8yh", "Size=Small, Type=Primary, Status=Default": "tjvxlu", "Size=Medium, Type=Secondary, Status=Default": "1b7lcsr", "Size=Medium, Type=Tertiary, Status=Default": "pq29x5", "Size=Medium, Type=Quaternary, Status=Default": "pgflhf", "Size=Small, Type=Secondary, Status=Default": "1jrb5w4", "Size=Small, Type=Tertiary, Status=Default": "eu48qq", "Size=Small, Type=Quaternary, Status=Default": "5ux8ek", "Size=Medium, Type=Caution, Status=Default": "cvoki6", "Size=Small, Type=Caution, Status=Default": "8lv6wn", "Size=Medium, Type=Primary, Status=Hover": "18r0df0", "Size=Small, Type=Primary, Status=Hover": "1h8osk5", "Size=Medium, Type=Secondary, Status=Hover": "ltkdwd", "Size=Medium, Type=Tertiary, Status=Hover": "1q4dujv", "Size=Medium, Type=Quaternary, Status=Hover": "18z1f2m", "Size=Small, Type=Secondary, Status=Hover": "l77ppi", "Size=Small, Type=Tertiary, Status=Hover": "194cnzo", "Size=Small, Type=Quaternary, Status=Hover": "54mvjr", "Size=Medium, Type=Caution, Status=Hover": "t9f6n4", "Size=Small, Type=Caution, Status=Hover": "aajih", "Size=Medium, Type=Primary, Status=Disabled": "10p1n67", "Size=Small, Type=Primary, Status=Disabled": "1l385fc", "Size=Medium, Type=Secondary, Status=Disabled": "4js56q", "Size=Medium, Type=Tertiary, Status=Disabled": "gxc0jy", "Size=Medium, Type=Quaternary, Status=Disabled": "1wbotuu", "Size=Small, Type=Secondary, Status=Disabled": "185wl3f", "Size=Small, Type=Tertiary, Status=Disabled": "1rt8253", "Size=Small, Type=Quaternary, Status=Disabled": "1tckf8v", "Size=Medium, Type=Caution, Status=Disabled": "62gtzl", "Size=Small, Type=Caution, Status=Disabled": "iidsl6"}},
-    "Pager": {"id": "3975:4071", "props": "3hnx9", "variants": {"Pager": "1omg009"}},
-    "icon-color": {"id": "3681:2116", "props": "1kmjspq", "variants": {"color=Inverse, State=Default": "e72k3u", "color=Inverse, State=Hover": "1rtnc2w", "color=Inverse, State=Disabled": "4e6ukw", "color=Primary, State=Default": "ufmgbe", "color=Secondary, State=Default": "zwz7j6", "color=Primary, State=Hover": "15zxgoo", "color=Secondary, State=Hover": "6t88xs", "color=Primary, State=Disabled": "1h0338g", "color=Secondary, State=Disabled": "13osgmg", "color=Brand, State=Default": "8cs9c2", "color=Brand, State=Hover": "4z999c", "color=Brand, State=Disabled": "14ri3zc", "color=Caution, State=Default": "138p50a", "color=Success, State=Default": "ao99t2", "color=Caution, State=Hover": "1wpnxvc", "color=Success, State=Hover": "tswnpg", "color=Caution, State=Disabled": "1t16wqo", "color=Success, State=Disabled": "xrk0jw"}},
-    "icon": {"id": "3681:2161", "props": "l3khsp", "variants": {"Size=Small": "1tm1q15", "Size=Medium": "1bckomk", "Size=Large": "miwtzy", "Size=XLarge": "5j4gh5"}},
-    "button-label": {"id": "3681:2244", "props": "44pcrv", "variants": {"Size=Small": "1bz8p7q", "Size=Medium": "rm94c3"}},
-    "button-label-set": {"id": "3681:2297", "props": "10nunlc", "variants": {"Size=Small, Color=Basic, State=Default": "fua9xc", "Size=Medium, Color=Basic, State=Default": "h5lrh", "Size=Small, Color=Basic, State=Hover": "1i79hva", "Size=Medium, Color=Basic, State=Hover": "insm2r", "Size=Small, Color=Basic, State=Disabled": "ko0c4e", "Size=Medium, Color=Basic, State=Disabled": "1usr70r", "Size=Small, Color=Inverse, State=Default": "2786vq", "Size=Medium, Color=Inverse, State=Default": "10h3y2r", "Size=Small, Color=Inverse, State=Hover": "100qoss", "Size=Medium, Color=Inverse, State=Hover": "1s4w4wp", "Size=Small, Color=Inverse, State=Disabled": "un3g50", "Size=Medium, Color=Inverse, State=Disabled": "1ducra9", "Size=Small, Color=Brand, State=Default": "1cvblii", "Size=Medium, Color=Brand, State=Default": "14lsoqf", "Size=Small, Color=Brand, State=Hover": "11k5aw0", "Size=Medium, Color=Brand, State=Hover": "19wa43x", "Size=Small, Color=Brand, State=Disabled": "x9m8q0", "Size=Medium, Color=Brand, State=Disabled": "1rwv439", "Size=Small, Color=Caution, State=Default": "18ov84i", "Size=Medium, Color=Caution, State=Default": "11f9gdr", "Size=Small, Color=Caution, State=Hover": "117htug", "Size=Medium, Color=Caution, State=Hover": "bxmcxx", "Size=Small, Color=Caution, State=Disabled": "1pyken4", "Size=Medium, Color=Caution, State=Disabled": "fpngdp"}},
-    "IncrementalSearch": {"id": "3778:1009", "props": "jnoa8j", "variants": {"Status=Default": "t4r3s8", "Status=Edit": "1iui86z", "Status=Inputed": "1pwupcy", "Status=Disabled": "yzn8hx", "Status=Error": "1vw1pk5"}},
-    "Cell": {"id": "3863:3753", "props": "383uby", "variants": {"Status=Head": "1sytvb", "Status=Default": "1onmc5z", "Status=Hover": "1gpqhpj", "Status=Edit": "7c9u5t"}},
-    "InputText": {"id": "3778:1272", "props": "u7eeeo", "variants": {"Status=Default": "bohpyi", "Status=Edit": "qatd8t", "Status=Inputed": "1v0kbnq", "Status=Disabled": "yzn8hx", "Status=Error": "16uk3w2"}},
-    "TextArea": {"id": "3980:4178", "props": "u7eeeo", "variants": {"Status=Default": "l70cs4", "Status=Edit": "5ww2ai", "Status=Inputed": "1cx6f3n", "Status=Disabled": "pud2wi", "Status=Error": "wuswsf"}},
-    "FormSet": {"id": "3784:3058", "props": "mwsj8k", "variants": {"FormSet": "flglaz"}},
-    "Select": {"id": "3778:1172", "props": "v46prj", "variants": {"Status=Unset": "1u558wc", "Status=Default": "fmgt9m", "Status=Edit": "jjmu5x", "Status=Disabled": "ucao1i"}},
-    "DateSelect": {"id": "3792:2086", "props": "rn0vum", "variants": {"Status=Default": "udap6j", "Status=Unset": "t86iml", "Status=Disabled": "1gawnxl"}},
-    "InputTime": {"id": "3792:2717", "props": "rn0vum", "variants": {"Status=Default": "tft0dr", "Status=Unset": "1vywppp", "Status=Disabled": "1w8os7g"}},
-    "ListItem": {"id": "3786:2503", "props": "p89bkq", "variants": {"Status=Default": "xxbu39", "Status=Hover": "1c7s31t", "Status=Disabled": "a774pu"}},
-    "FixedValue": {"id": "3819:3908", "props": "1b3tfw8", "variants": {"Status=Default": "1iw9s0"}},
-    "DateCell": {"id": "3792:1540", "props": "1dmmkdn", "variants": {"Status=Default": "f98iuc", "Status=Hover": "1j2f1ab", "Status=Selected": "1xzc1j1", "Status=Disabled": "e3dd8q"}},
-    "CalendarSet": {"id": "3792:1878", "props": "3hnx9", "variants": {"CalendarSet": "1035iw5"}},
-    "Divider": {"id": "3820:4436", "props": "otrerf", "variants": {"Direction=Vertical": "18ao3ff", "Direction=Horizontal": "rsi1lm"}},
-    "Record": {"id": "3868:5525", "props": "rlopsk", "variants": {"Status=Header": "1s4p4bo", "Status=Default": "xt39eu", "Status=Selected": "153zs4s"}},
-    "fade-background": {"id": "3870:5935", "props": "otrerf", "variants": {"Direction=Vertical": "119hs5f", "Direction=Horizontal": "17st9w3"}},
-    "CheckBox": {"id": "3877:6186", "props": "1v6oaij", "variants": {"Checked=False, Status=Default": "1jy4esy", "Checked=False, Status=Hover": "8d3tfm", "Checked=False, Status=Disabled": "1tgzho7", "Checked=True, Status=Default": "14l8rn6", "Checked=True, Status=Hover": "1cvszgi", "Checked=True, Status=Disabled": "1j5du47", "Checked=Indeterminate, Status=Default": "1bfh1g8", "Checked=Indeterminate, Status=Hover": "1gkv560", "Checked=Indeterminate, Status=Disabled": "1xuq5el"}},
-    "RadioButton": {"id": "3877:6377", "props": "1brv2f6", "variants": {"Checked=False, Status=Default": "1a8y061", "Checked=False, Status=Hover": "bmtze1", "Checked=False, Status=Disabled": "tfq37i", "Checked=True, Status=Default": "lple6j", "Checked=True, Status=Hover": "121qdln", "Checked=True, Status=Disabled": "1iaum28"}},
-    "SuggestionPanel": {"id": "3905:1359", "props": "1vmw39w", "variants": {"Type=Default": "fs707k", "Type=NoData": "103iy5k"}},
-    "SelectPanel": {"id": "3977:4117", "props": "7jo3n1", "variants": {"Type=Default": "udjf7m"}},
-    "SortButton": {"id": "3906:1620", "props": "1v2y121", "variants": {"Type=Desc, Selected=False, Status=Default": "pc62mx", "Type=Desc, Selected=False, Status=Hover": "9qdsmn", "Type=Asc, Selected=False, Status=Default": "1bfnozf", "Type=Asc, Selected=False, Status=Hover": "15c9lht", "Type=Desc, Selected=True, Status=Default": "19onv85", "Type=Desc, Selected=True, Status=Hover": "oy90mj", "Type=Asc, Selected=True, Status=Default": "1sdw3qv", "Type=Asc, Selected=True, Status=Hover": "2f5wct"}},
-    "TrailingIconButton": {"id": "3929:3129", "props": "1uwabgs", "variants": {"Type=arrow-down, Status=Default": "vuhayc", "Type=arrow-up, Status=Default": "t6pfbp", "Type=arrow-down, Status=Hover": "jhpkui", "Type=arrow-up, Status=Hover": "82i6az", "Type=Info, Status=Default": "1weo46t", "Type=Help, Status=Default": "1pfqq96", "Type=Info, Status=Hover": "1j7xm8b", "Type=Help, Status=Hover": "e8spa8"}},
-    "CellActionButton": {"id": "3970:3790", "props": "670txu", "variants": {"Type=Edit, Status=Default": "ty71jk", "Type=Undo, Status=Default": "t4c5dn", "Type=Submit, Status=Default": "1e7vz9x", "Type=Edit, Status=Hover": "scnuau", "Type=Undo, Status=Hover": "1i3it01", "Type=Submit, Status=Hover": "vlcvrm", "Type=Edit, Status=Disabled": "1yly5om", "Type=Undo, Status=Disabled": "tqc5rl", "Type=Submit, Status=Disabled": "15dn3hh"}},
-    "TableBar": {"id": "3975:4113", "props": "nphm75", "variants": {"Type=Default": "mo0ehf"}}
+ "takenAt": "2026-09-30",
+ "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
+ "syncedRelease": "v0.20.1",
+ "components": {
+  "Text": {
+   "id": "3610:1599",
+   "props": "gidjt8",
+   "variants": {
+    "Type=h1": "o8hopg",
+    "Type=h2": "1xc9aq5",
+    "Type=h3": "12pai6x",
+    "Type=body": "r35fa3",
+    "Type=caption": "1bvqufg"
+   }
   },
-  "variables": {"Color:Foreground/Basic/Primary/Default":"1unj4z8","Color:Foreground/Basic/Primary/Hover":"1ufziyj","Color:Foreground/Basic/Primary/Disabled":"a7cs3f","Color:Foreground/Basic/Secondary/Default":"160shaz","Color:Foreground/Basic/Secondary/Hover":"a7cs3f","Color:Foreground/Basic/Secondary/Disabled":"1df14uz","Color:Foreground/Basic/Inverse/Default":"feluxg","Color:Foreground/Basic/Inverse/Hover":"hllfnf","Color:Foreground/Basic/Inverse/Disabled":"1df14uz","Color:Foreground/Brand/Primary/Default":"1bz8n3y","Color:Foreground/Brand/Primary/Hover":"14m1bwl","Color:Foreground/Brand/Primary/Disabled":"1df14uz","Color:Foreground/Brand/Inverse/Default":"1iz2v5q","Color:Foreground/Brand/Inverse/Hover":"1sx7r51","Color:Foreground/Brand/Inverse/Disabled":"1df14uz","Color:Background/Basic/Primary/Default":"12rsme3","Color:Background/Basic/Primary/Hover":"1kt9sez","Color:Background/Basic/Primary/Disabled":"1bcfj35","Color:Background/Basic/Secondary/Default":"1kt9sez","Color:Background/Basic/Secondary/Hover":"hllfnf","Color:Background/Basic/Secondary/Disabled":"1bcfj35","Color:Background/Basic/Inverse/Default":"y3nbh7","Color:Background/Basic/Inverse/Hover":"r8b66z","Color:Background/Basic/Inverse/Disabled":"1bcfj35","Color:Background/Brand/Primary/Default":"1bz8n3y","Color:Background/Brand/Primary/Hover":"14m1bwl","Color:Background/Brand/Primary/Disabled":"1bcfj35","Color:Background/Caution/Primary/Default":"5dkbaz","Color:Background/Caution/Primary/Hover":"fbfkaj","Color:Background/Caution/Primary/Disabled":"1bcfj35","Color:Background/Caution/Secondary/Default":"u88frv","Color:Background/Caution/Secondary/Hover":"p9ata3","Color:Background/Caution/Secondary/Disabled":"1bcfj35","Color:Foreground/Caution/Primary/Default":"5dkbaz","Color:Foreground/Caution/Primary/Hover":"fbfkaj","Color:Foreground/Caution/Primary/Disabled":"1df14uz","Color:Border/Basic/Primary/Default":"mtzclz","Color:Border/Basic/Primary/Hover":"117v81j","Color:Border/Basic/Primary/Disabled":"1bcfj35","Color:Border/Basic/Secondary/Default":"1epfsaf","Color:Border/Basic/Secondary/Hover":"1t3bnpz","Color:Border/Basic/Secondary/Disabled":"1bcfj35","Color:Border/Brand/Primary/Default":"11ok6sl","Color:Border/Brand/Primary/Hover":"1favyyt","Color:Border/Brand/Primary/Disabled":"1bcfj35","Color:Border/Brand/Secondary/Default":"1vuow91","Color:Border/Brand/Secondary/Hover":"afwmg5","Color:Border/Brand/Secondary/Disabled":"1bcfj35","Color:Border/Caution/Primary/Default":"5dkbaz","Color:Border/Caution/Primary/Hover":"achxsr","Color:Border/Caution/Primary/Disabled":"1bcfj35","Color:Background/Brand/Secondary/Default":"1sx7r51","Color:Background/Brand/Secondary/Hover":"1favyyt","Color:Background/Brand/Secondary/Disabled":"1bcfj35","Color:Background/Brand/Tertiary/Default":"12rsme3","Color:Background/Brand/Tertiary/Hover":"1sx7r51","Color:Background/Brand/Tertiary/Disabled":"1bcfj35","Color:Background/Caution/Tertiary/Default":"12rsme3","Color:Background/Caution/Tertiary/Hover":"3td5zo","Color:Background/Caution/Tertiary/Disabled":"1bcfj35","Color:Foreground/Success/Primary/Default":"felo6f","Color:Foreground/Success/Primary/Hover":"186df1j","Color:Foreground/Success/Primary/Disabled":"1df14uz","Color:Background/Success/Primary/Default":"felo6f","Color:Background/Success/Primary/Hover":"186df1j","Color:Background/Success/Primary/Disabled":"1bcfj35","Color:Background/Success/Secondary/Default":"gawzd3","Color:Background/Success/Secondary/Hover":"1x13xj","Color:Background/Success/Secondary/Disabled":"1bcfj35","Color:Background/Success/Tertiary/Default":"12rsme3","Color:Background/Success/Tertiary/Hover":"1hj0e0w","Color:Background/Success/Tertiary/Disabled":"1bcfj35","Color:Border/Success/Primary/Default":"felo6f","Color:Border/Success/Primary/Hover":"tshjlz","Color:Border/Success/Primary/Disabled":"1bcfj35","Spacing:Min":"q2mlfv","Spacing:Small":"occsq","Spacing:Medium":"occsr","Spacing:Large":"occst","Spacing:XLarge":"occsx","GlobalBrand:color/tolv-navy/50":"2793gp","GlobalBrand:color/tolv-navy/100":"19hkjet","GlobalBrand:color/tolv-navy/200":"1ca0j1w","GlobalBrand:color/tolv-navy/300":"boa4wr","GlobalBrand:color/tolv-navy/400":"gg2ipn","GlobalBrand:color/tolv-navy/500":"p4gdaw","GlobalBrand:color/tolv-navy/600":"e2el46","GlobalBrand:color/tolv-navy/700":"d960s3","GlobalBrand:color/tolv-navy/800":"voxaqd","GlobalBrand:color/tolv-navy/900":"utzc0l","GlobalBrand:color/tolv-navy/950":"xdqnvj","Radius:None":"ap6uto","Radius:Min":"1bou3uv","Radius:Small":"1bou3q4","Radius:Medium":"1bou3jj","Radius:Large":"b32p82","Radius:Full":"ap0tzj","BorderWidth:Regular":"c8mxe8","BorderWidth:Bold":"c8mxeb","Opacity:Min":"dgipp9","Opacity:Weaker":"dgippe","Opacity:Weak":"hyh8dr","Opacity:Medium":"hyh8gi","Opacity:Strong":"hyh8j9","Opacity:Stronger":"hyh8kb","Opacity:Max":"ocw7zy","Font:family/Sans":"1pqjshk","Font:family/Mono":"10yytx3","Font:size/Min":"4gu1kw","Font:size/XSmall":"4gu1g5","Font:size/Small":"z4oseo","Font:size/Medium":"4gu19k","Font:size/Large":"4gu1kp","Font:size/XLarge":"5d9qfg","Font:weight/Light":"you922","Font:weight/Medium":"8uc9ur","Font:weight/Bold":"11mt8j","Font:line-height/Min":"3hmtq","Font:line-height/XSmall":"3hmuf","Font:line-height/Small":"3hmuj","Font:line-height/Medium":"3hmun","Font:line-height/Large":"3hmve","Font:line-height/XLarge":"3hmwd","Font:letter-spacing/Default":"1kjolva","Breakpoint:Small":"170urxf","Breakpoint:Medium":"170urro","Breakpoint:Large":"170urqu","Breakpoint:XLarge":"1y711uh"}
+  "text-color": {
+   "id": "3615:1622",
+   "props": "1lnqwst",
+   "variants": {
+    "Color=Primary": "f14h0i",
+    "Color=Secondary": "1l2eg16",
+    "Color=Brand": "1qo2zfu",
+    "Color=Caution": "1oafu9u",
+    "Color=Success": "1ivwh72"
+   }
+  },
+  "input-value": {
+   "id": "3777:960",
+   "props": "g1uold",
+   "variants": {
+    "Size=Regular, Status=Placeholder, Type=Text": "1mqp0za",
+    "Size=Regular, Status=Edit, Type=Text": "1ciuj91",
+    "Size=Regular, Status=Inputed, Type=Text": "v8jsw8",
+    "Size=Regular, Status=Disabled, Type=Text": "16nvz3u",
+    "Size=Regular, Status=Placeholder, Type=Number": "jm2v9",
+    "Size=Regular, Status=Edit, Type=Number": "1xx7ktg",
+    "Size=Regular, Status=Inputed, Type=Number": "1kv2n13",
+    "Size=Regular, Status=Disabled, Type=Number": "j211l5"
+   }
+  },
+  "form-label": {
+   "id": "3778:1442",
+   "props": "gxicjz",
+   "variants": {
+    "Size=default": "15yht4k"
+   }
+  },
+  "form-validation-message": {
+   "id": "3778:1452",
+   "props": "5hu9bu",
+   "variants": {
+    "Type=Normal": "1dlrpp3",
+    "Type=Error": "14duv0h",
+    "Type=Applied": "9lbn4a"
+   }
+  },
+  "button-label-color": {
+   "id": "3681:2232",
+   "props": "lr899",
+   "variants": {
+    "Color=Inverse, State=Default": "5itkff",
+    "Color=Inverse, State=Hover": "1xwxh7t",
+    "Color=Inverse, State=Disabled": "jqa7u9",
+    "Color=Basic, State=Default": "7j0cih",
+    "Color=Basic, State=Hover": "5b3ndj",
+    "Color=Basic, State=Disabled": "1aaiusf",
+    "Color=Brand, State=Default": "a2ba2r",
+    "Color=Brand, State=Hover": "v5irb5",
+    "Color=Brand, State=Disabled": "1kx878p",
+    "Color=Caution, State=Default": "ynx78b",
+    "Color=Caution, State=Hover": "1mzlqxl",
+    "Color=Caution, State=Disabled": "14da7ep"
+   }
+  },
+  "Number": {
+   "id": "3617:1761",
+   "props": "h1x0fb",
+   "variants": {
+    "Type=h1": "1j2z1er",
+    "Type=h2": "l0om9b",
+    "Type=body": "1ej5lst",
+    "Type=caption": "1gzz8xu"
+   }
+  },
+  "number-color": {
+   "id": "3617:1770",
+   "props": "1q1g8nm",
+   "variants": {
+    "Color=Plus": "16er7wo",
+    "Color=Minus": "ffzum9"
+   }
+  },
+  "Container": {
+   "id": "3615:1663",
+   "props": "1xip5x5",
+   "variants": {
+    "Style=base, Radius=True": "usksm8",
+    "Style=base, Radius=False": "1ptuhwo",
+    "Style=primary, Radius=True": "d1zo6v",
+    "Style=primary, Radius=False": "nwiigv",
+    "Style=Secondary, Radius=True": "uljrhj",
+    "Style=Secondary, Radius=False": "opeawf"
+   }
+  },
+  "CalendarPanel": {
+   "id": "3817:2848",
+   "props": "3hnx9",
+   "variants": {
+    "CalendarPanel": "iagcv5"
+   }
+  },
+  "input-background": {
+   "id": "3778:1078",
+   "props": "1lvd5pd",
+   "variants": {
+    "Style=default": "bayauf",
+    "Style=disabled": "1ytxl0j",
+    "Style=error": "dm01vh"
+   }
+  },
+  "DropArea": {
+   "id": "3617:1861",
+   "props": "tp4rve",
+   "variants": {
+    "Style=primary, Redius=True": "1htsq0b",
+    "Style=primary, Redius=False": "r7yjn7"
+   }
+  },
+  "Button": {
+   "id": "3616:1721",
+   "props": "v6p55n",
+   "variants": {
+    "Size=Medium, Type=Primary, Status=Default": "ngx8yh",
+    "Size=Small, Type=Primary, Status=Default": "tjvxlu",
+    "Size=Medium, Type=Secondary, Status=Default": "1b7lcsr",
+    "Size=Medium, Type=Tertiary, Status=Default": "pq29x5",
+    "Size=Medium, Type=Quaternary, Status=Default": "pgflhf",
+    "Size=Small, Type=Secondary, Status=Default": "1jrb5w4",
+    "Size=Small, Type=Tertiary, Status=Default": "eu48qq",
+    "Size=Small, Type=Quaternary, Status=Default": "5ux8ek",
+    "Size=Medium, Type=Caution, Status=Default": "cvoki6",
+    "Size=Small, Type=Caution, Status=Default": "8lv6wn",
+    "Size=Medium, Type=Primary, Status=Hover": "18r0df0",
+    "Size=Small, Type=Primary, Status=Hover": "1h8osk5",
+    "Size=Medium, Type=Secondary, Status=Hover": "ltkdwd",
+    "Size=Medium, Type=Tertiary, Status=Hover": "1q4dujv",
+    "Size=Medium, Type=Quaternary, Status=Hover": "18z1f2m",
+    "Size=Small, Type=Secondary, Status=Hover": "l77ppi",
+    "Size=Small, Type=Tertiary, Status=Hover": "194cnzo",
+    "Size=Small, Type=Quaternary, Status=Hover": "54mvjr",
+    "Size=Medium, Type=Caution, Status=Hover": "t9f6n4",
+    "Size=Small, Type=Caution, Status=Hover": "aajih",
+    "Size=Medium, Type=Primary, Status=Disabled": "10p1n67",
+    "Size=Small, Type=Primary, Status=Disabled": "1l385fc",
+    "Size=Medium, Type=Secondary, Status=Disabled": "4js56q",
+    "Size=Medium, Type=Tertiary, Status=Disabled": "gxc0jy",
+    "Size=Medium, Type=Quaternary, Status=Disabled": "1wbotuu",
+    "Size=Small, Type=Secondary, Status=Disabled": "185wl3f",
+    "Size=Small, Type=Tertiary, Status=Disabled": "1rt8253",
+    "Size=Small, Type=Quaternary, Status=Disabled": "1tckf8v",
+    "Size=Medium, Type=Caution, Status=Disabled": "62gtzl",
+    "Size=Small, Type=Caution, Status=Disabled": "iidsl6"
+   }
+  },
+  "Pager": {
+   "id": "3975:4071",
+   "props": "3hnx9",
+   "variants": {
+    "Pager": "1omg009"
+   }
+  },
+  "icon-color": {
+   "id": "3681:2116",
+   "props": "1kmjspq",
+   "variants": {
+    "color=Inverse, State=Default": "e72k3u",
+    "color=Inverse, State=Hover": "1rtnc2w",
+    "color=Inverse, State=Disabled": "4e6ukw",
+    "color=Primary, State=Default": "ufmgbe",
+    "color=Secondary, State=Default": "zwz7j6",
+    "color=Primary, State=Hover": "15zxgoo",
+    "color=Secondary, State=Hover": "6t88xs",
+    "color=Primary, State=Disabled": "1h0338g",
+    "color=Secondary, State=Disabled": "13osgmg",
+    "color=Brand, State=Default": "8cs9c2",
+    "color=Brand, State=Hover": "4z999c",
+    "color=Brand, State=Disabled": "14ri3zc",
+    "color=Caution, State=Default": "138p50a",
+    "color=Success, State=Default": "ao99t2",
+    "color=Caution, State=Hover": "1wpnxvc",
+    "color=Success, State=Hover": "tswnpg",
+    "color=Caution, State=Disabled": "1t16wqo",
+    "color=Success, State=Disabled": "xrk0jw"
+   }
+  },
+  "icon": {
+   "id": "3681:2161",
+   "props": "l3khsp",
+   "variants": {
+    "Size=Small": "1tm1q15",
+    "Size=Medium": "1bckomk",
+    "Size=Large": "miwtzy",
+    "Size=XLarge": "5j4gh5"
+   }
+  },
+  "button-label": {
+   "id": "3681:2244",
+   "props": "44pcrv",
+   "variants": {
+    "Size=Small": "1bz8p7q",
+    "Size=Medium": "rm94c3"
+   }
+  },
+  "button-label-set": {
+   "id": "3681:2297",
+   "props": "10nunlc",
+   "variants": {
+    "Size=Small, Color=Basic, State=Default": "fua9xc",
+    "Size=Medium, Color=Basic, State=Default": "h5lrh",
+    "Size=Small, Color=Basic, State=Hover": "1i79hva",
+    "Size=Medium, Color=Basic, State=Hover": "insm2r",
+    "Size=Small, Color=Basic, State=Disabled": "ko0c4e",
+    "Size=Medium, Color=Basic, State=Disabled": "1usr70r",
+    "Size=Small, Color=Inverse, State=Default": "2786vq",
+    "Size=Medium, Color=Inverse, State=Default": "10h3y2r",
+    "Size=Small, Color=Inverse, State=Hover": "100qoss",
+    "Size=Medium, Color=Inverse, State=Hover": "1s4w4wp",
+    "Size=Small, Color=Inverse, State=Disabled": "un3g50",
+    "Size=Medium, Color=Inverse, State=Disabled": "1ducra9",
+    "Size=Small, Color=Brand, State=Default": "1cvblii",
+    "Size=Medium, Color=Brand, State=Default": "14lsoqf",
+    "Size=Small, Color=Brand, State=Hover": "11k5aw0",
+    "Size=Medium, Color=Brand, State=Hover": "19wa43x",
+    "Size=Small, Color=Brand, State=Disabled": "x9m8q0",
+    "Size=Medium, Color=Brand, State=Disabled": "1rwv439",
+    "Size=Small, Color=Caution, State=Default": "18ov84i",
+    "Size=Medium, Color=Caution, State=Default": "11f9gdr",
+    "Size=Small, Color=Caution, State=Hover": "117htug",
+    "Size=Medium, Color=Caution, State=Hover": "bxmcxx",
+    "Size=Small, Color=Caution, State=Disabled": "1pyken4",
+    "Size=Medium, Color=Caution, State=Disabled": "fpngdp"
+   }
+  },
+  "IncrementalSearch": {
+   "id": "3778:1009",
+   "props": "jnoa8j",
+   "variants": {
+    "Status=Default": "t4r3s8",
+    "Status=Edit": "1iui86z",
+    "Status=Inputed": "1pwupcy",
+    "Status=Disabled": "yzn8hx",
+    "Status=Error": "1vw1pk5"
+   }
+  },
+  "Cell": {
+   "id": "3863:3753",
+   "props": "383uby",
+   "variants": {
+    "Status=Head": "1sytvb",
+    "Status=Default": "1onmc5z",
+    "Status=Hover": "1gpqhpj",
+    "Status=Edit": "7c9u5t"
+   }
+  },
+  "InputText": {
+   "id": "3778:1272",
+   "props": "u7eeeo",
+   "variants": {
+    "Status=Default": "bohpyi",
+    "Status=Edit": "qatd8t",
+    "Status=Inputed": "1v0kbnq",
+    "Status=Disabled": "yzn8hx",
+    "Status=Error": "16uk3w2"
+   }
+  },
+  "TextArea": {
+   "id": "3980:4178",
+   "props": "u7eeeo",
+   "variants": {
+    "Status=Default": "l70cs4",
+    "Status=Edit": "5ww2ai",
+    "Status=Inputed": "1cx6f3n",
+    "Status=Disabled": "pud2wi",
+    "Status=Error": "wuswsf"
+   }
+  },
+  "FormSet": {
+   "id": "3784:3058",
+   "props": "mwsj8k",
+   "variants": {
+    "FormSet": "flglaz"
+   }
+  },
+  "Select": {
+   "id": "3778:1172",
+   "props": "v46prj",
+   "variants": {
+    "Status=Unset": "1u558wc",
+    "Status=Default": "fmgt9m",
+    "Status=Edit": "jjmu5x",
+    "Status=Disabled": "ucao1i"
+   }
+  },
+  "DateSelect": {
+   "id": "3792:2086",
+   "props": "rn0vum",
+   "variants": {
+    "Status=Default": "udap6j",
+    "Status=Unset": "t86iml",
+    "Status=Disabled": "1gawnxl"
+   }
+  },
+  "InputTime": {
+   "id": "3792:2717",
+   "props": "rn0vum",
+   "variants": {
+    "Status=Default": "tft0dr",
+    "Status=Unset": "1vywppp",
+    "Status=Disabled": "1w8os7g"
+   }
+  },
+  "ListItem": {
+   "id": "3786:2503",
+   "props": "p89bkq",
+   "variants": {
+    "Status=Default": "xxbu39",
+    "Status=Hover": "1c7s31t",
+    "Status=Disabled": "a774pu"
+   }
+  },
+  "FixedValue": {
+   "id": "3819:3908",
+   "props": "1b3tfw8",
+   "variants": {
+    "Status=Default": "1iw9s0"
+   }
+  },
+  "DateCell": {
+   "id": "3792:1540",
+   "props": "1dmmkdn",
+   "variants": {
+    "Status=Default": "f98iuc",
+    "Status=Hover": "1j2f1ab",
+    "Status=Selected": "1xzc1j1",
+    "Status=Disabled": "e3dd8q"
+   }
+  },
+  "CalendarSet": {
+   "id": "3792:1878",
+   "props": "3hnx9",
+   "variants": {
+    "CalendarSet": "1035iw5"
+   }
+  },
+  "Divider": {
+   "id": "3820:4436",
+   "props": "otrerf",
+   "variants": {
+    "Direction=Vertical": "18ao3ff",
+    "Direction=Horizontal": "rsi1lm"
+   }
+  },
+  "Record": {
+   "id": "3868:5525",
+   "props": "rlopsk",
+   "variants": {
+    "Status=Header": "1s4p4bo",
+    "Status=Default": "xt39eu",
+    "Status=Selected": "153zs4s"
+   }
+  },
+  "fade-background": {
+   "id": "3870:5935",
+   "props": "otrerf",
+   "variants": {
+    "Direction=Vertical": "119hs5f",
+    "Direction=Horizontal": "17st9w3"
+   }
+  },
+  "CheckBox": {
+   "id": "3877:6186",
+   "props": "1v6oaij",
+   "variants": {
+    "Checked=False, Status=Default": "1jy4esy",
+    "Checked=False, Status=Hover": "8d3tfm",
+    "Checked=False, Status=Disabled": "1tgzho7",
+    "Checked=True, Status=Default": "14l8rn6",
+    "Checked=True, Status=Hover": "1cvszgi",
+    "Checked=True, Status=Disabled": "1j5du47",
+    "Checked=Indeterminate, Status=Default": "1bfh1g8",
+    "Checked=Indeterminate, Status=Hover": "1gkv560",
+    "Checked=Indeterminate, Status=Disabled": "1xuq5el"
+   }
+  },
+  "RadioButton": {
+   "id": "3877:6377",
+   "props": "1brv2f6",
+   "variants": {
+    "Checked=False, Status=Default": "1a8y061",
+    "Checked=False, Status=Hover": "bmtze1",
+    "Checked=False, Status=Disabled": "tfq37i",
+    "Checked=True, Status=Default": "lple6j",
+    "Checked=True, Status=Hover": "121qdln",
+    "Checked=True, Status=Disabled": "1iaum28"
+   }
+  },
+  "SuggestionPanel": {
+   "id": "3905:1359",
+   "props": "1vmw39w",
+   "variants": {
+    "Type=Default": "fs707k",
+    "Type=NoData": "103iy5k"
+   }
+  },
+  "SelectPanel": {
+   "id": "3977:4117",
+   "props": "7jo3n1",
+   "variants": {
+    "Type=Default": "udjf7m"
+   }
+  },
+  "SortButton": {
+   "id": "3906:1620",
+   "props": "1v2y121",
+   "variants": {
+    "Type=Desc, Selected=False, Status=Default": "pc62mx",
+    "Type=Desc, Selected=False, Status=Hover": "9qdsmn",
+    "Type=Asc, Selected=False, Status=Default": "1bfnozf",
+    "Type=Asc, Selected=False, Status=Hover": "15c9lht",
+    "Type=Desc, Selected=True, Status=Default": "19onv85",
+    "Type=Desc, Selected=True, Status=Hover": "oy90mj",
+    "Type=Asc, Selected=True, Status=Default": "1sdw3qv",
+    "Type=Asc, Selected=True, Status=Hover": "2f5wct"
+   }
+  },
+  "TrailingIconButton": {
+   "id": "3929:3129",
+   "props": "1uwabgs",
+   "variants": {
+    "Type=arrow-down, Status=Default": "vuhayc",
+    "Type=arrow-up, Status=Default": "t6pfbp",
+    "Type=arrow-down, Status=Hover": "jhpkui",
+    "Type=arrow-up, Status=Hover": "82i6az",
+    "Type=Info, Status=Default": "1weo46t",
+    "Type=Help, Status=Default": "1pfqq96",
+    "Type=Info, Status=Hover": "1j7xm8b",
+    "Type=Help, Status=Hover": "e8spa8"
+   }
+  },
+  "CellActionButton": {
+   "id": "3970:3790",
+   "props": "670txu",
+   "variants": {
+    "Type=Edit, Status=Default": "ty71jk",
+    "Type=Undo, Status=Default": "t4c5dn",
+    "Type=Submit, Status=Default": "1e7vz9x",
+    "Type=Edit, Status=Hover": "scnuau",
+    "Type=Undo, Status=Hover": "1i3it01",
+    "Type=Submit, Status=Hover": "vlcvrm",
+    "Type=Edit, Status=Disabled": "1yly5om",
+    "Type=Undo, Status=Disabled": "tqc5rl",
+    "Type=Submit, Status=Disabled": "15dn3hh"
+   }
+  },
+  "TableBar": {
+   "id": "3975:4113",
+   "props": "nphm75",
+   "variants": {
+    "Type=Default": "mo0ehf"
+   }
+  }
+ },
+ "variables": {
+  "Color:Foreground/Basic/Primary/Default": "1unj4z8",
+  "Color:Foreground/Basic/Primary/Hover": "1ufziyj",
+  "Color:Foreground/Basic/Primary/Disabled": "a7cs3f",
+  "Color:Foreground/Basic/Secondary/Default": "160shaz",
+  "Color:Foreground/Basic/Secondary/Hover": "a7cs3f",
+  "Color:Foreground/Basic/Secondary/Disabled": "1df14uz",
+  "Color:Foreground/Basic/Inverse/Default": "feluxg",
+  "Color:Foreground/Basic/Inverse/Hover": "hllfnf",
+  "Color:Foreground/Basic/Inverse/Disabled": "1df14uz",
+  "Color:Foreground/Brand/Primary/Default": "1bz8n3y",
+  "Color:Foreground/Brand/Primary/Hover": "14m1bwl",
+  "Color:Foreground/Brand/Primary/Disabled": "1df14uz",
+  "Color:Foreground/Brand/Inverse/Default": "1iz2v5q",
+  "Color:Foreground/Brand/Inverse/Hover": "1sx7r51",
+  "Color:Foreground/Brand/Inverse/Disabled": "1df14uz",
+  "Color:Background/Basic/Primary/Default": "12rsme3",
+  "Color:Background/Basic/Primary/Hover": "1kt9sez",
+  "Color:Background/Basic/Primary/Disabled": "1bcfj35",
+  "Color:Background/Basic/Secondary/Default": "1kt9sez",
+  "Color:Background/Basic/Secondary/Hover": "hllfnf",
+  "Color:Background/Basic/Secondary/Disabled": "1bcfj35",
+  "Color:Background/Basic/Inverse/Default": "y3nbh7",
+  "Color:Background/Basic/Inverse/Hover": "r8b66z",
+  "Color:Background/Basic/Inverse/Disabled": "1bcfj35",
+  "Color:Background/Brand/Primary/Default": "1bz8n3y",
+  "Color:Background/Brand/Primary/Hover": "14m1bwl",
+  "Color:Background/Brand/Primary/Disabled": "1bcfj35",
+  "Color:Background/Caution/Primary/Default": "5dkbaz",
+  "Color:Background/Caution/Primary/Hover": "fbfkaj",
+  "Color:Background/Caution/Primary/Disabled": "1bcfj35",
+  "Color:Background/Caution/Secondary/Default": "u88frv",
+  "Color:Background/Caution/Secondary/Hover": "p9ata3",
+  "Color:Background/Caution/Secondary/Disabled": "1bcfj35",
+  "Color:Foreground/Caution/Primary/Default": "5dkbaz",
+  "Color:Foreground/Caution/Primary/Hover": "fbfkaj",
+  "Color:Foreground/Caution/Primary/Disabled": "1df14uz",
+  "Color:Border/Basic/Primary/Default": "mtzclz",
+  "Color:Border/Basic/Primary/Hover": "117v81j",
+  "Color:Border/Basic/Primary/Disabled": "1bcfj35",
+  "Color:Border/Basic/Secondary/Default": "1epfsaf",
+  "Color:Border/Basic/Secondary/Hover": "1t3bnpz",
+  "Color:Border/Basic/Secondary/Disabled": "1bcfj35",
+  "Color:Border/Brand/Primary/Default": "11ok6sl",
+  "Color:Border/Brand/Primary/Hover": "1favyyt",
+  "Color:Border/Brand/Primary/Disabled": "1bcfj35",
+  "Color:Border/Brand/Secondary/Default": "1vuow91",
+  "Color:Border/Brand/Secondary/Hover": "afwmg5",
+  "Color:Border/Brand/Secondary/Disabled": "1bcfj35",
+  "Color:Border/Caution/Primary/Default": "5dkbaz",
+  "Color:Border/Caution/Primary/Hover": "achxsr",
+  "Color:Border/Caution/Primary/Disabled": "1bcfj35",
+  "Color:Background/Brand/Secondary/Default": "1sx7r51",
+  "Color:Background/Brand/Secondary/Hover": "1favyyt",
+  "Color:Background/Brand/Secondary/Disabled": "1bcfj35",
+  "Color:Background/Brand/Tertiary/Default": "12rsme3",
+  "Color:Background/Brand/Tertiary/Hover": "1sx7r51",
+  "Color:Background/Brand/Tertiary/Disabled": "1bcfj35",
+  "Color:Background/Caution/Tertiary/Default": "12rsme3",
+  "Color:Background/Caution/Tertiary/Hover": "3td5zo",
+  "Color:Background/Caution/Tertiary/Disabled": "1bcfj35",
+  "Color:Foreground/Success/Primary/Default": "felo6f",
+  "Color:Foreground/Success/Primary/Hover": "186df1j",
+  "Color:Foreground/Success/Primary/Disabled": "1df14uz",
+  "Color:Background/Success/Primary/Default": "felo6f",
+  "Color:Background/Success/Primary/Hover": "186df1j",
+  "Color:Background/Success/Primary/Disabled": "1bcfj35",
+  "Color:Background/Success/Secondary/Default": "gawzd3",
+  "Color:Background/Success/Secondary/Hover": "1x13xj",
+  "Color:Background/Success/Secondary/Disabled": "1bcfj35",
+  "Color:Background/Success/Tertiary/Default": "12rsme3",
+  "Color:Background/Success/Tertiary/Hover": "1hj0e0w",
+  "Color:Background/Success/Tertiary/Disabled": "1bcfj35",
+  "Color:Border/Success/Primary/Default": "felo6f",
+  "Color:Border/Success/Primary/Hover": "tshjlz",
+  "Color:Border/Success/Primary/Disabled": "1bcfj35",
+  "Spacing:Min": "q2mlfv",
+  "Spacing:Small": "occsq",
+  "Spacing:Medium": "occsr",
+  "Spacing:Large": "occst",
+  "Spacing:XLarge": "occsx",
+  "GlobalBrand:color/tolv-navy/50": "2793gp",
+  "GlobalBrand:color/tolv-navy/100": "19hkjet",
+  "GlobalBrand:color/tolv-navy/200": "1ca0j1w",
+  "GlobalBrand:color/tolv-navy/300": "boa4wr",
+  "GlobalBrand:color/tolv-navy/400": "gg2ipn",
+  "GlobalBrand:color/tolv-navy/500": "p4gdaw",
+  "GlobalBrand:color/tolv-navy/600": "e2el46",
+  "GlobalBrand:color/tolv-navy/700": "d960s3",
+  "GlobalBrand:color/tolv-navy/800": "voxaqd",
+  "GlobalBrand:color/tolv-navy/900": "utzc0l",
+  "GlobalBrand:color/tolv-navy/950": "xdqnvj",
+  "Radius:None": "ap6uto",
+  "Radius:Min": "1bou3uv",
+  "Radius:Small": "1bou3q4",
+  "Radius:Medium": "1bou3jj",
+  "Radius:Large": "b32p82",
+  "Radius:Full": "ap0tzj",
+  "BorderWidth:Regular": "c8mxe8",
+  "BorderWidth:Bold": "c8mxeb",
+  "Opacity:Min": "dgipp9",
+  "Opacity:Weaker": "dgippe",
+  "Opacity:Weak": "hyh8dr",
+  "Opacity:Medium": "hyh8gi",
+  "Opacity:Strong": "hyh8j9",
+  "Opacity:Stronger": "hyh8kb",
+  "Opacity:Max": "ocw7zy",
+  "Font:family/Sans": "1pqjshk",
+  "Font:family/Mono": "10yytx3",
+  "Font:size/Min": "4gu1kw",
+  "Font:size/XSmall": "4gu1g5",
+  "Font:size/Small": "z4oseo",
+  "Font:size/Medium": "4gu19k",
+  "Font:size/Large": "4gu1kp",
+  "Font:size/XLarge": "5d9qfg",
+  "Font:weight/Light": "you922",
+  "Font:weight/Medium": "8uc9ur",
+  "Font:weight/Bold": "11mt8j",
+  "Font:line-height/Min": "3hmtq",
+  "Font:line-height/XSmall": "3hmuf",
+  "Font:line-height/Small": "3hmuj",
+  "Font:line-height/Medium": "3hmun",
+  "Font:line-height/Large": "3hmve",
+  "Font:line-height/XLarge": "3hmwd",
+  "Font:letter-spacing/Default": "1kjolva",
+  "Breakpoint:Small": "170urxf",
+  "Breakpoint:Medium": "170urro",
+  "Breakpoint:Large": "170urqu",
+  "Breakpoint:XLarge": "1y711uh"
+ },
+ "assets": {
+  "arrow-right": "Style=fill:12pcd2e@24 Style=outline:um31dx@24",
+  "arrow-left": "Style=fill:say9un@24 Style=outline:um31dx@24",
+  "arrow-up": "Style=fill:say9un@24 Style=outline:um31dx@24",
+  "arrow-down": "Style=fill:say9un@24 Style=outline:um31dx@24",
+  "check": "Style=fill:165qb8c@24 Style=outline:1j027cj@24",
+  "close": "Style=fill:nzudjy@24 Style=outline:1er20yb@24",
+  "add": "Style=fill:1gcuvrv@24 Style=outline:10dr89t@24",
+  "search": "Style=fill:1afhb2i@24 Style=outline:uxthbj@24",
+  "error": "Style=fill:1kq7zo4@24 Style=outline:1fpzwn@24",
+  "information": "Style=fill:1vl8j64@24 Style=outline:178eda7@24",
+  "date_edit": "Style=fill:11ol0q1@24 Style=outline:2hskge@24",
+  "time": "Style=fill:1a531cb@24 Style=outline:1q1g9si@24",
+  "stylus": "Style=fill:1h5rg3b@24 Style=outline:1fxa1f2@24",
+  "check_box": "Style=fill:s10ula@24 Style=outline:1wsn12q@24",
+  "view_list": "Style=fill:1nwunz9@24 Style=outline:numfrh@24",
+  "filter_alt": "Style=fill:195dqve@24 Style=outline:1c1397q@24",
+  "article_person": "Style=fill:e2c0lk@24 Style=outline:13ajdtw@24",
+  "assignment": "Style=fill:1byv3s0@24 Style=outline:19n1gfy@24",
+  "sort_asc": "Style=fill:6hced3@24 Style=outline:6hced3@24",
+  "sort_desc": "Style=fill:6hced3@24 Style=outline:6hced3@24",
+  "help": "Style=fill:1m4dari@24 Style=outline:137zaep@24",
+  "undo": "Style=fill:154dgyj@24 Style=outline:154dgyj@24",
+  "print": "Style=fill:tfsnox@24 Style=outline:u5uwb9@24",
+  "language": "Style=fill:q3dqt2@24 Style=outline:q3dqt2@24",
+  "date": "Style=fill:gigpn7@24 Style=outline:1w3415k@24",
+  "tune": "Style=fill:ybujht@24 Style=outline:ybujht@24",
+  "arrow_drop_up": "Style=fill:1ahxnlu@24 Style=outline:1ahxnlu@24",
+  "arrow_drop_down": "Style=fill:7ty4g2@24 Style=outline:7ty4g2@24",
+  "radio_button_unchecked": "Style=fill:fvrdjb@24 Style=outline:fvrdjb@24",
+  "radio_button_checked": "Style=fill:rr70h2@24 Style=outline:rr70h2@24",
+  "check_box_indeterminate": "Style=fill:3l3pvw@24 Style=outline:17l7y00@24",
+  "check_box_blank": "Style=fill:b3wtow@24 Style=outline:b3wtow@24"
+ }
 }
