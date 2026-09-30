@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-09-30",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.24.0",
+ "syncedRelease": "v0.25.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -392,8 +392,8 @@
    "id": "3820:4436",
    "props": "otrerf",
    "variants": {
-    "Direction=Vertical": "18ao3ff",
-    "Direction=Horizontal": "rsi1lm"
+    "Direction=Vertical": "1vt4btu",
+    "Direction=Horizontal": "22f5hd"
    },
    "desc": "374iwx"
   },

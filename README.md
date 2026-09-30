@@ -82,7 +82,7 @@ Container の中身（Slot）は「幅いっぱい・高さは中身に合わせ
 - **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））。コントロール直下のメッセージ領域（20px）は**メッセージがなくても確保**される
 - **`.tolv-time`** … 時刻入力（InputTime。`__seg` × 2 + `__sep` + `__icon`）
 - **`.tolv-fixed-value`** … 読み取り専用の値表示（FixedValue）
-- **`.tolv-divider`** … 区切り線（`--vertical` で縦）。線の前後に 4px の余白を持つ
+- **`.tolv-divider`** … 区切り線（`--vertical` で縦）。線の前後に 8px の余白を持つ
 - 共通: 枠=1px `border-basic-primary`／radius medium、テキスト **14px**（size/xsmall）。Light/Dark 自動追従
 - 全状態は Storybook 参照
 

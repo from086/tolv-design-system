@@ -2,6 +2,10 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.25.0] - 2026-09-30
+### Changed
+- **Divider の余白**: 線の前後の余白を **4px → 8px**（`--space-medium`）に変更（Figma Divider の padding に合わせる。横線は上下、縦線は左右）
+
 ## [0.24.0] - 2026-09-30
 ### Removed
 - **`.tolv-container--hug`**: Figma Container の Spec が「幅: Fill」のみになった（Hug / px 指定の変更可を削除）ため廃止。Container の幅は置き場所（親要素）の幅で決める
