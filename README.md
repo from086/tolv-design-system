@@ -35,7 +35,7 @@ CSS からは Semantic トークンを参照します。
 | InputText / Select / IncrementalSearch / Cell | 親の幅いっぱい or px 指定 | 中身に合わせる | 親要素の幅、または `style="width:200px"` |
 | TextArea | 親の幅いっぱい or px 指定 | px 指定（既定 120px） | `style="height:…"` |
 | Record / TableBar | 親の幅いっぱい | 中身に合わせる | — |
-| Container | 親の幅（既定） | 中身に合わせる | `.tolv-container--hug`（中身に合わせる）/ `width` を px 指定 |
+| Container | 親の幅いっぱい | 中身に合わせる | 親要素の幅 |
 | SelectPanel / SuggestionPanel | 親（Select・入力欄）の幅（既定） | 中身に合わせる（最大 320px でスクロール） | `.tolv-select--hug` / `.tolv-search--hug`（内容に合わせる）/ px 指定、`--tolv-panel-max-height` |
 
 Container の中身（Slot）は「幅いっぱい・高さは中身に合わせる・はみ出しは切る」で、**縦並び・左上寄せ・間隔 0px** が既定です（下記 Container 参照）。各ストーリーの **Docs** ページにも同じ Spec を載せています。
@@ -229,7 +229,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 ```
 
 - **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし
-  - 幅は親の幅（既定）。**`--hug`** で中身に合わせる、または `width` を px 指定。高さは中身に合わせる
+  - 幅は親の幅いっぱい（置き場所の幅で決める）。高さは中身に合わせる
   - 中身は **縦並び・左上寄せ・間隔 0px**（既定）。横並びは **`--row`**、中央寄せは **`--center`**、間隔は `--tolv-container-gap` で変更
 
 ```html

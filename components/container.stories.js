@@ -2,8 +2,8 @@
 
 const slot = () => `<div style="width:120px;height:120px;display:flex;align-items:center;justify-content:center;font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary)">Slot</div>`;
 
-const container = ({ style, square, hug }) => {
-  const cls = ['tolv-container', style !== 'base' ? `tolv-container--${style}` : '', square ? 'tolv-container--square' : '', hug ? 'tolv-container--hug' : ''].filter(Boolean).join(' ');
+const container = ({ style, square }) => {
+  const cls = ['tolv-container', style !== 'base' ? `tolv-container--${style}` : '', square ? 'tolv-container--square' : ''].filter(Boolean).join(' ');
   return `<div class="${cls}">${slot()}</div>`;
 };
 
@@ -21,7 +21,7 @@ export default {
       description: {
         component: [
           '**Spec**',
-          '- 幅: 親の幅（既定）。`.tolv-container--hug` で中身に合わせる、または `width` を px 指定',
+          '- 幅: 親の幅いっぱい（置き場所の幅で決める）',
           '- 高さ: 中身に合わせる',
           '- 中身（Slot）: 幅いっぱい・高さは中身に合わせる・はみ出しは切る',
           '  - 並び方向: 縦（既定）… `.tolv-container--row` で横',
@@ -34,9 +34,8 @@ export default {
   argTypes: {
     style: { control: 'inline-radio', options: ['base', 'primary', 'secondary'] },
     square: { control: 'boolean', description: '角丸なし' },
-    hug: { control: 'boolean', description: '幅を中身に合わせる（既定は親の幅）' },
   },
-  args: { style: 'primary', square: false, hug: false },
+  args: { style: 'primary', square: false },
 };
 
 export const Playground = {};
@@ -56,7 +55,6 @@ export const Overview = {
       + `</div>`
       + block('中身が複数（既定：縦並び・左上寄せ・間隔 0px）', `<div class="tolv-container tolv-container--primary">${texts()}</div>`)
       + block('間隔を変更（--tolv-container-gap: 8px）', `<div class="tolv-container tolv-container--primary" style="--tolv-container-gap: 8px">${texts()}</div>`)
-      + block('幅を中身に合わせる（.tolv-container--hug）', `<div class="tolv-container tolv-container--primary tolv-container--hug">${texts()}</div>`)
       + block('横並び・中央寄せ（--row / --center、間隔 8px）', `<div class="tolv-container tolv-container--primary tolv-container--row tolv-container--center" style="--tolv-container-gap: 8px">${texts()}</div>`);
   },
 };

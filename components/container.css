@@ -1,10 +1,10 @@
 /*
- * tolv Design System — Container / DropArea  (v0.23.0)
+ * tolv Design System — Container / DropArea  (v0.24.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。要素を包む枠（レイアウトプリミティブ）。
  *   .tolv-container              … コンテナ（base=枠なし / --primary=白地+基本境界 / --secondary=強調境界）
  *   .tolv-container--square      … 角丸なし（既定は radius large）
- *   .tolv-container--hug / --row / --center … 幅を中身に合わせる / 横並び / 中央寄せ（Spec の「変更可」）
+ *   .tolv-container--row / --center … 横並び / 中央寄せ（Spec の「変更可」）
  *   .tolv-drop-area              … ドラッグ&ドロップ領域（basic-secondary の地色＋強調色の破線枠）
  *   .tolv-drop-area--square      … 角丸なし（既定は radius large）
  *
@@ -12,7 +12,7 @@
  */
 
 /* Spec（Figma Container の Description）
- *   幅: 親の幅（既定）… 変更可 → .tolv-container--hug で中身に合わせる、または width を px 指定
+ *   幅: 親の幅いっぱい（Fill）
  *   高さ: 中身に合わせる（Hug）
  *   中身（Slot）: 幅いっぱい・高さは中身に合わせる・はみ出しは切る（Clip）
  *     並び方向: 縦（既定）… 変更可 → .tolv-container--row で横
@@ -26,14 +26,12 @@
   align-items: flex-start;      /* 寄せ: 左上 */
   justify-content: flex-start;
   gap: var(--tolv-container-gap);
-  width: 100%;                  /* 幅: 親の幅 */
+  width: 100%;                  /* 幅: 親の幅いっぱい */
   padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側（外形 = Figma） */
   border: var(--border-regular, 1px) solid transparent;  /* base は枠なし（透明枠でサイズ維持） */
   border-radius: var(--radius-large, 16px);
   overflow: hidden;             /* Clip content */
 }
-/* 幅: 中身に合わせる（Hug） */
-.tolv-container--hug { width: fit-content; }
 /* 並び方向: 横 */
 .tolv-container--row { flex-direction: row; }
 /* 寄せ: 中央 */

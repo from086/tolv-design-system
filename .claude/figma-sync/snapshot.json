@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-09-30",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.23.0",
+ "syncedRelease": "v0.24.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -110,7 +110,7 @@
     "Style=Secondary, Radius=True": "y8pmja",
     "Style=Secondary, Radius=False": "1d3mbmm"
    },
-   "desc": "a64dz5"
+   "desc": "pf6j8c"
   },
   "CalendarPanel": {
    "id": "3817:2848",
@@ -452,7 +452,7 @@
     "Type=Default": "fs707k",
     "Type=NoData": "103iy5k"
    },
-   "desc": "acpiv4"
+   "desc": "y7axx8"
   },
   "SelectPanel": {
    "id": "3977:4117",
@@ -460,7 +460,7 @@
    "variants": {
     "Type=Default": "udjf7m"
    },
-   "desc": "10jcwzy"
+   "desc": "sl0grw"
   },
   "SortButton": {
    "id": "3906:1620",

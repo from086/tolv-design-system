@@ -2,6 +2,13 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.24.0] - 2026-09-30
+### Removed
+- **`.tolv-container--hug`**: Figma Container の Spec が「幅: Fill」のみになった（Hug / px 指定の変更可を削除）ため廃止。Container の幅は置き場所（親要素）の幅で決める
+
+### Confirmed
+- SelectPanel / SuggestionPanel の Description（最大高さ 320px、幅は既定で親の幅）が実装と一致。バリアント単位の Description の食い違いも解消
+
 ## [0.23.0] - 2026-09-30
 Figma の各コンポーネントの Description に書かれた Spec（幅・高さ・中身の並び）を実装とドキュメントに反映。
 
