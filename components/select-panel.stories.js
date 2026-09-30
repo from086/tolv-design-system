@@ -13,6 +13,18 @@ const panel = ({ selected }) => {
 export default {
   title: 'Components/SelectPanel',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅（既定）… 内容に合わせる（Hug）または px 指定に変更可',
+          '- 高さ: 中身に合わせる',
+          '- 最大高さ: 320px（`--tolv-panel-max-height` で変更可）。超えたらパネル内でスクロール',
+        ].join('\n'),
+      },
+    },
+  },
   render: panel,
   argTypes: { selected: { control: 'inline-radio', options: ['', 'テキスト', 'テキスト2', 'テキスト3', 'テキスト4', 'テキスト5'], description: '選択中の項目' } },
   args: { selected: 'テキスト' },

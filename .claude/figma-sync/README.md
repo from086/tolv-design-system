@@ -6,6 +6,7 @@
 
 - `components.<セット名>.variants.<バリアント名>`: そのバリアントの構造（サイズ・Auto Layout・塗り/線の変数・線の破線・テキスト設定・中のインスタンス）のハッシュ
 - `components.<セット名>.props`: プロパティ定義（バリアントの選択肢・真偽/テキスト/スロット）のハッシュ
+- `components.<セット名>.desc`: Description（Spec。セット＋各バリアント）のハッシュ。変わっていたら説明文を読み、README とストーリーの Docs（`parameters.docs.description`）に反映する
 - `variables`: DS 独自の変数（Tailwind の Global 変数は除く）ごとの、モード別の値（エイリアス先）のハッシュ
 - `assets`: ⚙️ Asset ページのアイコンごとの、スタイル（fill / outline）別の形のハッシュ
 

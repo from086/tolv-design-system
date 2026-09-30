@@ -2,6 +2,25 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.23.0] - 2026-09-30
+Figma の各コンポーネントの Description に書かれた Spec（幅・高さ・中身の並び）を実装とドキュメントに反映。
+
+### Changed
+- **Container**: 中身の間隔の既定を **8px → 0px**、寄せは **左上**（Figma Slot と Spec に合わせる）。幅は既定で親の幅
+- **SelectPanel**: パネルの幅の既定を **Select と同じ幅**に（v0.19.0 の「内容に合わせて広がる」は `.tolv-select--hug` で選ぶ形に変更）。高さは中身に合わせ、**最大 320px** を超えるとパネル内でスクロール（`--tolv-panel-max-height` で変更可）
+- **SuggestionPanel**: 同じく幅は既定で入力欄と同じ、最大 320px でスクロール
+- **DropArea**: 中身を縦並び・中央寄せに（Figma Slot に合わせる）
+
+### Added
+- **`.tolv-container--hug`**（幅を中身に合わせる）/ **`--row`**（横並び）/ **`--center`**（中央寄せ）/ `--tolv-container-gap`（間隔）
+- **`.tolv-select--hug`** / **`.tolv-search--hug`**（パネルの幅を内容に合わせる。幅の狭い Select 向け）。TableBar の表示件数 Select は `--hug --align-end` を使う
+- README に **サイズの基本ルール**（コンポーネントごとの幅・高さの Spec 一覧）
+- Storybook に **Docs ページ**（`@storybook/addon-docs` を追加）。各コンポーネントの Docs に Spec を表示
+
+### Migration
+- 中身の間に 8px の間隔が必要な Container は `style="--tolv-container-gap: 8px"` を付ける
+- 幅の狭い Select で選択肢を省略させたくない場合は `.tolv-select--hug` を付ける（右寄りなら `--align-end` も）
+
 ## [0.22.0] - 2026-09-30
 ### Changed
 - **Container の中身の並び**: Figma の Slot に gap 8 が付いたのに合わせ、中身のかたまりを中央に置き、各要素を**左ぞろえで縦に 8px 間隔**で並べる形に変更（従来は横並び・間隔なし）。中身が1つのときの見た目は変わらない

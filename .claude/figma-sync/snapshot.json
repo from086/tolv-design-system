@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-09-30",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.22.0",
+ "syncedRelease": "v0.23.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -12,7 +12,8 @@
     "Type=h3": "12pai6x",
     "Type=body": "r35fa3",
     "Type=caption": "1bvqufg"
-   }
+   },
+   "desc": "1kcsea9"
   },
   "text-color": {
    "id": "3615:1622",
@@ -23,7 +24,8 @@
     "Color=Brand": "1qo2zfu",
     "Color=Caution": "1oafu9u",
     "Color=Success": "1ivwh72"
-   }
+   },
+   "desc": "1kcsea9"
   },
   "input-value": {
    "id": "3777:960",
@@ -37,14 +39,16 @@
     "Size=Regular, Status=Edit, Type=Number": "1xx7ktg",
     "Size=Regular, Status=Inputed, Type=Number": "1kv2n13",
     "Size=Regular, Status=Disabled, Type=Number": "j211l5"
-   }
+   },
+   "desc": "7ko4ip"
   },
   "form-label": {
    "id": "3778:1442",
    "props": "gxicjz",
    "variants": {
     "Size=default": "15yht4k"
-   }
+   },
+   "desc": "1dj34wh"
   },
   "form-validation-message": {
    "id": "3778:1452",
@@ -53,7 +57,8 @@
     "Type=Normal": "1dlrpp3",
     "Type=Error": "14duv0h",
     "Type=Applied": "9lbn4a"
-   }
+   },
+   "desc": "1v8blrl"
   },
   "button-label-color": {
    "id": "3681:2232",
@@ -71,7 +76,8 @@
     "Color=Caution, State=Default": "ynx78b",
     "Color=Caution, State=Hover": "1mzlqxl",
     "Color=Caution, State=Disabled": "14da7ep"
-   }
+   },
+   "desc": "14wddi9"
   },
   "Number": {
    "id": "3617:1761",
@@ -81,7 +87,8 @@
     "Type=h2": "l0om9b",
     "Type=body": "1ej5lst",
     "Type=caption": "1gzz8xu"
-   }
+   },
+   "desc": "15i3uox"
   },
   "number-color": {
    "id": "3617:1770",
@@ -89,26 +96,29 @@
    "variants": {
     "Color=Plus": "16er7wo",
     "Color=Minus": "ffzum9"
-   }
+   },
+   "desc": "374iwx"
   },
   "Container": {
    "id": "3615:1663",
    "props": "1xip5x5",
    "variants": {
-    "Style=base, Radius=True": "zoqfy2",
-    "Style=base, Radius=False": "1bdg3gi",
-    "Style=primary, Radius=True": "8i64pd",
-    "Style=primary, Radius=False": "52hsm1",
-    "Style=Secondary, Radius=True": "15be51d",
-    "Style=Secondary, Radius=False": "jlyguh"
-   }
+    "Style=base, Radius=True": "yk2tyn",
+    "Style=base, Radius=False": "djyilz",
+    "Style=primary, Radius=True": "1amhxuu",
+    "Style=primary, Radius=False": "6r4bse",
+    "Style=Secondary, Radius=True": "y8pmja",
+    "Style=Secondary, Radius=False": "1d3mbmm"
+   },
+   "desc": "a64dz5"
   },
   "CalendarPanel": {
    "id": "3817:2848",
    "props": "3hnx9",
    "variants": {
-    "CalendarPanel": "1r7hcor"
-   }
+    "CalendarPanel": "1g4j4mo"
+   },
+   "desc": "yk7a75"
   },
   "input-background": {
    "id": "3778:1078",
@@ -117,15 +127,17 @@
     "Style=default": "bayauf",
     "Style=disabled": "1ytxl0j",
     "Style=error": "dm01vh"
-   }
+   },
+   "desc": "1v8blrl"
   },
   "DropArea": {
    "id": "3617:1861",
    "props": "tp4rve",
    "variants": {
-    "Style=primary, Redius=True": "1htsq0b",
-    "Style=primary, Redius=False": "r7yjn7"
-   }
+    "Style=primary, Redius=True": "1mye7rw",
+    "Style=primary, Redius=False": "rlnotg"
+   },
+   "desc": "374iwx"
   },
   "Button": {
    "id": "3616:1721",
@@ -161,14 +173,16 @@
     "Size=Small, Type=Quaternary, Status=Disabled": "1tckf8v",
     "Size=Medium, Type=Caution, Status=Disabled": "62gtzl",
     "Size=Small, Type=Caution, Status=Disabled": "iidsl6"
-   }
+   },
+   "desc": "xvntoh"
   },
   "Pager": {
    "id": "3975:4071",
    "props": "3hnx9",
    "variants": {
     "Pager": "1omg009"
-   }
+   },
+   "desc": "yk7a75"
   },
   "icon-color": {
    "id": "3681:2116",
@@ -192,7 +206,8 @@
     "color=Success, State=Hover": "tswnpg",
     "color=Caution, State=Disabled": "1t16wqo",
     "color=Success, State=Disabled": "xrk0jw"
-   }
+   },
+   "desc": "ukfagx"
   },
   "icon": {
    "id": "3681:2161",
@@ -202,7 +217,8 @@
     "Size=Medium": "1bckomk",
     "Size=Large": "miwtzy",
     "Size=XLarge": "5j4gh5"
-   }
+   },
+   "desc": "15i3uox"
   },
   "button-label": {
    "id": "3681:2244",
@@ -210,7 +226,8 @@
    "variants": {
     "Size=Small": "1bz8p7q",
     "Size=Medium": "rm94c3"
-   }
+   },
+   "desc": "374iwx"
   },
   "button-label-set": {
    "id": "3681:2297",
@@ -240,7 +257,8 @@
     "Size=Medium, Color=Caution, State=Hover": "bxmcxx",
     "Size=Small, Color=Caution, State=Disabled": "1pyken4",
     "Size=Medium, Color=Caution, State=Disabled": "fpngdp"
-   }
+   },
+   "desc": "p85q75"
   },
   "IncrementalSearch": {
    "id": "3778:1009",
@@ -251,7 +269,8 @@
     "Status=Inputed": "1pwupcy",
     "Status=Disabled": "yzn8hx",
     "Status=Error": "1vw1pk5"
-   }
+   },
+   "desc": "ktmrjs"
   },
   "Cell": {
    "id": "3863:3753",
@@ -261,7 +280,8 @@
     "Status=Default": "1onmc5z",
     "Status=Hover": "1gpqhpj",
     "Status=Edit": "jsk3hc"
-   }
+   },
+   "desc": "1s803zc"
   },
   "InputText": {
    "id": "3778:1272",
@@ -277,7 +297,8 @@
     "Status=Disabled, Type=Number": "1abq96d",
     "Status=Error, Type=Text": "1ez6o4r",
     "Status=Error, Type=Number": "62vt42"
-   }
+   },
+   "desc": "cv6olk"
   },
   "TextArea": {
    "id": "3980:4178",
@@ -288,14 +309,16 @@
     "Status=Inputed": "1cx6f3n",
     "Status=Disabled": "pud2wi",
     "Status=Error": "wuswsf"
-   }
+   },
+   "desc": "nlaael"
   },
   "FormSet": {
    "id": "3784:3058",
    "props": "mwsj8k",
    "variants": {
     "FormSet": "1eccw8a"
-   }
+   },
+   "desc": "yk7a75"
   },
   "Select": {
    "id": "3778:1172",
@@ -305,7 +328,8 @@
     "Status=Default": "fmgt9m",
     "Status=Edit": "jjmu5x",
     "Status=Disabled": "ucao1i"
-   }
+   },
+   "desc": "1s803zc"
   },
   "DateSelect": {
    "id": "3792:2086",
@@ -314,7 +338,8 @@
     "Status=Default": "udap6j",
     "Status=Unset": "t86iml",
     "Status=Disabled": "1gawnxl"
-   }
+   },
+   "desc": "1v8blrl"
   },
   "InputTime": {
    "id": "3792:2717",
@@ -323,7 +348,8 @@
     "Status=Default": "tft0dr",
     "Status=Unset": "1vywppp",
     "Status=Disabled": "1w8os7g"
-   }
+   },
+   "desc": "1v8blrl"
   },
   "ListItem": {
    "id": "3786:2503",
@@ -332,14 +358,16 @@
     "Status=Default": "xxbu39",
     "Status=Hover": "1c7s31t",
     "Status=Disabled": "a774pu"
-   }
+   },
+   "desc": "1v8blrl"
   },
   "FixedValue": {
    "id": "3819:3908",
    "props": "1b3tfw8",
    "variants": {
     "Status=Default": "1iw9s0"
-   }
+   },
+   "desc": "1dj34wh"
   },
   "DateCell": {
    "id": "3792:1540",
@@ -349,14 +377,16 @@
     "Status=Hover": "1j2f1ab",
     "Status=Selected": "1xzc1j1",
     "Status=Disabled": "e3dd8q"
-   }
+   },
+   "desc": "15i3uox"
   },
   "CalendarSet": {
    "id": "3792:1878",
    "props": "3hnx9",
    "variants": {
     "CalendarSet": "1035iw5"
-   }
+   },
+   "desc": "yk7a75"
   },
   "Divider": {
    "id": "3820:4436",
@@ -364,7 +394,8 @@
    "variants": {
     "Direction=Vertical": "18ao3ff",
     "Direction=Horizontal": "rsi1lm"
-   }
+   },
+   "desc": "374iwx"
   },
   "Record": {
    "id": "3868:5525",
@@ -373,7 +404,8 @@
     "Status=Header": "1s4p4bo",
     "Status=Default": "xt39eu",
     "Status=Selected": "153zs4s"
-   }
+   },
+   "desc": "zjoi5l"
   },
   "fade-background": {
    "id": "3870:5935",
@@ -381,7 +413,8 @@
    "variants": {
     "Direction=Vertical": "119hs5f",
     "Direction=Horizontal": "17st9w3"
-   }
+   },
+   "desc": "374iwx"
   },
   "CheckBox": {
    "id": "3877:6186",
@@ -396,7 +429,8 @@
     "Checked=Indeterminate, Status=Default": "1bfh1g8",
     "Checked=Indeterminate, Status=Hover": "1gkv560",
     "Checked=Indeterminate, Status=Disabled": "1xuq5el"
-   }
+   },
+   "desc": "2io74h"
   },
   "RadioButton": {
    "id": "3877:6377",
@@ -408,22 +442,25 @@
     "Checked=True, Status=Default": "lple6j",
     "Checked=True, Status=Hover": "121qdln",
     "Checked=True, Status=Disabled": "1iaum28"
-   }
+   },
+   "desc": "56mcu9"
   },
   "SuggestionPanel": {
    "id": "3905:1359",
    "props": "1vmw39w",
    "variants": {
-    "Type=Default": "1kwvey2",
-    "Type=NoData": "16z5z7m"
-   }
+    "Type=Default": "fs707k",
+    "Type=NoData": "103iy5k"
+   },
+   "desc": "acpiv4"
   },
   "SelectPanel": {
    "id": "3977:4117",
    "props": "7jo3n1",
    "variants": {
-    "Type=Default": "bpmefw"
-   }
+    "Type=Default": "udjf7m"
+   },
+   "desc": "10jcwzy"
   },
   "SortButton": {
    "id": "3906:1620",
@@ -437,7 +474,8 @@
     "Type=Desc, Selected=True, Status=Hover": "oy90mj",
     "Type=Asc, Selected=True, Status=Default": "1sdw3qv",
     "Type=Asc, Selected=True, Status=Hover": "2f5wct"
-   }
+   },
+   "desc": "7ko4ip"
   },
   "TrailingIconButton": {
    "id": "3929:3129",
@@ -451,7 +489,8 @@
     "Type=Help, Status=Default": "1pfqq96",
     "Type=Info, Status=Hover": "1j7xm8b",
     "Type=Help, Status=Hover": "e8spa8"
-   }
+   },
+   "desc": "7ko4ip"
   },
   "CellActionButton": {
    "id": "3970:3790",
@@ -466,14 +505,16 @@
     "Type=Edit, Status=Disabled": "1yly5om",
     "Type=Undo, Status=Disabled": "tqc5rl",
     "Type=Submit, Status=Disabled": "15dn3hh"
-   }
+   },
+   "desc": "2io74h"
   },
   "TableBar": {
    "id": "3975:4113",
    "props": "nphm75",
    "variants": {
     "Type=Default": "mo0ehf"
-   }
+   },
+   "desc": "75buyx"
   }
  },
  "variables": {

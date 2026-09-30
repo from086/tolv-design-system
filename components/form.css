@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.19.0)
+ * tolv Design System — Form family  (v0.23.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -236,8 +236,12 @@
  * 旧マークアップ（.tolv-select__menu のみ）でもパネルの見た目になる。 */
 .tolv-select-panel,
 .tolv-select__menu {
+  /* Spec: 幅 = 親の幅（既定）… 内容幅（Hug）や px 指定に変更可 / 高さ = 内容に合わせる
+   *       最大高さ 320px（Figma コンポーネントの設定。--tolv-panel-max-height で変更可）→ 超えたらパネル内でスクロール */
   box-sizing: border-box;
   width: 100%;
+  max-height: var(--tolv-panel-max-height, 320px);
+  overflow-y: auto;
   padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-large, 16px);
@@ -249,17 +253,23 @@
   position: absolute;
   /* 基準は枠の内側なので、枠の太さ分ずらしてフィールドの外形に揃える（下 4px・左端そろえ） */
   top: calc(100% + var(--border-regular, 1px) + var(--space-small, 4px));
+  /* 幅 = 親（Select）の外形と同じ（既定）。px 指定はパネル要素に width を書く */
   left: calc(-1 * var(--border-regular, 1px));
-  right: auto;
+  right: calc(-1 * var(--border-regular, 1px));
+  width: auto;
   z-index: 20;
-  /* 幅 = フィールドの外形幅以上・選択肢の長さに合わせて広がる（幅の狭い Select でも文字を省略しない） */
-  width: max-content;
-  min-width: calc(100% + 2 * var(--border-regular, 1px));
-  max-width: calc(100vw - 2 * var(--space-large, 16px));   /* 画面からはみ出さない上限 */
   display: none;
 }
 .tolv-select.is-open .tolv-select__menu { display: block; }
-/* 右端そろえで開く（画面の右寄りに置く Select 向け）: <div class="tolv-select tolv-select--align-end"> */
+/* 幅を内容に合わせる（Hug）: <div class="tolv-select tolv-select--hug">
+ * 幅の狭い Select（表示件数など）で選択肢を省略しないため。Select の幅より狭くはしない */
+.tolv-select--hug .tolv-select__menu {
+  right: auto;
+  width: max-content;
+  min-width: calc(100% + 2 * var(--border-regular, 1px));
+  max-width: calc(100vw - 2 * var(--space-large, 16px));   /* 画面からはみ出さない上限 */
+}
+/* 右端そろえで開く（Hug / px 指定で、画面の右寄りに置く Select 向け）: <div class="tolv-select tolv-select--hug tolv-select--align-end"> */
 .tolv-select--align-end .tolv-select__menu {
   left: auto;
   right: calc(-1 * var(--border-regular, 1px));
@@ -270,7 +280,7 @@
  * IncrementalSearch では .tolv-search__panel としてフィールド下にポップオーバー配置。 */
 .tolv-search__panel {
   position: absolute;
-  /* フィールドの外形に揃える（下 4px・同じ幅） */
+  /* フィールドの外形に揃える（下 4px・幅は親＝入力欄と同じが既定） */
   top: calc(100% + var(--border-regular, 1px) + var(--space-small, 4px));
   left: calc(-1 * var(--border-regular, 1px));
   right: calc(-1 * var(--border-regular, 1px));
@@ -279,10 +289,21 @@
 }
 .tolv-search.is-open .tolv-search__panel { display: block; }
 .tolv-search > .tolv-search__panel { width: auto; }   /* left/right で幅を決める（.tolv-suggestion-panel の width:100% より優先） */
+/* 幅を内容に合わせる（Hug）: <div class="tolv-search tolv-search--hug"> */
+.tolv-search--hug > .tolv-search__panel {
+  right: auto;
+  width: max-content;
+  min-width: calc(100% + 2 * var(--border-regular, 1px));
+  max-width: calc(100vw - 2 * var(--space-large, 16px));
+}
 
 .tolv-suggestion-panel {
+  /* Spec: 幅 = 親の幅（既定）… 内容幅（Hug）や px 指定に変更可 / 高さ = 内容に合わせる
+   *       最大高さ 320px（Figma コンポーネントの設定。--tolv-panel-max-height で変更可）→ 超えたらパネル内でスクロール */
   box-sizing: border-box;
   width: 100%;
+  max-height: var(--tolv-panel-max-height, 320px);
+  overflow-y: auto;
   padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
   border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
   border-radius: var(--radius-large, 16px);

@@ -30,6 +30,8 @@ for (const set of page.findAllWithCriteria({ types: ['COMPONENT_SET', 'COMPONENT
   try { entry.props = h(JSON.stringify(Object.entries(set.componentPropertyDefinitions).map(([k, v]) => [k.split('#')[0], v.type, v.variantOptions || null]))); } catch (e) {}
   entry.variants = {};
   for (const v of (set.type === 'COMPONENT_SET' ? set.children : [set])) entry.variants[v.name] = h(await sig(v, 0));
+  // Description（Spec）: セット＋各バリアントの説明文
+  entry.desc = h(JSON.stringify([set.description || '', ...(set.type === 'COMPONENT_SET' ? set.children.map((v) => v.description || '') : [])]));
   components[set.name] = entry;
 }
 const variables = {};

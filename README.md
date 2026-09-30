@@ -26,6 +26,20 @@ CSS からは Semantic トークンを参照します。
 
 ## コンポーネント
 
+### サイズの基本ルール（Figma の各コンポーネントの Description「Spec」）
+
+幅は原則 **親要素の幅で決まる**ので、使う側は置き場所（親要素）の幅を決めます。高さはどれも中身に合わせて決まります（TextArea を除く）。
+
+| コンポーネント | 幅 | 高さ | 変更の仕方 |
+| --- | --- | --- | --- |
+| InputText / Select / IncrementalSearch / Cell | 親の幅いっぱい or px 指定 | 中身に合わせる | 親要素の幅、または `style="width:200px"` |
+| TextArea | 親の幅いっぱい or px 指定 | px 指定（既定 120px） | `style="height:…"` |
+| Record / TableBar | 親の幅いっぱい | 中身に合わせる | — |
+| Container | 親の幅（既定） | 中身に合わせる | `.tolv-container--hug`（中身に合わせる）/ `width` を px 指定 |
+| SelectPanel / SuggestionPanel | 親（Select・入力欄）の幅（既定） | 中身に合わせる（最大 320px でスクロール） | `.tolv-select--hug` / `.tolv-search--hug`（内容に合わせる）/ px 指定、`--tolv-panel-max-height` |
+
+Container の中身（Slot）は「幅いっぱい・高さは中身に合わせる・はみ出しは切る」で、**縦並び・左上寄せ・間隔 0px** が既定です（下記 Container 参照）。各ストーリーの **Docs** ページにも同じ Spec を載せています。
+
 ### Button（`components/button.css`）
 
 `tokens.css` を先に読み込んだうえで参照します（ビルド不要・Light/Dark 自動追従）。
@@ -59,10 +73,10 @@ CSS からは Semantic トークンを参照します。
 
 - **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）。数値入力は **`--number`**（等幅・右寄せ・桁そろえ。`inputmode="decimal"` 推奨、`type="number"` でも増減ボタンは出ない）
 - **`.tolv-textarea`** … 複数行テキスト入力（`<textarea>`。InputText と同じ枠と状態、既定の高さ 120px・縦にリサイズ可）
-- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）。パネルの幅はフィールド幅以上で、選択肢の長さに合わせて広がる（幅の狭い Select でも文字を省略しない）。画面の右寄りに置く Select は **`.tolv-select--align-end`** を付けると右端そろえで開く
-- **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する
-- **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）
-- **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）
+- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）。パネルの幅は**既定で Select と同じ**。幅の狭い Select（表示件数など）は **`.tolv-select--hug`** を付けると選択肢の長さに合わせて広がる（Select より狭くはならない）。画面の右寄りに置く場合は **`.tolv-select--align-end`** も付けると右端そろえで開く
+- **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する。高さは中身に合わせ、**最大 320px** を超えるとパネル内でスクロール（`--tolv-panel-max-height` で変更可）
+- **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）。パネルの幅は既定で入力欄と同じ、**`.tolv-search--hug`** で候補の長さに合わせて広がる
+- **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）。最大 320px でスクロール（SelectPanel と同じ）
 - **`.tolv-search--cell`** … 検索セル（`.tolv-search` の白地バリアント）
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
 - **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））。コントロール直下のメッセージ領域（20px）は**メッセージがなくても確保**される
@@ -176,7 +190,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
     <span class="tolv-text tolv-text--body tolv-text--secondary">未選択</span>
   </div>
   <div class="tolv-table-bar__trailing">
-    <div class="tolv-select tolv-select--align-end" style="width:120px"><!-- 表示件数の Select（右寄りなので右端そろえで開く） --></div>
+    <div class="tolv-select tolv-select--hug tolv-select--align-end" style="width:120px"><!-- 表示件数の Select（幅が狭いので内容幅・右寄りなので右端そろえで開く） --></div>
   </div>
   <nav class="tolv-pager" aria-label="ページ送り">
     <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--tertiary" aria-label="前へ" disabled><span class="tolv-btn__icon"><!-- arrow-left svg --></span></button>
@@ -214,8 +228,17 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/from086/tolv-design-system@v0.13.0/components/container.css">
 ```
 
-- **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし。中身はかたまりを中央に置き、各要素を左ぞろえで縦に 8px 間隔で並べる（Figma の Slot と同じ）
-- **`.tolv-drop-area`** … ドロップ領域（地色 bg-basic-secondary＋強調色の 1px 破線枠、radius/padding large）。**`--square`** で角丸なし
+- **`.tolv-container`** … `base`（枠なし）/ **`--primary`**（白地＋基本境界）/ **`--secondary`**（強調境界）。角丸 large 既定、**`--square`** で角丸なし
+  - 幅は親の幅（既定）。**`--hug`** で中身に合わせる、または `width` を px 指定。高さは中身に合わせる
+  - 中身は **縦並び・左上寄せ・間隔 0px**（既定）。横並びは **`--row`**、中央寄せは **`--center`**、間隔は `--tolv-container-gap` で変更
+
+```html
+<div class="tolv-container tolv-container--primary" style="--tolv-container-gap: 8px">
+  <span class="tolv-text tolv-text--h3"><span class="tolv-text__label">見出し</span></span>
+  <span class="tolv-text tolv-text--body"><span class="tolv-text__label">本文</span></span>
+</div>
+```
+- **`.tolv-drop-area`** … ドロップ領域（地色 bg-basic-secondary＋強調色の 1px 破線枠、radius/padding large）。中身は縦並び・中央寄せ。**`--square`** で角丸なし
 
 ## 開発（Storybook）
 

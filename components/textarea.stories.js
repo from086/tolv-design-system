@@ -17,6 +17,17 @@ const render = ({ status, value, placeholder }) => {
 export default {
   title: 'Components/TextArea',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅いっぱい（Fill）または px 指定',
+          '- 高さ: px 指定（既定 120px）。利用者が縦方向にリサイズ可',
+        ].join('\n'),
+      },
+    },
+  },
   render,
   argTypes: {
     status: { control: 'inline-radio', options: ['default', 'inputed', 'disabled', 'error'], description: 'Default(placeholder) / Inputed / Disabled / Error（Edit はフォーカス時）' },

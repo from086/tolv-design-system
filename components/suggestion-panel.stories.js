@@ -18,6 +18,18 @@ const render = ({ type }) => (type === 'nodata' ? nodata() : items(MASTER));
 export default {
   title: 'Components/SuggestionPanel',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅（既定）… 内容に合わせる（Hug）または px 指定に変更可',
+          '- 高さ: 中身に合わせる',
+          '- 最大高さ: 320px（`--tolv-panel-max-height` で変更可）。超えたらパネル内でスクロール',
+        ].join('\n'),
+      },
+    },
+  },
   render,
   argTypes: {
     type: { control: 'inline-radio', options: ['default', 'nodata'], description: 'Default（一覧）/ NoData（該当なし＋追加）' },

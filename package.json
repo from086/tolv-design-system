@@ -1,6 +1,6 @@
 {
   "name": "tolv-design-system",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "description": "tolv Design System — design tokens (and, going forward, components).",
   "license": "UNLICENSED",
   "private": false,
@@ -20,9 +20,10 @@
     "css"
   ],
   "devDependencies": {
-    "@storybook/addon-a11y": "^10.5.6",
-    "@storybook/html-vite": "^10.5.6",
-    "storybook": "^10.5.6"
+    "@storybook/addon-a11y": "^10.6.1",
+    "@storybook/addon-docs": "^10.6.1",
+    "@storybook/html-vite": "^10.6.1",
+    "storybook": "^10.6.1"
   },
   "scripts": {
     "storybook": "storybook dev -p 6006 --no-open",

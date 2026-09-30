@@ -51,6 +51,17 @@ const render = (args) => box(cell(args), args.status === 'edit' ? 320 : 260);
 export default {
   title: 'Components/Cell',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅いっぱい（Fill）または px 指定（親要素の幅で決める）',
+          '- 高さ: 中身に合わせる',
+        ].join('\n'),
+      },
+    },
+  },
   render,
   argTypes: {
     status: { control: 'inline-radio', options: ['head', 'default', 'editable', 'edit'], description: 'Head / Default / Hover(編集可) / Edit' },

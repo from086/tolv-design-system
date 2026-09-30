@@ -11,6 +11,17 @@ const render = (args) => box(input(args));
 export default {
   title: 'Components/InputText',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅いっぱい（Fill）または px 指定（親要素の幅で決める）',
+          '- 高さ: 中身に合わせる',
+        ].join('\n'),
+      },
+    },
+  },
   render,
   argTypes: {
     type: { control: 'inline-radio', options: ['text', 'number'], description: 'Type（number = 等幅・右寄せ）' },

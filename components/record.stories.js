@@ -31,6 +31,17 @@ const scroller = (rows) => `<div style="max-width:560px;overflow-x:auto;border:1
 export default {
   title: 'Components/Record',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅いっぱい（Fill）',
+          '- 高さ: 中身に合わせる',
+        ].join('\n'),
+      },
+    },
+  },
   render: (args) => scroller(record(args)),
   argTypes: {
     status: { control: 'inline-radio', options: ['header', 'default', 'selected'] },

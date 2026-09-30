@@ -1,27 +1,43 @@
 /*
- * tolv Design System — Container / DropArea  (v0.22.0)
+ * tolv Design System — Container / DropArea  (v0.23.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。要素を包む枠（レイアウトプリミティブ）。
  *   .tolv-container              … コンテナ（base=枠なし / --primary=白地+基本境界 / --secondary=強調境界）
  *   .tolv-container--square      … 角丸なし（既定は radius large）
+ *   .tolv-container--hug / --row / --center … 幅を中身に合わせる / 横並び / 中央寄せ（Spec の「変更可」）
  *   .tolv-drop-area              … ドラッグ&ドロップ領域（basic-secondary の地色＋強調色の破線枠）
  *   .tolv-drop-area--square      … 角丸なし（既定は radius large）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ / Container・DropArea
  */
 
-/* 中身は Figma の Slot と同じ並び：かたまりを中央に置き、各要素は左ぞろえで縦に 8px 間隔 */
+/* Spec（Figma Container の Description）
+ *   幅: 親の幅（既定）… 変更可 → .tolv-container--hug で中身に合わせる、または width を px 指定
+ *   高さ: 中身に合わせる（Hug）
+ *   中身（Slot）: 幅いっぱい・高さは中身に合わせる・はみ出しは切る（Clip）
+ *     並び方向: 縦（既定）… 変更可 → .tolv-container--row で横
+ *     寄せ    : 左上（既定）… 変更可 → .tolv-container--center で中央、または align-items / justify-content を上書き
+ *     間隔    : 0px（既定）… 変更可 → --tolv-container-gap を上書き（例: style="--tolv-container-gap: 8px"） */
 .tolv-container {
+  --tolv-container-gap: 0px;
   box-sizing: border-box;
-  display: grid;
-  place-content: center;
-  justify-items: start;
-  gap: var(--space-medium, 8px);
+  display: flex;
+  flex-direction: column;       /* 並び方向: 縦 */
+  align-items: flex-start;      /* 寄せ: 左上 */
+  justify-content: flex-start;
+  gap: var(--tolv-container-gap);
+  width: 100%;                  /* 幅: 親の幅 */
   padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側（外形 = Figma） */
   border: var(--border-regular, 1px) solid transparent;  /* base は枠なし（透明枠でサイズ維持） */
   border-radius: var(--radius-large, 16px);
-  overflow: hidden;
+  overflow: hidden;             /* Clip content */
 }
+/* 幅: 中身に合わせる（Hug） */
+.tolv-container--hug { width: fit-content; }
+/* 並び方向: 横 */
+.tolv-container--row { flex-direction: row; }
+/* 寄せ: 中央 */
+.tolv-container--center { align-items: center; justify-content: center; }
 /* primary：白地＋基本境界 */
 .tolv-container--primary {
   background: var(--color-bg-basic-primary);
@@ -41,6 +57,7 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
+  flex-direction: column;       /* Slot: 縦並び・中央寄せ・間隔 0 */
   align-items: center;
   justify-content: center;
   padding: var(--space-large, 16px);   /* 枠は ::before で内側に描くので、padding は Figma の値そのまま */

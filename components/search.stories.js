@@ -33,6 +33,18 @@ const render = ({ value, placeholder, disabled, error }) => box(field({ value, p
 export default {
   title: 'Components/IncrementalSearch',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          '**Spec**',
+          '- 幅: 親の幅いっぱい（Fill）または px 指定（親要素の幅で決める）',
+          '- 高さ: 中身に合わせる',
+          '- 候補パネル（SuggestionPanel）は入力欄と同じ幅で開く。`.tolv-search--hug` で候補の長さに合わせて広げる',
+        ].join('\n'),
+      },
+    },
+  },
   render,
   argTypes: {
     value: { control: 'text' },
