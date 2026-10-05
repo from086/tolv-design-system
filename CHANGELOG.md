@@ -2,6 +2,16 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.27.0] - 2026-10-05
+### Fixed
+- **親（フォーム）の幅が狭いとき**の表示崩れを修正
+  - SelectPanel: 選択肢の文字がすべて隠れていた（パネルが Select の幅に固定され、余白とチェック欄で幅を使い切っていた）
+  - SuggestionPanel: 「マスターに追加」ボタンの文字が折り返されていた
+
+### Changed
+- **SelectPanel / SuggestionPanel の Spec**: 幅は親の幅（既定）のまま、**最小幅 = 中身の幅**を追加。親が狭いときは、選択肢やボタンを省略・折り返ししないところまでパネルが広がる（画面幅 − 32px が上限）
+- `.tolv-select--hug` / `.tolv-search--hug` はこの動きが既定になったため不要（付けたままでも影響なし）
+
 ## [0.26.0] - 2026-10-05
 ### Added
 - ストーリー用アイコン（`_icons.js`）に Figma Asset の 14 個を追加（outline スタイル）: `photo` / `note` / `h1` / `h2` / `h3` / `deleteIcon`（Asset `delete`。JS の予約語のため改名）/ `arrowUpwardAlt` / `arrowDownwardAlt` / `arrowLeftAlt` / `arrowRightAlt` / `zoomIn` / `zoomOut` / `swapHoriz` / `rotation`

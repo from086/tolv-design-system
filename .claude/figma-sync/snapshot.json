@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-10-05",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.26.0",
+ "syncedRelease": "v0.27.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -452,7 +452,7 @@
     "Type=Default": "fs707k",
     "Type=NoData": "103iy5k"
    },
-   "desc": "y7axx8"
+   "desc": "1rix0ge"
   },
   "SelectPanel": {
    "id": "3977:4117",
@@ -460,7 +460,7 @@
    "variants": {
     "Type=Default": "udjf7m"
    },
-   "desc": "sl0grw"
+   "desc": "qe2ym"
   },
   "SortButton": {
    "id": "3906:1620",

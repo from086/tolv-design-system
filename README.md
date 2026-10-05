@@ -36,7 +36,7 @@ CSS からは Semantic トークンを参照します。
 | TextArea | 親の幅いっぱい or px 指定 | px 指定（既定 120px） | `style="height:…"` |
 | Record / TableBar | 親の幅いっぱい | 中身に合わせる | — |
 | Container | 親の幅いっぱい | 中身に合わせる | 親要素の幅 |
-| SelectPanel / SuggestionPanel | 親（Select・入力欄）の幅（既定） | 中身に合わせる（最大 320px でスクロール） | `.tolv-select--hug` / `.tolv-search--hug`（内容に合わせる）/ px 指定、`--tolv-panel-max-height` |
+| SelectPanel / SuggestionPanel | 親（Select・入力欄）の幅（既定）。**最小幅 = 中身の幅** | 中身に合わせる（最大 320px でスクロール） | px 指定、`--tolv-panel-max-height` |
 
 Container の中身（Slot）は「幅いっぱい・高さは中身に合わせる・はみ出しは切る」で、**縦並び・左上寄せ・間隔 0px** が既定です（下記 Container 参照）。各ストーリーの **Docs** ページにも同じ Spec を載せています。
 
@@ -73,9 +73,9 @@ Container の中身（Slot）は「幅いっぱい・高さは中身に合わせ
 
 - **`.tolv-input`** … テキスト入力（`::placeholder`／値／`:disabled`／`.is-error`|`[aria-invalid]`）。数値入力は **`--number`**（等幅・右寄せ・桁そろえ。`inputmode="decimal"` 推奨、`type="number"` でも増減ボタンは出ない）
 - **`.tolv-textarea`** … 複数行テキスト入力（`<textarea>`。InputText と同じ枠と状態、既定の高さ 120px・縦にリサイズ可）
-- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）。パネルの幅は**既定で Select と同じ**。幅の狭い Select（表示件数など）は **`.tolv-select--hug`** を付けると選択肢の長さに合わせて広がる（Select より狭くはならない）。画面の右寄りに置く場合は **`.tolv-select--align-end`** も付けると右端そろえで開く
+- **`.tolv-select`** … 選択（`__control` + `__value` + `__icon` + 選択肢パネル。展開は `.is-open`、無効は `.is-disabled`）。開くと **SelectPanel がフィールドの 4px 下に重なって表示**される（枠内には広げない）。パネルの幅は **Select と同じ**で、選択肢がそれより長いときは**省略せずに中身の幅まで広がる**（幅の狭い Select でも選択肢が読める）。画面の右寄りに置く場合は **`.tolv-select--align-end`** を付けると右端そろえで開く
 - **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する。高さは中身に合わせ、**最大 320px** を超えるとパネル内でスクロール（`--tolv-panel-max-height` で変更可）
-- **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）。パネルの幅は既定で入力欄と同じ、**`.tolv-search--hug`** で候補の長さに合わせて広がる
+- **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）。パネルの幅は入力欄と同じで、候補や「マスターに追加」がそれより長いときは**折り返さずに中身の幅まで広がる**
 - **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）。最大 320px でスクロール（SelectPanel と同じ）
 - **`.tolv-search--cell`** … 検索セル（`.tolv-search` の白地バリアント）
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
@@ -190,7 +190,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
     <span class="tolv-text tolv-text--body tolv-text--secondary">未選択</span>
   </div>
   <div class="tolv-table-bar__trailing">
-    <div class="tolv-select tolv-select--hug tolv-select--align-end" style="width:120px"><!-- 表示件数の Select（幅が狭いので内容幅・右寄りなので右端そろえで開く） --></div>
+    <div class="tolv-select tolv-select--align-end" style="width:120px"><!-- 表示件数の Select（右寄りなので右端そろえで開く） --></div>
   </div>
   <nav class="tolv-pager" aria-label="ページ送り">
     <button type="button" class="tolv-btn tolv-btn--sm tolv-btn--tertiary" aria-label="前へ" disabled><span class="tolv-btn__icon"><!-- arrow-left svg --></span></button>

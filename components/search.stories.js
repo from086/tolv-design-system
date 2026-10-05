@@ -40,7 +40,7 @@ export default {
           '**Spec**',
           '- 幅: 親の幅いっぱい（Fill）または px 指定（親要素の幅で決める）',
           '- 高さ: 中身に合わせる',
-          '- 候補パネル（SuggestionPanel）は入力欄と同じ幅で開く。`.tolv-search--hug` で候補の長さに合わせて広げる',
+          '- 候補パネル（SuggestionPanel）は入力欄と同じ幅で開く。候補や「マスターに追加」がそれより長いときは、折り返さずに中身の幅まで広がる',
         ].join('\n'),
       },
     },
@@ -71,6 +71,7 @@ export const Overview = {
       + `<div style="display:flex;gap:40px;align-items:flex-start;min-height:260px;margin-top:16px">`
       + `<div>${cap('入力あり・候補一致（SuggestionPanel / Default）')}${box(field({ value: 'り', placeholder: 'テキスト', open: true, isStatic: true, panel: panelItems(['りんご']) }))}</div>`
       + `<div>${cap('入力あり・候補なし（SuggestionPanel / NoData）')}${box(field({ value: 'ばなな', placeholder: 'テキスト', open: true, isStatic: true, panel: panelNoData() }))}</div>`
+      + `<div>${cap('幅の狭い入力欄（120px。パネルは中身の幅まで広がる）')}<div style="width:120px">${field({ value: 'ばなな', placeholder: 'テキスト', open: true, isStatic: true, panel: panelNoData() })}</div></div>`
       + `</div>`;
   },
 };

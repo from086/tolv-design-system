@@ -33,7 +33,7 @@ export default {
           '**Spec**',
           '- 幅: 親の幅いっぱい（Fill）または px 指定（親要素の幅で決める）',
           '- 高さ: 中身に合わせる',
-          '- 選択肢パネル（SelectPanel）は Select と同じ幅で開く。幅の狭い Select は `.tolv-select--hug` で選択肢の長さに合わせて広げる（右寄せで開くなら `.tolv-select--align-end` も併記）',
+          '- 選択肢パネル（SelectPanel）は Select と同じ幅で開く。選択肢がそれより長いときは、省略せずに中身の幅まで広がる（右寄せで開くなら `.tolv-select--align-end`）',
         ].join('\n'),
       },
     },
@@ -69,8 +69,8 @@ export const Overview = {
       + row('Open（SelectPanel）', { value: 'りんご', open: true })
       + `</table><div style="height:140px"></div>`   // ポップオーバー分の余白
       + `<div style="display:flex;gap:40px;align-items:flex-start;min-height:200px">`
-      + `<div>${cap('幅の狭い Select（既定：Select と同じ幅）')}${narrow('')}</div>`
-      + `<div>${cap('.tolv-select--hug（選択肢の長さに合わせて広がる）')}${narrow('tolv-select--hug')}</div>`
+      + `<div>${cap('幅の狭い Select（選択肢の長さまで広がる）')}${narrow('')}</div>`
+      + `<div>${cap('右寄せで開く（.tolv-select--align-end）')}${narrow('tolv-select--align-end')}</div>`
       + `</div>`;
   },
 };
