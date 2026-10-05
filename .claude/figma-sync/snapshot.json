@@ -1,7 +1,7 @@
 {
- "takenAt": "2026-09-30",
+ "takenAt": "2026-10-05",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.25.0",
+ "syncedRelease": "v0.26.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -134,8 +134,8 @@
    "id": "3617:1861",
    "props": "tp4rve",
    "variants": {
-    "Style=primary, Redius=True": "1mye7rw",
-    "Style=primary, Redius=False": "rlnotg"
+    "Style=primary, Redius=True": "lkdaxo",
+    "Style=primary, Redius=False": "1y64jz8"
    },
    "desc": "374iwx"
   },
@@ -672,6 +672,20 @@
   "undo": "Style=fill:154dgyj@24 Style=outline:154dgyj@24",
   "print": "Style=fill:tfsnox@24 Style=outline:u5uwb9@24",
   "language": "Style=fill:q3dqt2@24 Style=outline:q3dqt2@24",
+  "photo": "Style=fill:18ihzan@24 Style=outline:6hbzlt@24",
+  "note": "Style=fill:2b0hkn@24 Style=outline:qs905c@24",
+  "h1": "Style=fill:lnyc8d@24 Style=outline:lnyc8d@24",
+  "h2": "Style=fill:160pz46@24 Style=outline:160pz46@24",
+  "h3": "Style=fill:1og3m73@24 Style=outline:1og3m73@24",
+  "delete": "Style=fill:1ekzh3z@24 Style=outline:1waaqq7@24",
+  "arrow_upward_alt": "Style=fill:512p8h@24 Style=outline:512p8h@24",
+  "arrow_downward_alt": "Style=fill:qq6ucw@24 Style=outline:qq6ucw@24",
+  "arrow_left_alt": "Style=fill:1s5vwdt@24 Style=outline:1s5vwdt@24",
+  "arrow_right_alt": "Style=fill:1oxvpms@24 Style=outline:1oxvpms@24",
+  "zoom_out": "Style=fill:1169jpo@24 Style=outline:1169jpo@24",
+  "zoom_in": "Style=fill:1uvb8eo@24 Style=outline:1uvb8eo@24",
+  "swap_horiz": "Style=fill:49dinn@24 Style=outline:49dinn@24",
+  "rotation": "Style=fill:zgmqed@24 Style=outline:zgmqed@24",
   "date": "Style=fill:gigpn7@24 Style=outline:1w3415k@24",
   "tune": "Style=fill:ybujht@24 Style=outline:ybujht@24",
   "arrow_drop_up": "Style=fill:1ahxnlu@24 Style=outline:1ahxnlu@24",

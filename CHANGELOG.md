@@ -2,6 +2,16 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.26.0] - 2026-10-05
+### Added
+- ストーリー用アイコン（`_icons.js`）に Figma Asset の 14 個を追加（outline スタイル）: `photo` / `note` / `h1` / `h2` / `h3` / `deleteIcon`（Asset `delete`。JS の予約語のため改名）/ `arrowUpwardAlt` / `arrowDownwardAlt` / `arrowLeftAlt` / `arrowRightAlt` / `zoomIn` / `zoomOut` / `swapHoriz` / `rotation`
+
+### Changed
+- **DropArea**: Figma に合わせ **padding 16px → 0**、サイズは **幅・高さとも固定（利用側で `width` / `height` を指定）**、中身は全面に広がって中央寄せ
+
+### Migration
+- DropArea は中身の大きさで広がらなくなった（余白もなし）。`style="width:…;height:…"` などでサイズを指定する
+
 ## [0.25.0] - 2026-09-30
 ### Changed
 - **Divider の余白**: 線の前後の余白を **4px → 8px**（`--space-medium`）に変更（Figma Divider の padding に合わせる。横線は上下、縦線は左右）

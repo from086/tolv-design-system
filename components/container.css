@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Container / DropArea  (v0.24.0)
+ * tolv Design System — Container / DropArea  (v0.26.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。要素を包む枠（レイアウトプリミティブ）。
  *   .tolv-container              … コンテナ（base=枠なし / --primary=白地+基本境界 / --secondary=強調境界）
@@ -50,7 +50,9 @@
  * Figma DropArea（Style=primary × Radius=True/False）。地色 bg-basic-secondary・枠 border-basic-secondary。
  * 枠は 1px の破線（dash 2 / gap 2）。border-style:dashed は破線の長さを指定できないため、
  * SVG マスクで破線を描き、色はトークン（背景色）で塗る（ダークモードでも追従）。
- * マスクの角丸 rx=16 は --radius-large と同じ値。 */
+ * マスクの角丸 rx=16 は --radius-large と同じ値。
+ * サイズ: 幅・高さとも固定（Figma Fixed）→ 利用側で width / height を指定する。余白なし（padding 0）。
+ * 中身（Slot）: 全面（幅・高さ Fill）に広がり、縦並び・中央寄せ。 */
 .tolv-drop-area {
   box-sizing: border-box;
   position: relative;
@@ -58,7 +60,7 @@
   flex-direction: column;       /* Slot: 縦並び・中央寄せ・間隔 0 */
   align-items: center;
   justify-content: center;
-  padding: var(--space-large, 16px);   /* 枠は ::before で内側に描くので、padding は Figma の値そのまま */
+  padding: 0;                   /* Figma padding 0（枠は ::before で内側に重ねて描く） */
   border-radius: var(--radius-large, 16px);
   background: var(--color-bg-basic-secondary);
   overflow: hidden;

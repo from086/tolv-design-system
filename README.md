@@ -238,7 +238,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
   <span class="tolv-text tolv-text--body"><span class="tolv-text__label">本文</span></span>
 </div>
 ```
-- **`.tolv-drop-area`** … ドロップ領域（地色 bg-basic-secondary＋強調色の 1px 破線枠、radius/padding large）。中身は縦並び・中央寄せ。**`--square`** で角丸なし
+- **`.tolv-drop-area`** … ドロップ領域（地色 bg-basic-secondary＋強調色の 1px 破線枠、radius large・余白なし）。**幅・高さは利用側で指定**（Figma は Fixed）。中身は全面に広がり縦並び・中央寄せ。**`--square`** で角丸なし
 
 ## 開発（Storybook）
 
