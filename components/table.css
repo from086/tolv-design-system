@@ -33,7 +33,9 @@
   white-space: nowrap;
 }
 
-/* Head：太字＋並び替え（.tolv-sort-button を内包）。値と sort の間は詰める（gap なし・余白は各内側 min） */
+/* Head：太字＋末尾ボタン。値とボタンの間は詰める（gap なし・余白は各内側 min）
+ *   SortableHead   … .tolv-sort-button（並び替え）
+ *   FilterableHead … .tolv-filter-button（絞り込み。押すと FilterPanel を開く想定。開閉は利用側） */
 .tolv-cell--head { cursor: pointer; gap: 0; }
 .tolv-cell--head .tolv-cell__value { font-weight: var(--font-weight-bold, 700); flex: 0 0 auto; }
 

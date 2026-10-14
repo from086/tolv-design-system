@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.27.0)
+ * tolv Design System — Form family  (v0.28.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -11,6 +11,7 @@
  *   .tolv-suggestion-panel… 候補パネル（マスターデータ一覧 / 該当なし＋追加）
  *   .tolv-search--cell    … セル型（Cell。白地・アイコン20px）
  *   .tolv-list-item    … 候補行（ListItem。Select/Search のメニュー内で使用）
+ *   .tolv-filter-panel … 絞り込みパネル（FilterPanel。並び替え＋区切り線＋絞り込み条件）
  *   .tolv-field        … ラベル＋コントロール＋メッセージの組（FormSet）
  *   .tolv-time         … 時刻入力（InputTime。HH:MM ＋ 時計アイコン）
  *   .tolv-fixed-value  … 読み取り専用の値表示（FixedValue）
@@ -353,6 +354,43 @@
 .tolv-suggestion-panel__add-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 20px; height: 20px; }
 .tolv-suggestion-panel__add-icon svg { width: 100%; height: 100%; }
 .tolv-suggestion-panel__add-label { padding: 0 var(--space-small, 4px); white-space: nowrap; }   /* ボタン名は折り返さない */
+
+/* ============ FilterPanel（.tolv-filter-panel） ============
+ * テーブル見出し（Cell FilterableHead）の FilterButton から開く絞り込みパネル。
+ * Container primary（radius large・余白 16）の中に、縦 8px 間隔で
+ *   __sort（RadioButton 昇順/降順を横並び）→ .tolv-divider → __section（絞り込み条件）
+ * __section の中身は縦 8px 間隔：IncrementalSearch / .tolv-field__label と、__items（CheckBox / RadioButton を幅いっぱいで縦に並べる）。
+ * __range は「カスタム」期間の入力行（DateSelect 〜 DateSelect、左に 32px 字下げ・間隔 4px）。
+ * Spec: 幅 = 親の幅（既定）… px 指定に変更可 / 最小幅 = 中身の幅 / 高さ = 中身に合わせる /
+ *       最大高さ 480px（Figma コンポーネントの設定。--tolv-filter-panel-max-height で変更可）→ 超えたらパネル内でスクロール */
+.tolv-filter-panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium, 8px);
+  width: 100%;
+  min-width: max-content;
+  max-height: var(--tolv-filter-panel-max-height, 480px);
+  overflow-y: auto;
+  padding: calc(var(--space-large, 16px) - var(--border-regular, 1px));   /* 枠内側 */
+  border: var(--border-regular, 1px) solid var(--color-border-basic-primary);
+  border-radius: var(--radius-large, 16px);
+  background: var(--color-bg-basic-primary);
+  color: var(--color-fg-basic-primary);
+  font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+}
+.tolv-filter-panel > .tolv-divider { margin: var(--space-medium, 8px) 0; flex: none; }   /* Divider 自身の余白 8px（gap とは別） */
+.tolv-filter-panel__sort { display: flex; flex-wrap: wrap; }
+.tolv-filter-panel__section { display: flex; flex-direction: column; gap: var(--space-medium, 8px); }
+.tolv-filter-panel__items { display: flex; flex-direction: column; }
+.tolv-filter-panel__items > .tolv-checkbox,
+.tolv-filter-panel__items > .tolv-radio { display: flex; width: 100%; }   /* 行全体を押せるように幅いっぱい */
+.tolv-filter-panel__range {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small, 4px);
+  padding-left: calc(var(--space-xlarge, 32px));   /* ラジオの文字位置に合わせて字下げ */
+}
 
 /* ============ ListItem（.tolv-list-item） ============ */
 .tolv-list-item[hidden] { display: none; }  /* display:flex が [hidden] を上書きするのを防ぐ */

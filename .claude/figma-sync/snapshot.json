@@ -1,7 +1,7 @@
 {
- "takenAt": "2026-10-05",
+ "takenAt": "2026-10-14",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.27.0",
+ "syncedRelease": "v0.28.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -274,14 +274,15 @@
   },
   "Cell": {
    "id": "3863:3753",
-   "props": "383uby",
+   "props": "1dm742u",
    "variants": {
-    "Status=Head": "1sytvb",
+    "Status=SortableHead": "1ec9bsj",
+    "Status=FilterableHead": "1gvt1dp",
     "Status=Default": "1onmc5z",
     "Status=Hover": "1gpqhpj",
     "Status=Edit": "jsk3hc"
    },
-   "desc": "1s803zc"
+   "desc": "ktmrjs"
   },
   "InputText": {
    "id": "3778:1272",
@@ -450,7 +451,7 @@
    "props": "1vmw39w",
    "variants": {
     "Type=Default": "fs707k",
-    "Type=NoData": "103iy5k"
+    "Type=NoData": "1womdrr"
    },
    "desc": "1rix0ge"
   },
@@ -515,6 +516,26 @@
     "Type=Default": "mo0ehf"
    },
    "desc": "75buyx"
+  },
+  "FilterButton": {
+   "id": "4035:1422",
+   "props": "121cbto",
+   "variants": {
+    "Selected=False, Status=Default": "1jpsogy",
+    "Selected=False, Status=Hover": "1kdq4hk",
+    "Selected=True, Status=Default": "gmqsaw",
+    "Selected=True, Status=Hover": "id3gm6"
+   },
+   "desc": "15i3uox"
+  },
+  "FilterPanel": {
+   "id": "4035:1518",
+   "props": "1vmw39w",
+   "variants": {
+    "Type=Default": "80hyz6",
+    "Type=NoData": "wskebq"
+   },
+   "desc": "1rix0ge"
   }
  },
  "variables": {

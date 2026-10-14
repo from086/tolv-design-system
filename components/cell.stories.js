@@ -1,6 +1,6 @@
 // Cell — .tolv-cell（テーブルセル：Head / Default / Hover(編集) / Edit）
 // Hover は値の直後に CellActionButton（Edit）。Edit は InputSlot：Form 系コンポーネント＋CellActionButton（Undo / Submit）。
-import { pencil, check, sortDesc, chevronDown, calendar, clock, undo } from './_icons.js';
+import { pencil, check, sortDesc, filterAlt, chevronDown, calendar, clock, undo } from './_icons.js';
 const box = (inner, w = 260) => `<div style="width:${w}px">${inner}</div>`;
 
 // ---- Edit の中に入れる Form 系コンポーネント ----
@@ -32,10 +32,13 @@ const actionBtn = (type, icon, label, disabled) =>
 // Undo / Submit。Submit は未変更なら disabled
 const actions = (changed) => actionBtn('undo', undo, '元に戻す') + actionBtn('submit', check, '確定', !changed);
 
-// status: 'head' | 'default' | 'editable' | 'edit'
+// status: 'head'（SortableHead）| 'filterableHead' | 'default' | 'editable' | 'edit'
 const cell = ({ status, text, input = 'InputText', error = false, changed = true }) => {
   if (status === 'head') {
     return `<div class="tolv-cell tolv-cell--head"><span class="tolv-cell__value">${text}</span><span class="tolv-sort-button is-selected">${sortDesc}</span></div>`;
+  }
+  if (status === 'filterableHead') {
+    return `<div class="tolv-cell tolv-cell--head"><span class="tolv-cell__value">${text}</span><button type="button" class="tolv-filter-button" aria-label="絞り込み">${filterAlt}</button></div>`;
   }
   if (status === 'edit') {
     return `<div class="tolv-cell is-edit">${SLOT[input]({ text, error })}${actions(changed)}</div>`;
@@ -64,7 +67,7 @@ export default {
   },
   render,
   argTypes: {
-    status: { control: 'inline-radio', options: ['head', 'default', 'editable', 'edit'], description: 'Head / Default / Hover(編集可) / Edit' },
+    status: { control: 'inline-radio', options: ['head', 'filterableHead', 'default', 'editable', 'edit'], description: 'SortableHead / FilterableHead / Default / Hover(編集可) / Edit' },
     text: { control: 'text' },
     input: { control: 'inline-radio', options: Object.keys(SLOT), description: 'Edit の中身（InputSlot）', if: { arg: 'status', eq: 'edit' } },
     error: { control: 'boolean', description: 'InputText のエラー', if: { arg: 'status', eq: 'edit' } },
@@ -80,7 +83,8 @@ export const Overview = {
   render: () => {
     const row = (label, args) => `<tr><th style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);text-align:left;padding:8px 16px 8px 0;white-space:nowrap">${label}</th><td style="padding:6px 0">${box(cell({ text: 'テキスト', ...args }), 320)}</td></tr>`;
     return `<table style="border-collapse:collapse">`
-      + row('Head（並び替え）', { status: 'head' })
+      + row('SortableHead（並び替え）', { status: 'head' })
+      + row('FilterableHead（絞り込み）', { status: 'filterableHead' })
       + row('Default', { status: 'default' })
       + row('Hover（編集可・ホバーで編集ボタン）', { status: 'editable' })
       + row('Edit / InputText', { status: 'edit', input: 'InputText' })

@@ -5,6 +5,7 @@
  *   .tolv-checkbox            … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
  *   .tolv-radio               … ラジオボタン（False/True × Default/Hover/Disabled）
  *   .tolv-sort-button         … 並び替えアイコンボタン（selected/未selected × hover）
+ *   .tolv-filter-button       … 絞り込みアイコンボタン（SortButton と同じ形。未選択=outline・グレー / 選択中=fill・濃色）
  *   .tolv-trailing-icon-button… 末尾アイコンボタン（arrow-down/up・Info・Help 等 × hover）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
@@ -92,8 +93,11 @@
 .tolv-checkbox.is-disabled .tolv-checkbox__glyph,
 .tolv-radio.is-disabled .tolv-radio__glyph { color: var(--color-fg-brand-primary-disabled); }
 
-/* ============ SortButton ============ */
-.tolv-sort-button {
+/* ============ SortButton / FilterButton ============
+ * 24×24（アイコン 20 ＋ 余白 2）・radius medium。未選択はグレー、選択中（.is-selected）は濃色、hover で地色。
+ * FilterButton のアイコンは未選択 = filter_alt outline、選択中 = filter_alt fill を利用側で入れる。 */
+.tolv-sort-button,
+.tolv-filter-button {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -105,9 +109,12 @@
   color: var(--color-fg-basic-primary-disabled);   /* 未選択 = グレー */
   cursor: pointer;
 }
-.tolv-sort-button:hover { background: var(--color-bg-basic-primary-hover); }
-.tolv-sort-button.is-selected { color: var(--color-fg-basic-primary); }   /* 選択中 = 濃色 */
-.tolv-sort-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }
+.tolv-sort-button:hover,
+.tolv-filter-button:hover { background: var(--color-bg-basic-primary-hover); }
+.tolv-sort-button.is-selected,
+.tolv-filter-button.is-selected { color: var(--color-fg-basic-primary); }   /* 選択中 = 濃色 */
+.tolv-sort-button svg,
+.tolv-filter-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }
 
 /* ============ TrailingIconButton ============ */
 .tolv-trailing-icon-button {

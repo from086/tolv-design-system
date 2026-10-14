@@ -2,6 +2,16 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.28.0] - 2026-10-14
+### Added
+- **FilterButton（`.tolv-filter-button`）**: 絞り込みアイコンボタン。SortButton と同じ形（24×24・radius medium・hover 地色）で、未選択 = filter_alt outline・グレー、選択中（`.is-selected`）= filter_alt fill・濃色
+- **FilterPanel（`.tolv-filter-panel`）**: テーブル見出しから開く絞り込みパネル。並び替え（昇順/降順）＋区切り線＋絞り込み条件（検索＋CheckBox 一覧 / 期間指定＋カスタム期間の DateSelect）。幅は親の幅・最小幅は中身、最大 480px でスクロール
+- **Cell FilterableHead**: 見出しセルの末尾に FilterButton を置く形（`.tolv-cell--head` ＋ `.tolv-filter-button`）。従来の Head は Figma で SortableHead に改名（コードは変更なし）
+- ストーリー用アイコンに **`filterAltFill`**（filter_alt の fill スタイル）を追加
+
+### Confirmed
+- SuggestionPanel NoData が Figma で Text（caption・Secondary）＋ Button（Small・Secondary・add アイコン）のインスタンス構成に変わったが、見た目（文字・色・余白）は既存の実装と一致
+
 ## [0.27.0] - 2026-10-05
 ### Fixed
 - **親（フォーム）の幅が狭いとき**の表示崩れを修正

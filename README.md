@@ -77,6 +77,7 @@ Container の中身（Slot）は「幅いっぱい・高さは中身に合わせ
 - **`.tolv-select-panel`** … Select の選択肢パネル（`.tolv-list-item` の一覧、選択中はチェック）。Select 内では `class="tolv-select-panel tolv-select__menu"` と併記する。高さは中身に合わせ、**最大 320px** を超えるとパネル内でスクロール（`--tolv-panel-max-height` で変更可）
 - **`.tolv-search`** … インクリメンタルサーチ（入力で下に SuggestionPanel を表示。`data-suggestions` にマスターデータ配列(JSON)を渡す）。パネルの幅は入力欄と同じで、候補や「マスターに追加」がそれより長いときは**折り返さずに中身の幅まで広がる**
 - **`.tolv-suggestion-panel`** … 候補パネル（`__items` の一覧 / `__nodata`＝該当なし＋`__add`「マスターに追加」）。最大 320px でスクロール（SelectPanel と同じ）
+- **`.tolv-filter-panel`** … 絞り込みパネル（テーブル見出しの FilterButton から開く想定）。`__sort`（昇順/降順の RadioButton）→ `.tolv-divider` → `__section`（`.tolv-search` や `.tolv-field__label` ＋ `__items` に CheckBox / RadioButton を幅いっぱいで並べる）。カスタム期間は `__items` の最後に `__range`（DateSelect 〜 DateSelect）。幅は親の幅・最小幅は中身、**最大 480px** でスクロール（`--tolv-filter-panel-max-height`）。開閉と絞り込みの実行は利用側。`controls.css` / `calendar.css` も読み込む
 - **`.tolv-search--cell`** … 検索セル（`.tolv-search` の白地バリアント）
 - **`.tolv-list-item`** … 候補行（`__label` + `__check`、`.is-selected`／`.is-active`（hover）／`.is-disabled`）
 - **`.tolv-field`** … FormSet（`__label` + `__support` + `__control-set`（コントロール + `__message`／`--error`／`--success`））。コントロール直下のメッセージ領域（20px）は**メッセージがなくても確保**される
@@ -134,6 +135,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-checkbox`** … チェックボックス（`:checked` / `:indeterminate`（or `.is-indeterminate`）/ `:disabled`）
 - **`.tolv-radio`** … ラジオボタン（`__box` + `__dot`。`:checked` / `:disabled`）
 - **`.tolv-sort-button`** … 並び替えアイコンボタン（`.is-selected` で濃色、hover 地色。アイコンは asc/desc を利用側で指定）
+- **`.tolv-filter-button`** … 絞り込みアイコンボタン（SortButton と同じ形。未選択 = filter_alt outline・グレー / `.is-selected` = filter_alt fill・濃色。アイコンは利用側で入れ替える）
 - **`.tolv-trailing-icon-button`** … 末尾アイコンボタン（20px アイコン＋hover 地色。arrow-down/up・Info・Help 等を利用側で指定）。**Help は `--secondary`（グレー）** を付ける
 
 ### Text（`components/text.css`）
