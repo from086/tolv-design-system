@@ -2,6 +2,23 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.29.0] - 2026-10-14
+### Changed
+- **DateSelect のカレンダーを最前面に表示（親の overflow で切れない）**: Popover API（top layer）で重ね、位置は calendar.js が日付欄に合わせて決める。FilterPanel（overflow-y:auto）・Container（overflow:hidden）・横スクロールのテーブルの中でも切れない
+  - 既定は日付欄の下 4px・左端そろえ。下に入りきらなければ上に、右にはみ出すなら右端そろえで開く（画面の端から 16px 以上）
+  - ページ・親のスクロール、画面サイズの変更に追従。日付欄が見えなくなったら閉じる
+  - SelectPanel・FilterPanel・Record の固定ボタンなど、他のポップオーバーより前面に出る（Popover API 非対応ブラウザは position:fixed ＋ z-index 1000）
+- 閉じたらフォーカスを日付欄に戻す（Esc・日付の選択・削除・今日。外側クリックでは、クリック先がフォーカスを取らなかったときだけ）
+- 日付欄に `tabindex="0"`・`aria-haspopup`・`aria-expanded` を自動で付与し、Enter / Space でも開閉できる（マークアップの変更は不要）
+- `.is-disabled` の DateSelect も初期化しておき、あとから `.is-disabled` を外せば開けるようにした（FilterPanel の「カスタム」選択時など）
+
+### Added
+- `TolvCalendar.contains(node)`（DateSelect の一部か判定。外側クリックで閉じる処理用）/ `TolvCalendar.open(ds)` / `TolvCalendar.close(ds)`
+- Storybook の DateSelect に確認用ストーリー（親の overflow の中 / 画面の端の近く / スクロールに追従）
+
+### 互換性
+- DateSelect の HTML と `TolvCalendar.init` はそのまま。選択・削除・今日の操作と `tolv:datechange` の内容も変更なし
+
 ## [0.28.1] - 2026-10-14
 ### Changed
 - Figma FilterPanel のバリアント名 `Type=NoData` → **`Type=Period`**（期間指定）に合わせ、ストーリーの表記を更新（CSS の変更なし）

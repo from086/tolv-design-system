@@ -116,7 +116,9 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-date-cell`** … 日セル（`:hover`／`.is-selected`／`:disabled`（前後月））
 - **`.tolv-calendar`** … カレンダー本体（年Select＋月送り`< >`＋日グリッド＋`削除`/`今日`）。`data-tolv-calendar` で自動描画、または `TolvCalendar.mount(el, {selected, onSelect})`
 - **`.tolv-date-select`** … 日付入力トリガー（`YYYY / MM / DD` ＋カレンダーアイコン）。クリックでカレンダーをポップオーバー表示、日選択で確定 → `tolv:datechange`（`detail.value` = `'YYYY-MM-DD'|null`）
-- 外側クリック / Esc で閉じる。グリッドは日曜始まり・前後月は非活性
+- 外側クリック / Esc で閉じる（閉じたらフォーカスは日付欄に戻る）。Enter / Space でも開閉できる。グリッドは日曜始まり・前後月は非活性
+- カレンダーは**最前面**（Popover API の top layer）に表示するので、FilterPanel・Container・横スクロールのテーブルなど **overflow のある親の中に置いても切れない**。位置は日付欄の下 4px・左端そろえで、下に入りきらなければ上、右にはみ出すなら右端そろえ（画面端から 16px 以上）。ページ・親のスクロールや画面サイズの変更に追従し、日付欄が見えなくなったら閉じる
+- 外側クリックで閉じる処理を自前で書く場合は **`TolvCalendar.contains(node)`** で「DateSelect（カレンダーを含む）の一部か」を判定できる（カレンダーは DOM 上は DateSelect の中にあるので `element.contains()` でも判定可）。手動開閉は `TolvCalendar.open(ds)` / `TolvCalendar.close(ds)`
 
 ### Controls（`components/controls.css`）
 

@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar behavior  (v0.11.1)
+ * tolv Design System — Calendar behavior  (v0.29.0)
  * =====================================================================
  * 依存なしの素のJS。calendar.css の CalendarPanel / DateSelect に挙動を付与。
  *   - .tolv-calendar     : 月送り / 日選択 / 削除 / 今日（年はSelect）
@@ -11,6 +11,11 @@
  *   // 手動: TolvCalendar.mount(el, { selected, onSelect })
  *
  * イベント（bubbles）: .tolv-date-select → 'tolv:datechange'  detail: { value: 'YYYY-MM-DD'|null }
+ *
+ * DateSelect のカレンダーは最前面（Popover API の top layer）に表示し、親の overflow で切れない。
+ * 位置は日付欄の下 4px・左端そろえ（入りきらなければ上 / 右端そろえ）で、スクロール・リサイズに追従。
+ * 外側クリック判定用: TolvCalendar.contains(node) … node が DateSelect（カレンダーを含む）の一部なら true
+ * 手動開閉: TolvCalendar.open(ds) / TolvCalendar.close(ds)
  */
 (function (global) {
   'use strict';
@@ -134,16 +139,83 @@
     });
   }
 
+  // ---- カレンダーを最前面に表示（親の overflow で切れないように） ----
+  // Popover API（top layer）で重ね、位置は日付欄に合わせて JS で決める。
+  // ポップオーバーは DOM 上は DateSelect の中に置いたままなので、ds.contains() で「DateSelect の一部」と判定できる。
+  // Popover API 非対応ブラウザは position:fixed ＋ z-index で重ねる（calendar.css）。
+  var GAP = 4;    // 日付欄との間隔（space/small）
+  var EDGE = 16;  // 画面の端から離す距離（space/large）
+  var SUPPORTS_POPOVER = typeof HTMLElement !== 'undefined' && Object.prototype.hasOwnProperty.call(HTMLElement.prototype, 'showPopover');
+  var opened = [];
+
+  // el が実際に見えている範囲（画面と、overflow で切り取る祖先の枠の重なり）
+  function visibleRect(el) {
+    var de = document.documentElement;
+    var r = { top: 0, left: 0, right: de.clientWidth, bottom: de.clientHeight };
+    for (var p = el.parentElement; p && p !== document.body && p !== de; p = p.parentElement) {
+      var cs = getComputedStyle(p);
+      if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + ' ' + cs.overflowY)) {
+        var b = p.getBoundingClientRect();
+        r = { top: Math.max(r.top, b.top), left: Math.max(r.left, b.left), right: Math.min(r.right, b.right), bottom: Math.min(r.bottom, b.bottom) };
+      }
+    }
+    return r;
+  }
+
+  // 既定は日付欄の下 4px・左端そろえ。下に入りきらなければ上、右にはみ出すなら右端そろえ（画面端から 16px 以上）
+  function place(ds) {
+    var pop = ds.__tolvPop;
+    var a = ds.getBoundingClientRect();
+    var v = visibleRect(ds);
+    if (a.bottom <= v.top || a.top >= v.bottom || a.right <= v.left || a.left >= v.right) { close(ds, false); return; }  // 日付欄が見えなくなったら閉じる
+    var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+    var w = pop.offsetWidth, h = pop.offsetHeight;
+    var top = a.bottom + GAP, y = 'bottom';
+    if (top + h > vh - EDGE && a.top - GAP - h >= EDGE) { top = a.top - GAP - h; y = 'top'; }
+    var left = a.left, x = 'start';
+    if (left + w > vw - EDGE) { left = a.right - w; x = 'end'; }
+    left = Math.max(EDGE, Math.min(left, vw - EDGE - w));
+    pop.style.top = top + 'px';
+    pop.style.left = left + 'px';
+    pop.setAttribute('data-placement', y + '-' + x);
+  }
+
+  function open(ds) {
+    if (!ds.__tolvPop || ds.classList.contains('is-open') || ds.classList.contains('is-disabled')) return;
+    opened.slice().forEach(function (o) { close(o, false); });   // 同時に開くのは1つ
+    ds.classList.add('is-open');
+    ds.setAttribute('aria-expanded', 'true');
+    if (SUPPORTS_POPOVER) { try { ds.__tolvPop.showPopover(); } catch (err) { /* 未接続など */ } }
+    opened.push(ds);
+    place(ds);
+  }
+
+  // restoreFocus: 閉じたあと日付欄にフォーカスを戻す
+  function close(ds, restoreFocus) {
+    if (!ds.classList.contains('is-open')) return;
+    ds.classList.remove('is-open');
+    ds.setAttribute('aria-expanded', 'false');
+    if (SUPPORTS_POPOVER) { try { ds.__tolvPop.hidePopover(); } catch (err) { /* 既に閉じている */ } }
+    opened = opened.filter(function (o) { return o !== ds; });
+    if (restoreFocus) ds.focus({ preventScroll: true });
+  }
+
   function initDateSelects(root) {
     root.querySelectorAll('.tolv-date-select:not([data-tolv-init])').forEach(function (ds) {
       ds.setAttribute('data-tolv-init', '');
-      if (ds.classList.contains('is-disabled')) return;
       var segs = ds.querySelectorAll('.tolv-date-select__seg');
       if (segs.length < 3) return;
       var pop = ds.querySelector('.tolv-date-select__popover');
       if (!pop) { pop = document.createElement('div'); pop.className = 'tolv-date-select__popover'; ds.appendChild(pop); }
+      if (SUPPORTS_POPOVER) pop.setAttribute('popover', 'manual');   // 開閉はこのスクリプトで管理（外側クリック・Esc）
+      ds.__tolvPop = pop;
       var calEl = document.createElement('div');
       pop.appendChild(calEl);
+
+      // キーボードで開けるように（マークアップは変えずに属性だけ補う）
+      if (!ds.hasAttribute('tabindex')) ds.setAttribute('tabindex', ds.classList.contains('is-disabled') ? '-1' : '0');
+      ds.setAttribute('aria-haspopup', 'dialog');
+      ds.setAttribute('aria-expanded', 'false');
 
       function setSegs(v) {
         if (v) { var p = v.split('-'); segs[0].textContent = p[0]; segs[1].textContent = p[1]; segs[2].textContent = p[2]; segs.forEach(function (s) { s.removeAttribute('data-empty'); }); }
@@ -151,13 +223,20 @@
       }
       mount(calEl, {
         selected: ds.dataset.value || null,
-        onSelect: function (v) { setSegs(v); ds.dataset.value = v; ds.classList.remove('is-open'); ds.dispatchEvent(new CustomEvent('tolv:datechange', { bubbles: true, detail: { value: v } })); },
-        onClear: function () { setSegs(null); ds.dataset.value = ''; ds.classList.remove('is-open'); ds.dispatchEvent(new CustomEvent('tolv:datechange', { bubbles: true, detail: { value: null } })); },
+        onSelect: function (v) { setSegs(v); ds.dataset.value = v; close(ds, true); ds.dispatchEvent(new CustomEvent('tolv:datechange', { bubbles: true, detail: { value: v } })); },
+        onClear: function () { setSegs(null); ds.dataset.value = ''; close(ds, true); ds.dispatchEvent(new CustomEvent('tolv:datechange', { bubbles: true, detail: { value: null } })); },
       });
       ds.addEventListener('click', function (e) {
         if (pop.contains(e.target)) return;
-        ds.classList.toggle('is-open');
+        if (ds.classList.contains('is-open')) close(ds, false); else open(ds);
       });
+      ds.addEventListener('keydown', function (e) {
+        if (e.target !== ds || (e.key !== 'Enter' && e.key !== ' ')) return;
+        e.preventDefault();
+        if (ds.classList.contains('is-open')) close(ds, true); else open(ds);
+      });
+      // 月によって週の数が変わり高さが変わる → 位置を取り直す（上に開いているときに必要）
+      if (typeof ResizeObserver !== 'undefined') new ResizeObserver(function () { if (ds.classList.contains('is-open')) place(ds); }).observe(pop);
     });
   }
 
@@ -165,11 +244,26 @@
   function bindDocumentOnce() {
     if (docBound) return; docBound = true;
     document.addEventListener('click', function (e) {
-      document.querySelectorAll('.tolv-date-select.is-open').forEach(function (ds) { if (!ds.contains(e.target)) ds.classList.remove('is-open'); });
+      opened.slice().forEach(function (ds) {
+        if (ds.contains(e.target)) return;
+        // 外側クリックで閉じる。クリック先がフォーカスを取らなかったときだけ日付欄に戻す
+        var ae = document.activeElement;
+        close(ds, !ae || ae === document.body || ds.contains(ae));
+      });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') document.querySelectorAll('.tolv-date-select.is-open').forEach(function (ds) { ds.classList.remove('is-open'); });
+      if (e.key === 'Escape') opened.slice().forEach(function (ds) { close(ds, true); });
     });
+    // ページ・親要素のスクロール（capture で全要素分を拾う）と画面サイズの変更に追従
+    var follow = function () { opened.slice().forEach(place); };
+    window.addEventListener('scroll', follow, true);
+    window.addEventListener('resize', follow);
+  }
+
+  // node が DateSelect（カレンダーを含む）の一部か。外側クリックで閉じる処理（FilterPanel など）から使う
+  function contains(node) {
+    var el = node && node.nodeType === 3 ? node.parentElement : node;
+    return !!(el && el.closest && el.closest('.tolv-date-select'));
   }
 
   var TolvCalendar = {
@@ -180,6 +274,9 @@
       initInline(root);
       initDateSelects(root);
     },
+    open: open,
+    close: function (ds) { close(ds, false); },
+    contains: contains,
   };
 
   if (document.readyState !== 'loading') TolvCalendar.init();

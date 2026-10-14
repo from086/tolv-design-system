@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar family  (v0.18.2)
+ * tolv Design System — Calendar family  (v0.29.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。挙動は components/calendar.js。
  *   .tolv-date-cell    … 日セル（DateCell。Default/hover/Selected/Disabled）
@@ -184,11 +184,26 @@
   cursor: not-allowed;
 }
 .tolv-date-select.is-disabled .tolv-date-select__icon { color: var(--color-fg-basic-primary-disabled); }
+/* カレンダーのポップオーバー。最前面（Popover API の top layer）に重ね、親の overflow で切れないようにする。
+ * 位置（top / left）は calendar.js が日付欄に合わせて設定：既定は下 4px・左端そろえ、
+ * 下に入りきらなければ上、右にはみ出すなら右端そろえ（画面端から 16px 以上）。スクロール・リサイズに追従。
+ * [popover] のブラウザ既定スタイル（中央寄せ・枠・余白・地色）はここで打ち消す。
+ * Popover API 非対応ブラウザは position:fixed ＋ z-index で重ねる。 */
 .tolv-date-select__popover {
-  position: absolute;
-  top: calc(100% + var(--space-small, 4px));
+  position: fixed;
+  inset: auto;
+  top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 1000;
+  width: max-content;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  cursor: default;
   display: none;
 }
 .tolv-date-select.is-open .tolv-date-select__popover { display: block; }
