@@ -2,6 +2,13 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.28.1] - 2026-10-14
+### Changed
+- Figma FilterPanel のバリアント名 `Type=NoData` → **`Type=Period`**（期間指定）に合わせ、ストーリーの表記を更新（CSS の変更なし）
+
+### Confirmed
+- FilterPanel の Description の最大高さが 480px になり、実装（`--tolv-filter-panel-max-height` 既定 480px）と一致
+
 ## [0.28.0] - 2026-10-14
 ### Added
 - **FilterButton（`.tolv-filter-button`）**: 絞り込みアイコンボタン。SortButton と同じ形（24×24・radius medium・hover 地色）で、未選択 = filter_alt outline・グレー、選択中（`.is-selected`）= filter_alt fill・濃色

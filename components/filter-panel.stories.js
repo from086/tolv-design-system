@@ -29,7 +29,7 @@ const listPanel = () => `<div class="tolv-filter-panel">`
   + `<div class="tolv-filter-panel__items">${['ラベル', 'ラベル', 'ラベル', 'ラベル'].map((l) => checkbox(l, false)).join('')}</div></div>`
   + `</div>`;
 
-// Figma Type=NoData（期間指定）：見出し＋RadioButton 一覧＋カスタム期間（選ぶまで DateSelect は無効）
+// Figma Type=Period（期間指定）：見出し＋RadioButton 一覧＋カスタム期間（選ぶまで DateSelect は無効）
 const periodPanel = (custom = false) => `<div class="tolv-filter-panel">`
   + sort('sort-b')
   + `<hr class="tolv-divider">`
@@ -60,7 +60,7 @@ export default {
       },
     },
   },
-  argTypes: { type: { control: 'inline-radio', options: ['list', 'period'], description: 'list（検索＋CheckBox）/ period（期間指定）' }, custom: { control: 'boolean', description: 'カスタム期間を選択', if: { arg: 'type', eq: 'period' } } },
+  argTypes: { type: { control: 'inline-radio', options: ['list', 'period'], description: 'list（Figma Type=Default：検索＋CheckBox）/ period（Figma Type=Period：期間指定）' }, custom: { control: 'boolean', description: 'カスタム期間を選択', if: { arg: 'type', eq: 'period' } } },
   args: { type: 'list', custom: false },
   render: ({ type, custom }) => `<div style="width:360px">${type === 'period' ? periodPanel(custom) : listPanel()}</div>`,
 };
@@ -73,7 +73,7 @@ export const Overview = {
     const cap = (t) => `<div style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);margin-bottom:6px">${t}</div>`;
     return `<div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">`
       + `<div style="width:360px">${cap('検索＋CheckBox 一覧（Figma Type=Default）')}${listPanel()}</div>`
-      + `<div style="width:360px">${cap('期間指定（Figma Type=NoData）')}${periodPanel(false)}</div>`
+      + `<div style="width:360px">${cap('期間指定（Figma Type=Period）')}${periodPanel(false)}</div>`
       + `<div style="width:160px">${cap('幅の狭い親（160px。中身の幅まで広がる）')}${periodPanel(true)}</div>`
       + `</div>`;
   },

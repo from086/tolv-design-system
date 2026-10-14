@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-10-14",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.28.0",
+ "syncedRelease": "v0.28.1",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -530,12 +530,12 @@
   },
   "FilterPanel": {
    "id": "4035:1518",
-   "props": "1vmw39w",
+   "props": "hj4e5c",
    "variants": {
     "Type=Default": "80hyz6",
-    "Type=NoData": "wskebq"
+    "Type=Period": "x5io7m"
    },
-   "desc": "1rix0ge"
+   "desc": "1y1fo6t"
   }
  },
  "variables": {
