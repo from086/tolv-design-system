@@ -100,6 +100,12 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **Search (IncrementalSearch)**: `data-suggestions='["A","B"]'` のマスターデータを入力で絞り込み、下に SuggestionPanel を表示。候補選択で `tolv:select`、0件時は「マスターに追加」で候補に追加＋確定し `tolv:additem` を発火（永続化は利用側）
 - 外側クリック / Esc で閉じる
 - 動的に追加した要素は `TolvForm.init(親要素)` で再初期化
+- **パネルは最前面に表示**（SelectPanel / SuggestionPanel。DateSelect のカレンダーと同じ仕組み `TolvLayer`）。FilterPanel・Container・横スクロールのテーブルなど **overflow のある親の中に置いても切れない**。位置はフィールドの下 4px・左端そろえ（`--align-end` は右端そろえ）で、下に入りきらなければ上、横にはみ出すなら反対側にそろえる（画面端から 16px 以上）。幅は最小でフィールドの幅、中身が長ければ広がる。スクロール・画面サイズの変更に追従し、フィールドが見えなくなったら閉じる
+- 外側クリックで閉じる処理を自前で書く場合は `TolvForm.contains(node)`（Select / Search の一部か）や `TolvLayer.contains(node)`（最前面に出したパネルの中か）で判定できる。パネルは DOM 上はフィールドの中にあるので `element.contains()` でも判定可
+
+#### 最前面表示の仕組み（`TolvLayer`。form.js / calendar.js に同梱）
+
+ポップオーバーを Popover API（top layer）で重ね、位置は基準の要素に合わせて JS で決める共通の仕組みです。form.js・calendar.js のどちらか一方だけ読み込んでも動き、両方読み込んだ場合は1つを共有します。Popover API 非対応ブラウザでは `position: fixed` ＋ `z-index: 1000` で重ねます。JS を読み込まない静的な表示では、これまでどおりフィールドの中に `position: absolute` で表示されます。
 
 ### Calendar family（`components/calendar.css` + `calendar.js`）
 

@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.28.0)
+ * tolv Design System — Form family  (v0.30.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -292,6 +292,26 @@
   width: max-content;
   min-width: calc(100% + 2 * var(--border-regular, 1px));
   max-width: calc(100vw - 2 * var(--space-large, 16px));
+}
+
+/* ---- 最前面表示（form.js の TolvLayer が [data-tolv-layer] を付ける） ----
+ * SelectPanel / SuggestionPanel を Popover API の top layer に重ね、親の overflow（FilterPanel・Container・
+ * 横スクロールのテーブルなど）で切れないようにする。位置（top / left）と最小幅（= フィールドの外形幅）は JS が設定：
+ * 既定はフィールドの下 4px・左端そろえ（--align-end は右端そろえ）、入りきらなければ上 / 反対側にそろえる（画面端から 16px 以上）。
+ * [popover] のブラウザ既定スタイル（中央寄せ・余白）はここで打ち消す。Popover API 非対応ブラウザは position:fixed ＋ z-index。
+ * JS が付けない静的な表示（form.js を読み込まない場合）は、上の position:absolute のまま。 */
+.tolv-select .tolv-select__menu[data-tolv-layer],
+.tolv-search > .tolv-search__panel[data-tolv-layer] {
+  position: fixed;
+  inset: auto;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  margin: 0;
+  width: max-content;
+  min-width: 0;   /* JS がフィールドの幅を入れる */
+  max-width: calc(100vw - 2 * var(--space-large, 16px));
+  height: auto;
 }
 
 .tolv-suggestion-panel {

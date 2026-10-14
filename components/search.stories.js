@@ -75,3 +75,16 @@ export const Overview = {
       + `</div>`;
   },
 };
+
+// ---- 最前面表示の確認用（SuggestionPanel は親の overflow で切れない） ----
+const ovfCap = (t) => `<div style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);margin-bottom:6px">${t}</div>`;
+export const InsideOverflow = {
+  name: '親の overflow の中',
+  parameters: { controls: { disable: true }, layout: 'padded' },
+  render: () => `<div style="display:flex;gap:32px;align-items:flex-start">`
+    + `<div style="width:280px">${ovfCap('Container（overflow:hidden・高さ 96px）… 入力欄をクリック')}`
+    + `<div class="tolv-container tolv-container--primary" style="height:96px">${field({ value: '', placeholder: 'テキスト' })}</div></div>`
+    + `<div style="width:160px">${ovfCap('幅の狭い入力欄（「ばなな」など一致しない語を入力）')}`
+    + `<div class="tolv-container tolv-container--primary" style="height:96px">${field({ value: '', placeholder: 'テキスト' })}</div></div>`
+    + `</div>`,
+};

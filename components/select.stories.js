@@ -1,5 +1,5 @@
 // Select — .tolv-select（選択肢は SelectPanel をフィールドの下にポップオーバー表示）
-import { chevronDown, check } from './_icons.js';
+import { chevronDown, check, undo } from './_icons.js';
 
 const listItem = (label, selected) =>
   `<div class="tolv-list-item${selected ? ' is-selected' : ''}" role="option"${selected ? ' aria-selected="true"' : ''}>`
@@ -73,4 +73,46 @@ export const Overview = {
       + `<div>${cap('右寄せで開く（.tolv-select--align-end）')}${narrow('tolv-select--align-end')}</div>`
       + `</div>`;
   },
+};
+
+// ---- 最前面表示の確認用（SelectPanel は親の overflow で切れない） ----
+const ovfCap = (t) => `<div style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);margin-bottom:6px">${t}</div>`;
+const selectEl = (value, mod = '') => `<div class="tolv-select ${mod}">`
+  + `<button type="button" class="tolv-select__control" aria-haspopup="listbox" aria-expanded="false">`
+  + `<span class="tolv-select__value">${value}</span><span class="tolv-select__icon">${chevronDown}</span></button>`
+  + `<div class="tolv-select-panel tolv-select__menu" role="listbox">`
+  + ['りんご', 'みかん', 'ぶどう', 'もも', 'いちご', 'メロン（長い選択肢の例：内容に合わせて広がる）'].map((o) => listItem(o, o === value)).join('')
+  + `</div></div>`;
+
+export const InsideOverflow = {
+  name: '親の overflow の中',
+  parameters: { controls: { disable: true }, layout: 'padded' },
+  render: () => {
+    const container = `<div class="tolv-container tolv-container--primary" style="height:96px">${selectEl('りんご')}</div>`;
+    const actions = `<button type="button" class="tolv-cell-action-button tolv-cell-action-button--undo" aria-label="元に戻す">${undo}</button>`
+      + `<button type="button" class="tolv-cell-action-button tolv-cell-action-button--submit" aria-label="確定">${check}</button>`;
+    const table = `<div style="width:340px;overflow-x:auto;border:1px solid var(--color-border-basic-primary);border-radius:8px">`
+      + `<div style="display:flex;width:720px">`
+      + `<div class="tolv-cell" style="width:200px"><span class="tolv-cell__value">取引先</span></div>`
+      + `<div class="tolv-cell is-edit" style="width:280px">${selectEl('みかん')}${actions}</div>`
+      + `<div class="tolv-cell" style="width:240px"><span class="tolv-cell__value">備考</span></div>`
+      + `</div></div>`;
+    const scroller = `<div style="width:240px;height:160px;overflow:auto;border:1px solid var(--color-border-basic-primary);border-radius:8px;padding:0 16px">`
+      + `<div style="height:60px"></div>${selectEl('ぶどう')}<div style="height:400px"></div></div>`;
+    return `<div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">`
+      + `<div style="width:240px">${ovfCap('Container（overflow:hidden・高さ 96px）')}${container}</div>`
+      + `<div>${ovfCap('横スクロールするテーブルのセル編集')}${table}</div>`
+      + `<div>${ovfCap('スクロールする親（追従・見えなくなると閉じる）')}${scroller}</div>`
+      + `</div>`;
+  },
+};
+
+export const NearEdges = {
+  name: '画面の端の近く',
+  parameters: { controls: { disable: true }, layout: 'fullscreen' },
+  render: () => `<div style="position:relative;height:100vh;min-height:480px">`
+    + `<div style="position:absolute;top:16px;right:16px;width:120px">${ovfCap('右上')}${selectEl('りんご')}</div>`
+    + `<div style="position:absolute;bottom:16px;left:16px;width:200px">${ovfCap('左下（上に開く）')}${selectEl('りんご')}</div>`
+    + `<div style="position:absolute;bottom:16px;right:16px;width:120px">${ovfCap('右下（--align-end）')}${selectEl('りんご', 'tolv-select--align-end')}</div>`
+    + `</div>`,
 };

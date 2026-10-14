@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form behavior  (v0.11.1)
+ * tolv Design System — Form behavior  (v0.30.0)
  * =====================================================================
  * 依存なしの素のJS。form.css の Select / Search / InputTime に挙動を付与する。
  * プログレッシブエンハンス：読み込むだけで既存マークアップを自動初期化。
@@ -10,6 +10,10 @@
  *   // IncrementalSearch は <div class="tolv-search" data-suggestions='["A","B"]'> で
  *   //   マスターデータを渡すと SuggestionPanel 版で動作する
  *
+ * SelectPanel / SuggestionPanel は最前面（Popover API の top layer）に表示し、親の overflow で切れない（TolvLayer）。
+ *   位置はフィールドの下 4px・左端そろえ（.tolv-select--align-end は右端そろえ）。入りきらなければ上 / 反対側にそろえる。
+ *   幅は最小でフィールドの幅、中身が長ければ広がる。スクロール・リサイズに追従し、フィールドが見えなくなったら閉じる。
+ *
  * イベント（bubbles）:
  *   .tolv-select → 'tolv:change'  detail: { value, item }
  *   .tolv-search → 'tolv:select'  detail: { value|item }（候補選択）
@@ -18,6 +22,108 @@
 (function (global) {
   'use strict';
 
+  // ==== TolvLayer：ポップオーバーを最前面に表示する共通の仕組み ====================
+  // （calendar.js / form.js に同じ定義を置き、先に読み込まれた方を共有する。変更するときは両方そろえる）
+  // パネルを Popover API（top layer）で重ね、位置は基準の要素（anchor）に合わせて JS で決める。
+  //   既定は anchor の下 4px・左端そろえ。下に入りきらなければ上、右にはみ出すなら右端そろえ（画面端から 16px 以上）。
+  //   ページ・親のスクロール、画面サイズの変更に追従し、anchor が見えなくなったら閉じる（onAutoClose）。
+  // パネルは DOM 上は anchor の中に置いたままなので、anchor.contains() で「その部品の一部」と判定できる。
+  // Popover API 非対応ブラウザは position:fixed ＋ z-index で重ねる（CSS の [data-tolv-layer]）。
+  var TolvLayer = global.TolvLayer || (global.TolvLayer = (function () {
+    var EDGE = 16;
+    var SUPPORTS = typeof HTMLElement !== 'undefined' && Object.prototype.hasOwnProperty.call(HTMLElement.prototype, 'showPopover');
+    var opened = [];
+    var bound = false;
+
+    // el が実際に見えている範囲（画面と、overflow で切り取る祖先の枠の重なり）
+    function visibleRect(el) {
+      var de = document.documentElement;
+      var r = { top: 0, left: 0, right: de.clientWidth, bottom: de.clientHeight };
+      for (var p = el.parentElement; p && p !== document.body && p !== de; p = p.parentElement) {
+        var cs = getComputedStyle(p);
+        if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + ' ' + cs.overflowY)) {
+          var b = p.getBoundingClientRect();
+          r = { top: Math.max(r.top, b.top), left: Math.max(r.left, b.left), right: Math.min(r.right, b.right), bottom: Math.min(r.bottom, b.bottom) };
+        }
+      }
+      return r;
+    }
+
+    function place(L) {
+      if (!L.isOpen) return;
+      var a = L.anchor.getBoundingClientRect();
+      var v = visibleRect(L.anchor);
+      if (a.bottom <= v.top || a.top >= v.bottom || a.right <= v.left || a.left >= v.right) {   // anchor が見えなくなったら閉じる
+        close(L);
+        if (L.onAutoClose) L.onAutoClose();
+        return;
+      }
+      var de = document.documentElement, vw = de.clientWidth, vh = de.clientHeight;
+      if (L.matchWidth) L.panel.style.minWidth = a.width + 'px';   // 最小幅 = anchor の幅（中身が長ければ広がる）
+      var w = L.panel.offsetWidth, h = L.panel.offsetHeight;
+      var top = a.bottom + L.gap, y = 'bottom';
+      if (top + h > vh - EDGE && a.top - L.gap - h >= EDGE) { top = a.top - L.gap - h; y = 'top'; }
+      var end = (typeof L.align === 'function' ? L.align() : L.align) === 'end';
+      var left, x;
+      if (end) { left = a.right - w; x = 'end'; if (left < EDGE) { left = a.left; x = 'start'; } }
+      else { left = a.left; x = 'start'; if (left + w > vw - EDGE) { left = a.right - w; x = 'end'; } }
+      left = Math.max(EDGE, Math.min(left, vw - EDGE - w));
+      L.panel.style.top = top + 'px';
+      L.panel.style.left = left + 'px';
+      L.panel.setAttribute('data-placement', y + '-' + x);
+    }
+
+    function bind() {
+      if (bound) return; bound = true;
+      var follow = function () { opened.slice().forEach(place); };
+      window.addEventListener('scroll', follow, true);   // capture: 親要素のスクロールも拾う
+      window.addEventListener('resize', follow);
+    }
+
+    function open(L) {
+      if (L.isOpen) { place(L); return; }
+      L.isOpen = true;
+      if (SUPPORTS) { try { L.panel.showPopover(); } catch (err) { /* 未接続など */ } }
+      opened.push(L);
+      bind();
+      place(L);
+    }
+
+    function close(L) {
+      if (!L.isOpen) return;
+      L.isOpen = false;
+      if (SUPPORTS) { try { L.panel.hidePopover(); } catch (err) { /* 既に閉じている */ } }
+      opened = opened.filter(function (o) { return o !== L; });
+    }
+
+    // anchor: 位置の基準 / panel: 重ねる要素（anchor の子孫のまま）
+    // opts: { gap = 4, align = 'start'|'end'|() => …, matchWidth = false, onAutoClose }
+    function attach(anchor, panel, opts) {
+      opts = opts || {};
+      var L = { anchor: anchor, panel: panel, gap: opts.gap != null ? opts.gap : 4, align: opts.align || 'start', matchWidth: !!opts.matchWidth, onAutoClose: opts.onAutoClose, isOpen: false };
+      panel.setAttribute('data-tolv-layer', '');
+      if (SUPPORTS) panel.setAttribute('popover', 'manual');   // 開閉は各部品のスクリプトで管理（外側クリック・Esc）
+      if (typeof ResizeObserver !== 'undefined') new ResizeObserver(function () { place(L); }).observe(panel);   // 中身が変わって大きさが変わったら取り直す
+      return {
+        open: function () { open(L); },
+        close: function () { close(L); },
+        place: function () { place(L); },
+        isOpen: function () { return L.isOpen; },
+      };
+    }
+
+    // node が最前面に重ねたパネルの中か
+    function contains(node) {
+      var el = node && node.nodeType === 3 ? node.parentElement : node;
+      return !!(el && el.closest && el.closest('[data-tolv-layer]'));
+    }
+
+    return { attach: attach, contains: contains, supportsPopover: SUPPORTS };
+  })());
+  // ==== /TolvLayer =================================================================
+
+  function closeEl(el) { if (el.__tolvClose) el.__tolvClose(); else el.classList.remove('is-open'); }
+
   var docBound = false;
   function bindDocumentOnce() {
     if (docBound) return;
@@ -25,14 +131,14 @@
     // 外側クリックで閉じる
     document.addEventListener('click', function (e) {
       document.querySelectorAll('.tolv-select.is-open, .tolv-search.is-open').forEach(function (el) {
-        if (!el.contains(e.target)) el.classList.remove('is-open');
+        if (!el.contains(e.target)) closeEl(el);
       });
     });
     // Escape で閉じる
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
       document.querySelectorAll('.tolv-select.is-open, .tolv-search.is-open').forEach(function (el) {
-        el.classList.remove('is-open');
+        closeEl(el);
       });
     });
   }
@@ -58,8 +164,18 @@
     if (!control) return;
 
     var disabled = function () { return sel.classList.contains('is-disabled') || control.disabled; };
-    var open = function () { if (disabled()) return; sel.classList.add('is-open'); control.setAttribute('aria-expanded', 'true'); };
-    var close = function () { sel.classList.remove('is-open'); control.setAttribute('aria-expanded', 'false'); };
+    var layer = null;
+    var close = function () { sel.classList.remove('is-open'); control.setAttribute('aria-expanded', 'false'); if (layer) layer.close(); };
+    var open = function () { if (disabled()) return; sel.classList.add('is-open'); control.setAttribute('aria-expanded', 'true'); if (layer) layer.open(); };
+    if (menu) {
+      layer = TolvLayer.attach(sel, menu, {
+        matchWidth: true,
+        align: function () { return sel.classList.contains('tolv-select--align-end') ? 'end' : 'start'; },
+        onAutoClose: close,
+      });
+      sel.__tolvClose = close;
+      if (sel.classList.contains('is-open')) layer.open();   // 最初から開いた状態で置かれたもの（表示例など）
+    }
 
     control.addEventListener('click', function (e) {
       e.preventDefault();
@@ -116,17 +232,19 @@
           + '</div>';
       }
     }
-    var open = function () { if (disabled()) return; render(); sr.classList.add('is-open'); };
-    var close = function () { sr.classList.remove('is-open'); };
+    var layer = null;
+    var close = function () { sr.classList.remove('is-open'); if (layer) layer.close(); };
+    var open = function () { if (disabled()) return; render(); sr.classList.add('is-open'); layer.open(); };
+    layer = TolvLayer.attach(sr, panel, { matchWidth: true, onAutoClose: close });
+    sr.__tolvClose = close;
 
     input.addEventListener('focus', open);
-    input.addEventListener('input', function () { render(); if (!disabled()) sr.classList.add('is-open'); });
+    input.addEventListener('input', function () { if (!disabled()) open(); else render(); });
     if (clear) clear.addEventListener('click', function (e) {
       e.stopPropagation();
       input.value = '';
-      render();
       input.focus();
-      sr.classList.add('is-open');
+      open();
     });
 
     panel.addEventListener('click', function (e) {
@@ -219,7 +337,14 @@
     });
   }
 
+  // node が Select / Search（最前面に出したパネルを含む）の一部か。外側クリックで閉じる処理用
+  function contains(node) {
+    var el = node && node.nodeType === 3 ? node.parentElement : node;
+    return !!(el && el.closest && el.closest('.tolv-select, .tolv-search'));
+  }
+
   var TolvForm = {
+    contains: contains,
     init: function (root) {
       root = root || document;
       bindDocumentOnce();

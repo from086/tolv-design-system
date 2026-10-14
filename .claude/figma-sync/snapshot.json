@@ -1,7 +1,7 @@
 {
  "takenAt": "2026-10-14",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.28.1",
+ "syncedRelease": "v0.30.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -714,6 +714,8 @@
   "radio_button_unchecked": "Style=fill:fvrdjb@24 Style=outline:fvrdjb@24",
   "radio_button_checked": "Style=fill:rr70h2@24 Style=outline:rr70h2@24",
   "check_box_indeterminate": "Style=fill:3l3pvw@24 Style=outline:17l7y00@24",
-  "check_box_blank": "Style=fill:b3wtow@24 Style=outline:b3wtow@24"
+  "check_box_blank": "Style=fill:b3wtow@24 Style=outline:b3wtow@24",
+  "csv": "Style=fill:1vfmfpn@24 Style=outline:o8qmrh@24",
+  "pdf": "Style=fill:wy3zyk@24 Style=outline:1500oga@24"
  }
 }

@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Calendar behavior  (v0.29.0)
+ * tolv Design System — Calendar behavior  (v0.30.0)
  * =====================================================================
  * 依存なしの素のJS。calendar.css の CalendarPanel / DateSelect に挙動を付与。
  *   - .tolv-calendar     : 月送り / 日選択 / 削除 / 今日（年はSelect）
@@ -139,55 +139,116 @@
     });
   }
 
-  // ---- カレンダーを最前面に表示（親の overflow で切れないように） ----
-  // Popover API（top layer）で重ね、位置は日付欄に合わせて JS で決める。
-  // ポップオーバーは DOM 上は DateSelect の中に置いたままなので、ds.contains() で「DateSelect の一部」と判定できる。
-  // Popover API 非対応ブラウザは position:fixed ＋ z-index で重ねる（calendar.css）。
-  var GAP = 4;    // 日付欄との間隔（space/small）
-  var EDGE = 16;  // 画面の端から離す距離（space/large）
-  var SUPPORTS_POPOVER = typeof HTMLElement !== 'undefined' && Object.prototype.hasOwnProperty.call(HTMLElement.prototype, 'showPopover');
-  var opened = [];
+  // ==== TolvLayer：ポップオーバーを最前面に表示する共通の仕組み ====================
+  // （calendar.js / form.js に同じ定義を置き、先に読み込まれた方を共有する。変更するときは両方そろえる）
+  // パネルを Popover API（top layer）で重ね、位置は基準の要素（anchor）に合わせて JS で決める。
+  //   既定は anchor の下 4px・左端そろえ。下に入りきらなければ上、右にはみ出すなら右端そろえ（画面端から 16px 以上）。
+  //   ページ・親のスクロール、画面サイズの変更に追従し、anchor が見えなくなったら閉じる（onAutoClose）。
+  // パネルは DOM 上は anchor の中に置いたままなので、anchor.contains() で「その部品の一部」と判定できる。
+  // Popover API 非対応ブラウザは position:fixed ＋ z-index で重ねる（CSS の [data-tolv-layer]）。
+  var TolvLayer = global.TolvLayer || (global.TolvLayer = (function () {
+    var EDGE = 16;
+    var SUPPORTS = typeof HTMLElement !== 'undefined' && Object.prototype.hasOwnProperty.call(HTMLElement.prototype, 'showPopover');
+    var opened = [];
+    var bound = false;
 
-  // el が実際に見えている範囲（画面と、overflow で切り取る祖先の枠の重なり）
-  function visibleRect(el) {
-    var de = document.documentElement;
-    var r = { top: 0, left: 0, right: de.clientWidth, bottom: de.clientHeight };
-    for (var p = el.parentElement; p && p !== document.body && p !== de; p = p.parentElement) {
-      var cs = getComputedStyle(p);
-      if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + ' ' + cs.overflowY)) {
-        var b = p.getBoundingClientRect();
-        r = { top: Math.max(r.top, b.top), left: Math.max(r.left, b.left), right: Math.min(r.right, b.right), bottom: Math.min(r.bottom, b.bottom) };
+    // el が実際に見えている範囲（画面と、overflow で切り取る祖先の枠の重なり）
+    function visibleRect(el) {
+      var de = document.documentElement;
+      var r = { top: 0, left: 0, right: de.clientWidth, bottom: de.clientHeight };
+      for (var p = el.parentElement; p && p !== document.body && p !== de; p = p.parentElement) {
+        var cs = getComputedStyle(p);
+        if (/(auto|scroll|hidden|clip)/.test(cs.overflowX + ' ' + cs.overflowY)) {
+          var b = p.getBoundingClientRect();
+          r = { top: Math.max(r.top, b.top), left: Math.max(r.left, b.left), right: Math.min(r.right, b.right), bottom: Math.min(r.bottom, b.bottom) };
+        }
       }
+      return r;
     }
-    return r;
-  }
 
-  // 既定は日付欄の下 4px・左端そろえ。下に入りきらなければ上、右にはみ出すなら右端そろえ（画面端から 16px 以上）
-  function place(ds) {
-    var pop = ds.__tolvPop;
-    var a = ds.getBoundingClientRect();
-    var v = visibleRect(ds);
-    if (a.bottom <= v.top || a.top >= v.bottom || a.right <= v.left || a.left >= v.right) { close(ds, false); return; }  // 日付欄が見えなくなったら閉じる
-    var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
-    var w = pop.offsetWidth, h = pop.offsetHeight;
-    var top = a.bottom + GAP, y = 'bottom';
-    if (top + h > vh - EDGE && a.top - GAP - h >= EDGE) { top = a.top - GAP - h; y = 'top'; }
-    var left = a.left, x = 'start';
-    if (left + w > vw - EDGE) { left = a.right - w; x = 'end'; }
-    left = Math.max(EDGE, Math.min(left, vw - EDGE - w));
-    pop.style.top = top + 'px';
-    pop.style.left = left + 'px';
-    pop.setAttribute('data-placement', y + '-' + x);
-  }
+    function place(L) {
+      if (!L.isOpen) return;
+      var a = L.anchor.getBoundingClientRect();
+      var v = visibleRect(L.anchor);
+      if (a.bottom <= v.top || a.top >= v.bottom || a.right <= v.left || a.left >= v.right) {   // anchor が見えなくなったら閉じる
+        close(L);
+        if (L.onAutoClose) L.onAutoClose();
+        return;
+      }
+      var de = document.documentElement, vw = de.clientWidth, vh = de.clientHeight;
+      if (L.matchWidth) L.panel.style.minWidth = a.width + 'px';   // 最小幅 = anchor の幅（中身が長ければ広がる）
+      var w = L.panel.offsetWidth, h = L.panel.offsetHeight;
+      var top = a.bottom + L.gap, y = 'bottom';
+      if (top + h > vh - EDGE && a.top - L.gap - h >= EDGE) { top = a.top - L.gap - h; y = 'top'; }
+      var end = (typeof L.align === 'function' ? L.align() : L.align) === 'end';
+      var left, x;
+      if (end) { left = a.right - w; x = 'end'; if (left < EDGE) { left = a.left; x = 'start'; } }
+      else { left = a.left; x = 'start'; if (left + w > vw - EDGE) { left = a.right - w; x = 'end'; } }
+      left = Math.max(EDGE, Math.min(left, vw - EDGE - w));
+      L.panel.style.top = top + 'px';
+      L.panel.style.left = left + 'px';
+      L.panel.setAttribute('data-placement', y + '-' + x);
+    }
+
+    function bind() {
+      if (bound) return; bound = true;
+      var follow = function () { opened.slice().forEach(place); };
+      window.addEventListener('scroll', follow, true);   // capture: 親要素のスクロールも拾う
+      window.addEventListener('resize', follow);
+    }
+
+    function open(L) {
+      if (L.isOpen) { place(L); return; }
+      L.isOpen = true;
+      if (SUPPORTS) { try { L.panel.showPopover(); } catch (err) { /* 未接続など */ } }
+      opened.push(L);
+      bind();
+      place(L);
+    }
+
+    function close(L) {
+      if (!L.isOpen) return;
+      L.isOpen = false;
+      if (SUPPORTS) { try { L.panel.hidePopover(); } catch (err) { /* 既に閉じている */ } }
+      opened = opened.filter(function (o) { return o !== L; });
+    }
+
+    // anchor: 位置の基準 / panel: 重ねる要素（anchor の子孫のまま）
+    // opts: { gap = 4, align = 'start'|'end'|() => …, matchWidth = false, onAutoClose }
+    function attach(anchor, panel, opts) {
+      opts = opts || {};
+      var L = { anchor: anchor, panel: panel, gap: opts.gap != null ? opts.gap : 4, align: opts.align || 'start', matchWidth: !!opts.matchWidth, onAutoClose: opts.onAutoClose, isOpen: false };
+      panel.setAttribute('data-tolv-layer', '');
+      if (SUPPORTS) panel.setAttribute('popover', 'manual');   // 開閉は各部品のスクリプトで管理（外側クリック・Esc）
+      if (typeof ResizeObserver !== 'undefined') new ResizeObserver(function () { place(L); }).observe(panel);   // 中身が変わって大きさが変わったら取り直す
+      return {
+        open: function () { open(L); },
+        close: function () { close(L); },
+        place: function () { place(L); },
+        isOpen: function () { return L.isOpen; },
+      };
+    }
+
+    // node が最前面に重ねたパネルの中か
+    function contains(node) {
+      var el = node && node.nodeType === 3 ? node.parentElement : node;
+      return !!(el && el.closest && el.closest('[data-tolv-layer]'));
+    }
+
+    return { attach: attach, contains: contains, supportsPopover: SUPPORTS };
+  })());
+  // ==== /TolvLayer =================================================================
+
+  // ---- DateSelect の開閉（カレンダーは TolvLayer で最前面に表示） ----
+  var opened = [];   // 開いている DateSelect（同時に開くのは1つ）
 
   function open(ds) {
-    if (!ds.__tolvPop || ds.classList.contains('is-open') || ds.classList.contains('is-disabled')) return;
-    opened.slice().forEach(function (o) { close(o, false); });   // 同時に開くのは1つ
+    if (!ds.__tolvLayer || ds.classList.contains('is-open') || ds.classList.contains('is-disabled')) return;
+    opened.slice().forEach(function (o) { close(o, false); });
     ds.classList.add('is-open');
     ds.setAttribute('aria-expanded', 'true');
-    if (SUPPORTS_POPOVER) { try { ds.__tolvPop.showPopover(); } catch (err) { /* 未接続など */ } }
     opened.push(ds);
-    place(ds);
+    ds.__tolvLayer.open();
   }
 
   // restoreFocus: 閉じたあと日付欄にフォーカスを戻す
@@ -195,7 +256,7 @@
     if (!ds.classList.contains('is-open')) return;
     ds.classList.remove('is-open');
     ds.setAttribute('aria-expanded', 'false');
-    if (SUPPORTS_POPOVER) { try { ds.__tolvPop.hidePopover(); } catch (err) { /* 既に閉じている */ } }
+    if (ds.__tolvLayer) ds.__tolvLayer.close();
     opened = opened.filter(function (o) { return o !== ds; });
     if (restoreFocus) ds.focus({ preventScroll: true });
   }
@@ -207,8 +268,7 @@
       if (segs.length < 3) return;
       var pop = ds.querySelector('.tolv-date-select__popover');
       if (!pop) { pop = document.createElement('div'); pop.className = 'tolv-date-select__popover'; ds.appendChild(pop); }
-      if (SUPPORTS_POPOVER) pop.setAttribute('popover', 'manual');   // 開閉はこのスクリプトで管理（外側クリック・Esc）
-      ds.__tolvPop = pop;
+      ds.__tolvLayer = TolvLayer.attach(ds, pop, { onAutoClose: function () { close(ds, false); } });
       var calEl = document.createElement('div');
       pop.appendChild(calEl);
 
@@ -235,8 +295,6 @@
         e.preventDefault();
         if (ds.classList.contains('is-open')) close(ds, true); else open(ds);
       });
-      // 月によって週の数が変わり高さが変わる → 位置を取り直す（上に開いているときに必要）
-      if (typeof ResizeObserver !== 'undefined') new ResizeObserver(function () { if (ds.classList.contains('is-open')) place(ds); }).observe(pop);
     });
   }
 
@@ -254,10 +312,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') opened.slice().forEach(function (ds) { close(ds, true); });
     });
-    // ページ・親要素のスクロール（capture で全要素分を拾う）と画面サイズの変更に追従
-    var follow = function () { opened.slice().forEach(place); };
-    window.addEventListener('scroll', follow, true);
-    window.addEventListener('resize', follow);
   }
 
   // node が DateSelect（カレンダーを含む）の一部か。外側クリックで閉じる処理（FilterPanel など）から使う

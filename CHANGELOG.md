@@ -2,6 +2,18 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.30.0] - 2026-10-14
+### Changed
+- **SelectPanel / SuggestionPanel も最前面に表示（親の overflow で切れない）**: DateSelect のカレンダーと同じ仕組みに共通化（`TolvLayer`）。位置はフィールドの下 4px・左端そろえ（`--align-end` は右端そろえ）、入りきらなければ上 / 反対側にそろえる（画面端から 16px 以上）。幅は最小でフィールドの幅・中身が長ければ広がる。スクロール・リサイズに追従し、フィールドが見えなくなったら閉じる
+- DateSelect の最前面表示を共通の `TolvLayer` に置き換え（動きは v0.29.0 と同じ）
+- 選択・外側クリック・Esc・`tolv:change` / `tolv:select` / `tolv:additem` の動きは変更なし。マークアップの変更も不要
+
+### Added
+- **`TolvLayer`**（form.js / calendar.js に同梱。先に読み込まれた方を共有）: `TolvLayer.attach(anchor, panel, opts)` / `TolvLayer.contains(node)`
+- **`TolvForm.contains(node)`**（Select / Search の一部か判定。外側クリックで閉じる処理用）
+- ストーリー用アイコンに Figma Asset の **`csv`** / **`pdf`** を追加（outline スタイル）
+- Storybook の Select / IncrementalSearch に確認用ストーリー（親の overflow の中 / 画面の端の近く）
+
 ## [0.29.0] - 2026-10-14
 ### Changed
 - **DateSelect のカレンダーを最前面に表示（親の overflow で切れない）**: Popover API（top layer）で重ね、位置は calendar.js が日付欄に合わせて決める。FilterPanel（overflow-y:auto）・Container（overflow:hidden）・横スクロールのテーブルの中でも切れない
