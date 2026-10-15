@@ -2,6 +2,13 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.31.0] - 2026-10-15
+### Added
+- **ToggleButton（`.tolv-toggle-button`、controls.css）**: 選択の ON/OFF を切り替えるボタン。形は Button Small（高さ 32・余白 4/8・radius medium・Bold 14/20・アイコン 20px）
+  - 未選択: ブランド色の枠＋radio_button_unchecked・ブランド色の文字 / hover でブランド色（hover）の地・brand-secondary の枠・白文字
+  - 選択中: ブランド色の地＋check・白文字（hover は Figma に定義がないため Button Primary の hover と同じ）
+  - 状態は `<label>` ＋ `<input type="checkbox" class="tolv-toggle-button__input">`（推奨・JS 不要）/ `<button aria-pressed>` / `.is-selected` のどれでも表せる
+
 ## [0.30.0] - 2026-10-14
 ### Changed
 - **SelectPanel / SuggestionPanel も最前面に表示（親の overflow で切れない）**: DateSelect のカレンダーと同じ仕組みに共通化（`TolvLayer`）。位置はフィールドの下 4px・左端そろえ（`--align-end` は右端そろえ）、入りきらなければ上 / 反対側にそろえる（画面端から 16px 以上）。幅は最小でフィールドの幅・中身が長ければ広がる。スクロール・リサイズに追従し、フィールドが見えなくなったら閉じる

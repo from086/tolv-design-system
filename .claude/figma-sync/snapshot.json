@@ -1,7 +1,7 @@
 {
- "takenAt": "2026-10-14",
+ "takenAt": "2026-10-15",
  "figmaFile": "lSQ11zWf0XCWps8J8E8u5G",
- "syncedRelease": "v0.30.0",
+ "syncedRelease": "v0.31.0",
  "components": {
   "Text": {
    "id": "3610:1599",
@@ -536,6 +536,16 @@
     "Type=Period": "x5io7m"
    },
    "desc": "1y1fo6t"
+  },
+  "ToggleButton": {
+   "id": "4045:2537",
+   "props": "121cbto",
+   "variants": {
+    "Selected=True, Status=Default": "1vxwdu9",
+    "Selected=False, Status=Default": "12qcfsm",
+    "Selected=False, Status=Hover": "1rpgwup"
+   },
+   "desc": "1v8blrl"
   }
  },
  "variables": {

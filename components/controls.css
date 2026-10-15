@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Controls  (v0.14.0)
+ * tolv Design System — Controls  (v0.31.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css を参照。
  *   .tolv-checkbox            … チェックボックス（False/True/Indeterminate × Default/Hover/Disabled）
@@ -7,6 +7,7 @@
  *   .tolv-sort-button         … 並び替えアイコンボタン（selected/未selected × hover）
  *   .tolv-filter-button       … 絞り込みアイコンボタン（SortButton と同じ形。未選択=outline・グレー / 選択中=fill・濃色）
  *   .tolv-trailing-icon-button… 末尾アイコンボタン（arrow-down/up・Info・Help 等 × hover）
+ *   .tolv-toggle-button       … 選択の ON/OFF を切り替えるボタン（Selected True/False × Default/Hover）
  *
  * 出典: Figma "tolv-design-system" 🛠️ Component ページ
  * アイコンは Figma 実アセット（Asset/Icon/check_box*, radio_button*, sort_*）。
@@ -133,3 +134,84 @@
 /* グレーのアイコン（Figma: Help は icon-color Secondary） */
 .tolv-trailing-icon-button--secondary { color: var(--color-fg-basic-secondary); }
 .tolv-trailing-icon-button svg { display: block; width: 20px; height: 20px; fill: currentColor; }
+
+/* ============ ToggleButton（.tolv-toggle-button） ============
+ * 選択の ON/OFF を切り替えるボタン。形は Button Small（高さ 32・余白 4/8・radius medium・Bold 14/20・アイコン 20px）。
+ *   未選択      : 地色なし・ブランド色の枠・radio_button_unchecked アイコン・ブランド色の文字
+ *   未選択 hover: ブランド色（hover）の地・brand-secondary の枠・白（inverse hover）の文字
+ *   選択中      : ブランド色の地・枠なし・check アイコン・白（inverse）の文字
+ * 状態は次のどれでも表せる：
+ *   <label class="tolv-toggle-button"><input type="checkbox" class="tolv-toggle-button__input" checked> … </label>（推奨。JS 不要）
+ *   <button type="button" class="tolv-toggle-button" aria-pressed="true"> … </button>（切替は利用側）
+ *   .is-selected
+ * アイコンは __off（未選択：radio_button_unchecked）と __on（選択中：check）の両方を置き、状態で切り替える。 */
+.tolv-toggle-button {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: calc(var(--space-small, 4px) - var(--border-regular, 1px)) calc(var(--space-medium, 8px) - var(--border-regular, 1px));   /* 枠内側（外形 = Figma） */
+  border: var(--border-regular, 1px) solid var(--color-border-brand-primary);
+  border-radius: var(--radius-medium, 8px);
+  background: transparent;
+  color: var(--color-fg-brand-primary);
+  font: var(--font-weight-bold, 700) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
+  cursor: pointer;
+  user-select: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.tolv-toggle-button:hover {
+  background: var(--color-bg-brand-primary-hover);
+  border-color: var(--color-border-brand-secondary);
+  color: var(--color-fg-basic-inverse-hover);
+}
+/* 選択中 */
+.tolv-toggle-button.is-selected,
+.tolv-toggle-button[aria-pressed="true"],
+.tolv-toggle-button:has(.tolv-toggle-button__input:checked) {
+  background: var(--color-bg-brand-primary);
+  border-color: transparent;
+  color: var(--color-fg-basic-inverse);
+}
+/* 選択中の hover（Figma に定義なし → Button Primary の hover と同じ） */
+.tolv-toggle-button.is-selected:hover,
+.tolv-toggle-button[aria-pressed="true"]:hover,
+.tolv-toggle-button:has(.tolv-toggle-button__input:checked):hover {
+  background: var(--color-bg-brand-primary-hover);
+  color: var(--color-fg-basic-inverse-hover);
+}
+.tolv-toggle-button:focus-visible,
+.tolv-toggle-button:has(.tolv-toggle-button__input:focus-visible) {
+  outline: var(--border-width-2, 2px) solid var(--color-border-basic-secondary);
+  outline-offset: 2px;
+}
+/* ネイティブ input はアクセシブルなまま視覚的に隠す */
+.tolv-toggle-button__input {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: 0; padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.tolv-toggle-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+.tolv-toggle-button__icon svg { display: block; width: 100%; height: 100%; fill: currentColor; }
+.tolv-toggle-button__label { padding: 0 var(--space-small, 4px); white-space: nowrap; }
+/* アイコンの切替（未選択 = __off / 選択中 = __on） */
+.tolv-toggle-button__icon--on { display: none; }
+.tolv-toggle-button.is-selected .tolv-toggle-button__icon--off,
+.tolv-toggle-button[aria-pressed="true"] .tolv-toggle-button__icon--off,
+.tolv-toggle-button:has(.tolv-toggle-button__input:checked) .tolv-toggle-button__icon--off { display: none; }
+.tolv-toggle-button.is-selected .tolv-toggle-button__icon--on,
+.tolv-toggle-button[aria-pressed="true"] .tolv-toggle-button__icon--on,
+.tolv-toggle-button:has(.tolv-toggle-button__input:checked) .tolv-toggle-button__icon--on { display: inline-flex; }

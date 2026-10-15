@@ -144,6 +144,7 @@ Select / Search の開閉・選択・絞り込みは依存なしの `form.js` �
 - **`.tolv-radio`** … ラジオボタン（`__box` + `__dot`。`:checked` / `:disabled`）
 - **`.tolv-sort-button`** … 並び替えアイコンボタン（`.is-selected` で濃色、hover 地色。アイコンは asc/desc を利用側で指定）
 - **`.tolv-filter-button`** … 絞り込みアイコンボタン（SortButton と同じ形。未選択 = filter_alt outline・グレー / `.is-selected` = filter_alt fill・濃色。アイコンは利用側で入れ替える）
+- **`.tolv-toggle-button`** … 選択の ON/OFF を切り替えるボタン（形は Button Small）。未選択 = ブランド色の枠＋radio_button_unchecked、選択中 = ブランド色の地＋check・白文字。状態は `<label>` ＋ `<input type="checkbox" class="tolv-toggle-button__input">`（推奨・JS 不要）/ `<button aria-pressed>` / `.is-selected` のどれでも。アイコンは `__icon--off`（未選択）と `__icon--on`（選択中）を両方置く
 - **`.tolv-trailing-icon-button`** … 末尾アイコンボタン（20px アイコン＋hover 地色。arrow-down/up・Info・Help 等を利用側で指定）。**Help は `--secondary`（グレー）** を付ける
 
 ### Text（`components/text.css`）
