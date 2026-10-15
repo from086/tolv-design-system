@@ -2,6 +2,17 @@
 
 このプロジェクトは [セマンティックバージョニング](https://semver.org/lang/ja/) に従います。
 
+## [0.32.0] - 2026-10-15
+### Changed
+- **FilterPanel のスクロール**: パネル全体ではなく **`__items` だけがスクロール**する形に変更。`__items` に最大高さ 300px（Figma Items の maxHeight。`--tolv-filter-panel-items-max-height` で変更可）を設け、上部（並び替え・区切り線・検索欄や見出し）は固定。パネル全体が最大高さ（480px）に届いたときも、縮むのは `__items` だけ
+
+### Added
+- ストーリー用アイコンに Figma Asset の **`exportIcon`**（Asset `export`。JS の予約語のため改名）/ **`refresh`** / **`sync`** を追加（outline スタイル）
+- Storybook の FilterPanel に「項目が多いとき」の例
+
+### Internal
+- Figma 同期の指紋に最小/最大の幅・高さとスクロール（overflow）・切り抜きを追加（今回の Items の maxHeight のような変更も検知できるように）。snapshot を取り直し
+
 ## [0.31.0] - 2026-10-15
 ### Added
 - **ToggleButton（`.tolv-toggle-button`、controls.css）**: 選択の ON/OFF を切り替えるボタン。形は Button Small（高さ 32・余白 4/8・radius medium・Bold 14/20・アイコン 20px）

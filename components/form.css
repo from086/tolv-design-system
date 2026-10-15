@@ -1,5 +1,5 @@
 /*
- * tolv Design System — Form family  (v0.30.0)
+ * tolv Design System — Form family  (v0.32.0)
  * =====================================================================
  * 素のCSS。tokens/tokens.css のセマンティックトークンを参照。
  * 含まれるコンポーネント:
@@ -382,7 +382,9 @@
  * __section の中身は縦 8px 間隔：IncrementalSearch / .tolv-field__label と、__items（CheckBox / RadioButton を幅いっぱいで縦に並べる）。
  * __range は「カスタム」期間の入力行（DateSelect 〜 DateSelect、左に 32px 字下げ・間隔 4px）。
  * Spec: 幅 = 親の幅（既定）… px 指定に変更可 / 最小幅 = 中身の幅 / 高さ = 中身に合わせる /
- *       最大高さ 480px（Figma コンポーネントの設定。--tolv-filter-panel-max-height で変更可）→ 超えたらパネル内でスクロール */
+ *       最大高さ 480px（--tolv-filter-panel-max-height で変更可）
+ * スクロールするのは __items だけ（最大高さ 300px。--tolv-filter-panel-items-max-height で変更可）。
+ * 上部（__sort・区切り線・検索欄や見出し）は固定。パネル全体が最大高さに届いたときも、縮むのは __items だけ。 */
 .tolv-filter-panel {
   box-sizing: border-box;
   display: flex;
@@ -399,10 +401,20 @@
   color: var(--color-fg-basic-primary);
   font: var(--font-weight-medium, 500) var(--font-size-xsmall, 14px) / var(--line-height-xsmall, 20px) var(--font-sans, sans-serif);
 }
-.tolv-filter-panel > .tolv-divider { margin: var(--space-medium, 8px) 0; flex: none; }   /* Divider 自身の余白 8px（gap とは別） */
+.tolv-filter-panel > * { flex: none; }   /* 上部は縮めない（縮むのは __section の __items だけ） */
+.tolv-filter-panel > .tolv-divider { margin: var(--space-medium, 8px) 0; }   /* Divider 自身の余白 8px（gap とは別） */
 .tolv-filter-panel__sort { display: flex; flex-wrap: wrap; }
+.tolv-filter-panel > .tolv-filter-panel__section { flex: 0 1 auto; min-height: 0; }
 .tolv-filter-panel__section { display: flex; flex-direction: column; gap: var(--space-medium, 8px); }
-.tolv-filter-panel__items { display: flex; flex-direction: column; }
+.tolv-filter-panel__section > * { flex: none; }
+.tolv-filter-panel__section > .tolv-filter-panel__items { flex: 0 1 auto; min-height: 0; }
+.tolv-filter-panel__items {
+  display: flex;
+  flex-direction: column;
+  max-height: var(--tolv-filter-panel-items-max-height, 300px);   /* Figma Items の maxHeight */
+  overflow-y: auto;   /* Items だけスクロール */
+}
+.tolv-filter-panel__items > * { flex: none; }
 .tolv-filter-panel__items > .tolv-checkbox,
 .tolv-filter-panel__items > .tolv-radio { display: flex; width: 100%; }   /* 行全体を押せるように幅いっぱい */
 .tolv-filter-panel__range {

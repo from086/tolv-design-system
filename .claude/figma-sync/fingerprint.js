@@ -9,7 +9,7 @@ async function paints(a) { if (!a || a === figma.mixed) return 'mixed'; const o 
 async function bvs(n) { if (!n.boundVariables) return ''; const o = []; for (const [k, v] of Object.entries(n.boundVariables)) { if (k === 'fills' || k === 'strokes') continue; const id = Array.isArray(v) ? (v[0] && v[0].id) : v && v.id; if (id) o.push(k + '=' + await vn(id)); } return o.sort().join(','); }
 async function sig(n, d) {
   let s = [n.type, n.name, Math.round(n.width), Math.round(n.height), n.visible === false ? 'H' : ''].join('|');
-  if ('layoutMode' in n) s += '|' + [n.layoutMode, n.paddingTop, n.paddingRight, n.paddingBottom, n.paddingLeft, n.itemSpacing, n.primaryAxisAlignItems, n.counterAxisAlignItems, n.layoutPositioning, n.minHeight, n.layoutSizingHorizontal, n.layoutSizingVertical].join(',');
+  if ('layoutMode' in n) s += '|' + [n.layoutMode, n.paddingTop, n.paddingRight, n.paddingBottom, n.paddingLeft, n.itemSpacing, n.primaryAxisAlignItems, n.counterAxisAlignItems, n.layoutPositioning, n.minHeight, n.layoutSizingHorizontal, n.layoutSizingVertical, n.minWidth, n.maxWidth, n.maxHeight, n.overflowDirection, n.clipsContent].join(',');
   if ('cornerRadius' in n) s += '|r' + String(n.cornerRadius);
   if ('fills' in n) s += '|f' + await paints(n.fills);
   if ('strokes' in n) s += '|s' + await paints(n.strokes) + String(n.strokeWeight) + n.strokeAlign + JSON.stringify(n.dashPattern || []);

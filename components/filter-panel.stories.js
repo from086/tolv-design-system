@@ -21,12 +21,12 @@ const dateSelect = (disabled) => `<div class="tolv-date-select${disabled ? ' is-
 
 const sort = (n) => `<div class="tolv-filter-panel__sort" role="radiogroup" aria-label="並び替え">${radio('昇順', false, n)}${radio('降順', true, n)}</div>`;
 
-// Figma Type=Default：検索＋CheckBox 一覧（複数選択）
-const listPanel = () => `<div class="tolv-filter-panel">`
-  + sort('sort-a')
+// Figma Type=Default：検索＋CheckBox 一覧（複数選択）。__items だけが最大 300px でスクロール
+const listPanel = (count = 4, n = 'sort-a') => `<div class="tolv-filter-panel">`
+  + sort(n)
   + `<hr class="tolv-divider">`
   + `<div class="tolv-filter-panel__section">${searchField()}`
-  + `<div class="tolv-filter-panel__items">${['ラベル', 'ラベル', 'ラベル', 'ラベル'].map((l) => checkbox(l, false)).join('')}</div></div>`
+  + `<div class="tolv-filter-panel__items">${Array.from({ length: count }, (_, i) => checkbox(count > 4 ? `取引先 ${i + 1}` : 'ラベル', false)).join('')}</div></div>`
   + `</div>`;
 
 // Figma Type=Period（期間指定）：見出し＋RadioButton 一覧＋カスタム期間（選ぶまで DateSelect は無効）
@@ -51,7 +51,8 @@ export default {
           '- 幅: 親の幅（既定）… px 指定に変更可',
           '- 最小幅: 中身の幅（親が狭くても、選択肢や入力欄を省略・折り返ししないところまで広がる）',
           '- 高さ: 中身に合わせる',
-          '- 最大高さ: 480px（`--tolv-filter-panel-max-height` で変更可）。超えたらパネル内でスクロール',
+          '- 最大高さ: 480px（`--tolv-filter-panel-max-height` で変更可）',
+          '- スクロールするのは `__items` だけ（最大 300px。`--tolv-filter-panel-items-max-height` で変更可）。上部（並び替え・区切り線・検索欄）は固定',
           '',
           '**構成**: `__sort`（昇順/降順）→ `.tolv-divider` → `__section`（`.tolv-search` や `.tolv-field__label` ＋ `__items`）。カスタム期間は `__items` の最後に `__range` を置く',
           '',
@@ -73,6 +74,7 @@ export const Overview = {
     const cap = (t) => `<div style="font:500 12px var(--font-sans);color:var(--color-fg-basic-secondary);margin-bottom:6px">${t}</div>`;
     return `<div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">`
       + `<div style="width:360px">${cap('検索＋CheckBox 一覧（Figma Type=Default）')}${listPanel()}</div>`
+      + `<div style="width:360px">${cap('項目が多いとき（Items だけが 300px でスクロール）')}${listPanel(20, 'sort-c')}</div>`
       + `<div style="width:360px">${cap('期間指定（Figma Type=Period）')}${periodPanel(false)}</div>`
       + `<div style="width:160px">${cap('幅の狭い親（160px。中身の幅まで広がる）')}${periodPanel(true)}</div>`
       + `</div>`;
